@@ -11,6 +11,8 @@ class LearningService {
   LearningService._();
 
   static const Duration _timeout = Duration(seconds: 60);
+  /// Level 1 Mathematics must never leave a learner waiting on AI generation.
+  static const Duration _levelOneMathGeminiDeadline = Duration(seconds: 5);
 
   /// Cache for fetched learning content
   static final Map<String, LearningContentResponse> _cache = {};
@@ -24,17 +26,26 @@ class LearningService {
     }
 
     final base = ApiConfig.baseUrl;
+    final useLevelOneMathFallback = _isLevelOneMathematics(request);
 
     try {
       final response = await ApiService.post(
         '/api/learning/content',
         body: request.toJson(),
-        timeout: _timeout,
+        timeout: useLevelOneMathFallback
+            ? _levelOneMathGeminiDeadline
+            : _timeout,
       );
 
       if (response.statusCode == 200) {
         final data = jsonDecode(utf8.decode(response.bodyBytes)) as Map<String, dynamic>;
         final result = LearningContentResponse.fromJson(data, base);
+        if (useLevelOneMathFallback && result.questions.length < 4) {
+          debugPrint('⚠️ [LearningService]: Gemini returned an incomplete Level 1 Maths quiz; using fallback.');
+          final fallback = levelOneMathematicsFallback(request);
+          _cache[cacheKey] = fallback;
+          return fallback;
+        }
         _cache[cacheKey] = result;
         return result;
       }
@@ -43,11 +54,26 @@ class LearningService {
       debugPrint('❌ [LearningService]: Exception fetching AI content: $e');
     }
 
-    // Offline / fallback fallback path
-    final fallback = _createOfflineContent(request);
+    // Gemini exceeded five seconds (or failed) for Level 1 Maths: present the
+    // local four-question quiz immediately instead of showing an error state.
+    final fallback = useLevelOneMathFallback
+        ? levelOneMathematicsFallback(request)
+        : _createOfflineContent(request);
     _cache[cacheKey] = fallback;
     return fallback;
   }
+
+  static bool _isLevelOneMathematics(LearningRequest request) =>
+      request.studentLevel <= 1 &&
+      request.subject.toLowerCase().contains('mathematics');
+
+  /// The local Level 1 Maths question bank. Each of the six Maths houses has
+  /// its own four-question set: Derivation, Integration, Trigonometry,
+  /// Algebra, Geometry, and Arithmetic. This keeps fallback questions aligned
+  /// with the lesson even when Gemini is unavailable.
+  static LearningContentResponse levelOneMathematicsFallback(
+    LearningRequest request,
+  ) => _createOfflineContent(request, source: 'fallback');
 
   /// Synthesizes speech for custom text (e.g., question reading, how-to-play tutorial).
   static Future<String?> fetchTTSAudioUrl(String text) async {
@@ -74,7 +100,10 @@ class LearningService {
   }
 
   /// Generates offline default content if backend is completely offline.
-  static LearningContentResponse _createOfflineContent(LearningRequest req) {
+  static LearningContentResponse _createOfflineContent(
+    LearningRequest req, {
+    String source = 'offline',
+  }) {
     final subj = req.subject.toLowerCase();
     String topic = 'Core Principles of ${req.subject}';
     String explanation =
@@ -1026,8 +1055,8 @@ class LearningService {
       questions: questions,
       explanationAudioUrl: null,
       audioAvailable: false,
-      source: 'offline',
-      cacheKey: 'offline_${req.buildingId}',
+      source: source,
+      cacheKey: '${source}_${req.buildingId}',
     );
   }
 }
