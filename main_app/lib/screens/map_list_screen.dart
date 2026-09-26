@@ -1,11 +1,18 @@
+import 'dart:math' as math;
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
+import '../config/game_assets.dart';
 import '../game/buildings/building_data.dart';
 import '../game/managers/building_manager.dart';
 import '../theme/app_theme.dart';
-import '../widgets/premium_ui.dart';
 import 'subject_dashboard_screen.dart';
+
+// ─────────────────────────────────────────────────────────────────────────────
+// Pixel-Art Learn / Map List Screen
+// Implements the adventure game / island world aesthetic matching
+// WorldScreen, LeaderboardScreen, KnowledgeProfileScreen, and RankProgressScreen.
+// ─────────────────────────────────────────────────────────────────────────────
 
 class MapListScreen extends StatefulWidget {
   final VoidCallback? onBackToWorld;
@@ -16,8 +23,41 @@ class MapListScreen extends StatefulWidget {
   State<MapListScreen> createState() => _MapListScreenState();
 }
 
-class _MapListScreenState extends State<MapListScreen> {
+class _MapListScreenState extends State<MapListScreen>
+    with TickerProviderStateMixin {
   String _filter = 'All';
+  AnimationController? _particleCtrl;
+  AnimationController? _glowCtrl;
+
+  @override
+  void initState() {
+    super.initState();
+    _initControllers();
+  }
+
+  @override
+  void reassemble() {
+    super.reassemble();
+    _initControllers();
+  }
+
+  void _initControllers() {
+    _particleCtrl ??= AnimationController(
+      vsync: this,
+      duration: const Duration(seconds: 14),
+    )..repeat();
+    _glowCtrl ??= AnimationController(
+      vsync: this,
+      duration: const Duration(seconds: 3),
+    )..repeat(reverse: true);
+  }
+
+  @override
+  void dispose() {
+    _particleCtrl?.dispose();
+    _glowCtrl?.dispose();
+    super.dispose();
+  }
 
   void _handleSubjectTap(BuildingData building) {
     Navigator.push(
@@ -55,188 +95,307 @@ class _MapListScreenState extends State<MapListScreen> {
 
   @override
   Widget build(BuildContext context) {
+    _initControllers();
+    final size = MediaQuery.sizeOf(context);
+
     return Scaffold(
-      body: WorldBackdrop(
-        child: SafeArea(
-          bottom: false,
-          child: AnimatedBuilder(
-            animation: BuildingManager(),
-            builder: (context, _) {
-              final all = BuildingManager().allBuildings;
-              final buildings = _filteredBuildings(all);
-              final totalXp = all.fold<int>(0, (sum, b) => sum + b.currentXp);
-              final unlockedCount = all.where((b) => b.unlocked).length;
+      backgroundColor: const Color(0xFF0F172A),
+      body: Stack(
+        fit: StackFit.expand,
+        children: [
+          // ── Splash background ──
+          Positioned.fill(
+            child: Image.asset(
+              'assets/images/splash_background.jpg',
+              fit: BoxFit.cover,
+            ),
+          ),
+          // ── Dark radial gradient overlay for game HUD feel ──
+          Positioned.fill(
+            child: DecoratedBox(
+              decoration: BoxDecoration(
+                gradient: RadialGradient(
+                  center: Alignment.center,
+                  radius: 1.3,
+                  colors: [
+                    Colors.black.withValues(alpha: 0.45),
+                    Colors.black.withValues(alpha: 0.76),
+                  ],
+                ),
+              ),
+            ),
+          ),
 
-              return LayoutBuilder(
-                builder: (context, constraints) {
-                  final isWide = constraints.maxWidth > 850;
-                  final horizontalPadding = isWide ? 36.0 : 18.0;
+          // ── Floating pixel particles ──
+          AnimatedBuilder(
+            animation: _particleCtrl!,
+            builder: (context, _) => CustomPaint(
+              painter: _PixelParticlePainter(
+                progress: _particleCtrl!.value,
+                size: size,
+              ),
+              size: size,
+            ),
+          ),
 
-                  return Center(
-                    child: ConstrainedBox(
-                      constraints: const BoxConstraints(maxWidth: 1200),
-                      child: CustomScrollView(
-                        slivers: [
-                          // Header Section
-                          SliverToBoxAdapter(
-                            child: Padding(
-                              padding: EdgeInsets.fromLTRB(
-                                horizontalPadding,
-                                20,
-                                horizontalPadding,
-                                14,
-                              ),
-                              child: Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  Row(
-                                    children: [
-                                      IconButton(
-                                        tooltip: 'Back to World',
-                                        onPressed: () {
-                                          if (widget.onBackToWorld != null) {
-                                            widget.onBackToWorld!();
-                                          } else {
-                                            Navigator.of(context).maybePop();
-                                          }
-                                        },
-                                        icon: const Icon(
-                                          Icons.arrow_back_rounded,
-                                          color: AppColors.onSurface,
-                                        ),
-                                        style: IconButton.styleFrom(
-                                          backgroundColor: Colors.white,
-                                          side: const BorderSide(
-                                            color: Color(0xFFE2EAE5),
-                                          ),
-                                        ),
-                                      ),
-                                      const SizedBox(width: 12),
-                                      Expanded(
-                                        child: Text(
-                                          'Mathematics Realms',
-                                          style: GoogleFonts.plusJakartaSans(
-                                            fontSize: 26,
-                                            fontWeight: FontWeight.w900,
-                                            color: AppColors.onSurface,
-                                          ),
-                                        ),
-                                      ),
-                                    ],
-                                  ),
-                                  const SizedBox(height: 3),
-                                  Text(
-                                    'Explore the syllabus and master core concepts for every house.',
-                                    style: GoogleFonts.manrope(
-                                      fontSize: 13,
-                                      color: AppColors.textSecondary,
-                                    ),
-                                  ),
-                                  const SizedBox(height: 16),
+          // ── Main scrollable content ──
+          SafeArea(
+            bottom: false,
+            child: AnimatedBuilder(
+              animation: BuildingManager(),
+              builder: (context, _) {
+                final all = BuildingManager().allBuildings;
+                final buildings = _filteredBuildings(all);
+                final totalXp =
+                    all.fold<int>(0, (sum, b) => sum + b.currentXp);
+                final unlockedCount = all.where((b) => b.unlocked).length;
 
-                                  // Clean Overview Banner (No extra icons)
-                                  _RealmOverviewBanner(
-                                    totalRealms: all.length,
-                                    unlockedRealms: unlockedCount,
-                                    totalXp: totalXp,
-                                  ),
-                                  const SizedBox(height: 16),
+                return LayoutBuilder(
+                  builder: (context, constraints) {
+                    final isWide = constraints.maxWidth > 850;
+                    final horizontalPadding = isWide ? 36.0 : 18.0;
 
-                                  // Clean Filter Pills (No extra icons)
-                                  SingleChildScrollView(
-                                    scrollDirection: Axis.horizontal,
-                                    child: Row(
+                    return Center(
+                      child: ConstrainedBox(
+                        constraints: const BoxConstraints(maxWidth: 1200),
+                        child: CustomScrollView(
+                          slivers: [
+                            // ── Header Section ──
+                            SliverToBoxAdapter(
+                              child: Padding(
+                                padding: EdgeInsets.fromLTRB(
+                                  horizontalPadding,
+                                  16,
+                                  horizontalPadding,
+                                  14,
+                                ),
+                                child: Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    // Back button & top navigation
+                                    Row(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.spaceBetween,
                                       children: [
-                                        _FilterChip(
-                                          label: 'All Houses (${all.length})',
-                                          isSelected: _filter == 'All',
-                                          onTap: () =>
-                                              setState(() => _filter = 'All'),
+                                        _PixelBackButton(
+                                          label: 'BACK TO WORLD',
+                                          onTap: () {
+                                            if (widget.onBackToWorld != null) {
+                                              widget.onBackToWorld!();
+                                            } else {
+                                              Navigator.of(context).maybePop();
+                                            }
+                                          },
                                         ),
-                                        const SizedBox(width: 8),
-                                        _FilterChip(
-                                          label: 'Calculus',
-                                          isSelected: _filter == 'Calculus',
-                                          onTap: () => setState(
-                                              () => _filter = 'Calculus'),
-                                        ),
-                                        const SizedBox(width: 8),
-                                        _FilterChip(
-                                          label: 'Foundation',
-                                          isSelected: _filter == 'Foundation',
-                                          onTap: () => setState(
-                                              () => _filter = 'Foundation'),
-                                        ),
-                                        const SizedBox(width: 8),
-                                        _FilterChip(
-                                          label: 'In Progress',
-                                          isSelected: _filter == 'Active',
-                                          onTap: () => setState(
-                                              () => _filter = 'Active'),
+                                        Row(
+                                          mainAxisSize: MainAxisSize.min,
+                                          children: [
+                                            Image.asset(
+                                              UiAssets.iconsQuestScrollIcon,
+                                              width: 20,
+                                              height: 20,
+                                              errorBuilder: (_, __, ___) =>
+                                                  const Icon(
+                                                Icons.book_rounded,
+                                                color: Color(0xFFFFD167),
+                                                size: 16,
+                                              ),
+                                            ),
+                                            const SizedBox(width: 6),
+                                            Text(
+                                              'CURRICULUM',
+                                              style: GoogleFonts.pressStart2p(
+                                                fontSize: 7.5,
+                                                color: const Color(0xFFF9E2AF),
+                                              ),
+                                            ),
+                                          ],
                                         ),
                                       ],
                                     ),
-                                  ),
-                                  const SizedBox(height: 14),
-                                ],
+                                    const SizedBox(height: 14),
+
+                                    // Screen Title Banner
+                                    Row(
+                                      children: [
+                                        Container(
+                                          padding: const EdgeInsets.all(8),
+                                          decoration: BoxDecoration(
+                                            color: const Color(0xFF0D1F2D),
+                                            border: Border.all(
+                                              color: const Color(0xFF6B5A3E),
+                                              width: 2,
+                                            ),
+                                            borderRadius:
+                                                BorderRadius.circular(4),
+                                          ),
+                                          child: Image.asset(
+                                            UiAssets.iconsGoldenStarBadgeIcon,
+                                            width: 26,
+                                            height: 26,
+                                            errorBuilder: (_, __, ___) =>
+                                                const Icon(
+                                              Icons.auto_stories_rounded,
+                                              color: Color(0xFFFFD167),
+                                              size: 24,
+                                            ),
+                                          ),
+                                        ),
+                                        const SizedBox(width: 12),
+                                        Expanded(
+                                          child: Column(
+                                            crossAxisAlignment:
+                                                CrossAxisAlignment.start,
+                                            children: [
+                                              Text(
+                                                'MATHEMATICS REALMS',
+                                                style: GoogleFonts.pressStart2p(
+                                                  fontSize: 12,
+                                                  color:
+                                                      const Color(0xFFF9E2AF),
+                                                  shadows: [
+                                                    Shadow(
+                                                      color: Colors.black
+                                                          .withValues(alpha: 0.8),
+                                                      offset:
+                                                          const Offset(2, 2),
+                                                    ),
+                                                  ],
+                                                ),
+                                              ),
+                                              const SizedBox(height: 5),
+                                              Text(
+                                                'Explore the syllabus and master core concepts for every house',
+                                                style: GoogleFonts.pressStart2p(
+                                                  fontSize: 6.5,
+                                                  color: Colors.white70,
+                                                  height: 1.4,
+                                                ),
+                                              ),
+                                            ],
+                                          ),
+                                        ),
+                                      ],
+                                    ),
+                                    const SizedBox(height: 16),
+
+                                    // ── Realm Overview Banner ──
+                                    _PixelRealmOverviewBanner(
+                                      totalRealms: all.length,
+                                      unlockedRealms: unlockedCount,
+                                      totalXp: totalXp,
+                                      glowAnim: _glowCtrl!,
+                                    ),
+                                    const SizedBox(height: 16),
+
+                                    // ── Filter Pills / Tabs ──
+                                    SingleChildScrollView(
+                                      scrollDirection: Axis.horizontal,
+                                      child: Row(
+                                        children: [
+                                          _PixelFilterTab(
+                                            label: 'ALL HOUSES (${all.length})',
+                                            isSelected: _filter == 'All',
+                                            onTap: () => setState(
+                                                () => _filter = 'All'),
+                                          ),
+                                          const SizedBox(width: 8),
+                                          _PixelFilterTab(
+                                            label: 'CALCULUS',
+                                            isSelected: _filter == 'Calculus',
+                                            onTap: () => setState(
+                                                () => _filter = 'Calculus'),
+                                          ),
+                                          const SizedBox(width: 8),
+                                          _PixelFilterTab(
+                                            label: 'FOUNDATION',
+                                            isSelected: _filter == 'Foundation',
+                                            onTap: () => setState(
+                                                () => _filter = 'Foundation'),
+                                          ),
+                                          const SizedBox(width: 8),
+                                          _PixelFilterTab(
+                                            label: 'IN PROGRESS',
+                                            isSelected: _filter == 'Active',
+                                            onTap: () => setState(
+                                                () => _filter = 'Active'),
+                                          ),
+                                        ],
+                                      ),
+                                    ),
+                                    const SizedBox(height: 16),
+
+                                    // ── Grass Heading Strip ──
+                                    _GrassHeadingStrip(
+                                      title: 'CAMPUS HOUSES',
+                                      subtitle: '${buildings.length} REALMS',
+                                    ),
+                                    const SizedBox(height: 12),
+                                  ],
+                                ),
                               ),
                             ),
-                          ),
 
-                          // Districts Grid / List
-                          SliverPadding(
-                            padding: EdgeInsets.fromLTRB(
-                              horizontalPadding,
-                              0,
-                              horizontalPadding,
-                              kNavBarReserve + 32,
-                            ),
-                            sliver: isWide
-                                ? SliverGrid(
-                                    gridDelegate:
-                                        const SliverGridDelegateWithFixedCrossAxisCount(
-                                      crossAxisCount: 2,
-                                      crossAxisSpacing: 18,
-                                      mainAxisSpacing: 18,
-                                      childAspectRatio: 1.08,
-                                    ),
-                                    delegate: SliverChildBuilderDelegate(
-                                      (context, index) => _HouseSyllabusCard(
-                                        building: buildings[index],
-                                        onTap: () => _handleSubjectTap(
-                                            buildings[index]),
+                            // ── Districts Grid / List ──
+                            SliverPadding(
+                              padding: EdgeInsets.fromLTRB(
+                                horizontalPadding,
+                                0,
+                                horizontalPadding,
+                                kNavBarReserve + 16,
+                              ),
+                              sliver: isWide
+                                  ? SliverGrid(
+                                      gridDelegate:
+                                          const SliverGridDelegateWithFixedCrossAxisCount(
+                                        crossAxisCount: 2,
+                                        crossAxisSpacing: 18,
+                                        mainAxisSpacing: 18,
+                                        mainAxisExtent: 388,
                                       ),
-                                      childCount: buildings.length,
-                                    ),
-                                  )
-                                : SliverList(
-                                    delegate: SliverChildBuilderDelegate(
-                                      (context, index) => Padding(
-                                        padding:
-                                            const EdgeInsets.only(bottom: 18),
-                                        child: _HouseSyllabusCard(
+                                      delegate: SliverChildBuilderDelegate(
+                                        (context, index) =>
+                                            _PixelHouseSyllabusCard(
                                           building: buildings[index],
                                           onTap: () => _handleSubjectTap(
                                               buildings[index]),
                                         ),
+                                        childCount: buildings.length,
                                       ),
-                                      childCount: buildings.length,
+                                    )
+                                  : SliverList(
+                                      delegate: SliverChildBuilderDelegate(
+                                        (context, index) => Padding(
+                                          padding:
+                                              const EdgeInsets.only(bottom: 18),
+                                          child: _PixelHouseSyllabusCard(
+                                            building: buildings[index],
+                                            onTap: () => _handleSubjectTap(
+                                                buildings[index]),
+                                          ),
+                                        ),
+                                        childCount: buildings.length,
+                                      ),
                                     ),
-                                  ),
-                          ),
-                        ],
+                            ),
+                          ],
+                        ),
                       ),
-                    ),
-                  );
-                },
-              );
-            },
+                    );
+                  },
+                );
+              },
+            ),
           ),
-        ),
+        ],
       ),
     );
   }
 }
+
+// ═══════════════════════════════════════════════════════════════════════════
+//  SYLLABUS DATA HELPER
+// ═══════════════════════════════════════════════════════════════════════════
 
 class _HouseSyllabusInfo {
   final String imagePath;
@@ -308,7 +467,6 @@ _HouseSyllabusInfo _getHouseSyllabus(String name) {
       ],
     );
   } else {
-    // Arithmetic
     return const _HouseSyllabusInfo(
       imagePath: 'assets/images/syllabus_arithmetic.jpg',
       syllabusTitle: 'Arithmetic & Number Systems',
@@ -322,8 +480,12 @@ _HouseSyllabusInfo _getHouseSyllabus(String name) {
   }
 }
 
-class _HouseSyllabusCard extends StatelessWidget {
-  const _HouseSyllabusCard({
+// ═══════════════════════════════════════════════════════════════════════════
+//  PIXEL HOUSE SYLLABUS CARD
+// ═══════════════════════════════════════════════════════════════════════════
+
+class _PixelHouseSyllabusCard extends StatelessWidget {
+  const _PixelHouseSyllabusCard({
     required this.building,
     required this.onTap,
   });
@@ -339,17 +501,22 @@ class _HouseSyllabusCard extends StatelessWidget {
 
     return Container(
       decoration: BoxDecoration(
-        color: Colors.white,
-        borderRadius: BorderRadius.circular(22),
+        color: const Color(0xFF0D1F2D),
         border: Border.all(
-          color: color.withValues(alpha: 0.35),
-          width: 1.5,
+          color: color,
+          width: 2,
         ),
+        borderRadius: BorderRadius.circular(4),
         boxShadow: [
           BoxShadow(
-            color: color.withValues(alpha: 0.08),
-            blurRadius: 18,
-            offset: const Offset(0, 6),
+            color: color.withValues(alpha: 0.18),
+            blurRadius: 14,
+            spreadRadius: 1,
+          ),
+          BoxShadow(
+            color: Colors.black.withValues(alpha: 0.6),
+            offset: const Offset(3, 3),
+            blurRadius: 0,
           ),
         ],
       ),
@@ -357,91 +524,154 @@ class _HouseSyllabusCard extends StatelessWidget {
         color: Colors.transparent,
         child: InkWell(
           onTap: onTap,
-          borderRadius: BorderRadius.circular(22),
+          borderRadius: BorderRadius.circular(4),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              // 1. Clean Unobstructed Syllabus Picture Banner (No overlapping badges)
-              ClipRRect(
-                borderRadius: const BorderRadius.vertical(
-                  top: Radius.circular(20),
-                ),
-                child: SizedBox(
-                  height: 165,
-                  width: double.infinity,
-                  child: Image.asset(
-                    syllabus.imagePath,
-                    fit: BoxFit.cover,
-                    errorBuilder: (ctx, err, stack) => Container(
-                      color: color.withValues(alpha: 0.15),
-                      child: Center(
-                        child: Text(
-                          building.name,
-                          style: GoogleFonts.plusJakartaSans(
-                            color: color,
-                            fontWeight: FontWeight.w800,
+              // ── Picture Banner with Pixel Border & Tags ──
+              Stack(
+                children: [
+                  Container(
+                    height: 140,
+                    width: double.infinity,
+                    decoration: const BoxDecoration(
+                      border: Border(
+                        bottom: BorderSide(
+                          color: Color(0xFF6B5A3E),
+                          width: 2,
+                        ),
+                      ),
+                    ),
+                    child: Image.asset(
+                      syllabus.imagePath,
+                      fit: BoxFit.cover,
+                      errorBuilder: (ctx, err, stack) => Container(
+                        color: color.withValues(alpha: 0.2),
+                        child: Center(
+                          child: Text(
+                            building.name,
+                            style: GoogleFonts.pressStart2p(
+                              color: color,
+                              fontSize: 10,
+                            ),
                           ),
                         ),
                       ),
                     ),
                   ),
-                ),
+                  // Level Badge on picture
+                  Positioned(
+                    top: 8,
+                    right: 8,
+                    child: Container(
+                      padding: const EdgeInsets.symmetric(
+                        horizontal: 8,
+                        vertical: 4,
+                      ),
+                      decoration: BoxDecoration(
+                        color: const Color(0xFF0D1F2D),
+                        border: Border.all(
+                          color: color,
+                          width: 1.5,
+                        ),
+                        borderRadius: BorderRadius.circular(2),
+                        boxShadow: [
+                          BoxShadow(
+                            color: Colors.black.withValues(alpha: 0.6),
+                            offset: const Offset(1, 1),
+                            blurRadius: 0,
+                          ),
+                        ],
+                      ),
+                      child: Text(
+                        'LVL ${building.level}',
+                        style: GoogleFonts.pressStart2p(
+                          fontWeight: FontWeight.w900,
+                          fontSize: 6.5,
+                          color: color,
+                        ),
+                      ),
+                    ),
+                  ),
+                  // Lock/Unlock badge
+                  Positioned(
+                    top: 8,
+                    left: 8,
+                    child: Container(
+                      padding: const EdgeInsets.symmetric(
+                        horizontal: 7,
+                        vertical: 4,
+                      ),
+                      decoration: BoxDecoration(
+                        color: building.unlocked
+                            ? const Color(0xFF2A5A3A)
+                            : const Color(0xFF442020),
+                        border: Border.all(
+                          color: building.unlocked
+                              ? const Color(0xFF7ACB74)
+                              : const Color(0xFFE57373),
+                          width: 1,
+                        ),
+                        borderRadius: BorderRadius.circular(2),
+                      ),
+                      child: Row(
+                        mainAxisSize: MainAxisSize.min,
+                        children: [
+                          Icon(
+                            building.unlocked
+                                ? Icons.lock_open_rounded
+                                : Icons.lock_rounded,
+                            size: 10,
+                            color: building.unlocked
+                                ? const Color(0xFF86E2A5)
+                                : const Color(0xFFFFCDD2),
+                          ),
+                          const SizedBox(width: 4),
+                          Text(
+                            building.unlocked ? 'OPEN' : 'LOCKED',
+                            style: GoogleFonts.pressStart2p(
+                              fontSize: 5.5,
+                              color: building.unlocked
+                                  ? const Color(0xFF86E2A5)
+                                  : const Color(0xFFFFCDD2),
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ),
+                ],
               ),
 
-              // 2. Card Content Area
+              // ── Card Content Area ──
               Padding(
-                padding: const EdgeInsets.fromLTRB(18, 16, 18, 16),
+                padding: const EdgeInsets.all(14),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    // House Name + Level Tag
+                    // House Name + Subject
                     Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
+                        Icon(building.icon, size: 16, color: color),
+                        const SizedBox(width: 8),
                         Expanded(
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Text(
-                                building.name,
-                                style: GoogleFonts.plusJakartaSans(
-                                  fontSize: 18,
-                                  fontWeight: FontWeight.w800,
-                                  color: AppColors.onSurface,
-                                ),
-                              ),
-                              const SizedBox(height: 2),
-                              Text(
-                                syllabus.syllabusTitle,
-                                style: GoogleFonts.manrope(
-                                  fontSize: 12,
-                                  fontWeight: FontWeight.w700,
-                                  color: color,
-                                ),
-                              ),
-                            ],
-                          ),
-                        ),
-                        Container(
-                          padding: const EdgeInsets.symmetric(
-                            horizontal: 10,
-                            vertical: 4,
-                          ),
-                          decoration: BoxDecoration(
-                            color: color.withValues(alpha: 0.12),
-                            borderRadius: BorderRadius.circular(8),
-                          ),
                           child: Text(
-                            'LVL ${building.level}',
-                            style: GoogleFonts.plusJakartaSans(
-                              fontWeight: FontWeight.w900,
-                              fontSize: 11.5,
-                              color: color,
+                            building.name.toUpperCase(),
+                            style: GoogleFonts.pressStart2p(
+                              fontSize: 9.5,
+                              color: const Color(0xFFF9E2AF),
                             ),
                           ),
                         ),
                       ],
+                    ),
+                    const SizedBox(height: 6),
+                    Text(
+                      syllabus.syllabusTitle,
+                      style: GoogleFonts.pressStart2p(
+                        fontSize: 6.5,
+                        color: color,
+                      ),
                     ),
                     const SizedBox(height: 10),
 
@@ -450,37 +680,37 @@ class _HouseSyllabusCard extends StatelessWidget {
                       building.description,
                       maxLines: 2,
                       overflow: TextOverflow.ellipsis,
-                      style: GoogleFonts.manrope(
-                        fontSize: 12.5,
-                        height: 1.45,
-                        color: AppColors.textSecondary,
+                      style: GoogleFonts.pressStart2p(
+                        fontSize: 6,
+                        height: 1.4,
+                        color: Colors.white70,
                       ),
                     ),
                     const SizedBox(height: 12),
 
-                    // Syllabus Topic Pills (Clean text chips, no icons)
+                    // Topic Chips
                     Wrap(
                       spacing: 6,
                       runSpacing: 6,
                       children: syllabus.topics.map((topic) {
                         return Container(
                           padding: const EdgeInsets.symmetric(
-                            horizontal: 10,
+                            horizontal: 8,
                             vertical: 4,
                           ),
                           decoration: BoxDecoration(
-                            color: const Color(0xFFF4F7F5),
-                            borderRadius: BorderRadius.circular(8),
+                            color: Colors.white.withValues(alpha: 0.05),
+                            borderRadius: BorderRadius.circular(2),
                             border: Border.all(
-                              color: const Color(0xFFE2EBE5),
+                              color: const Color(0xFF6B5A3E).withValues(alpha: 0.7),
+                              width: 1,
                             ),
                           ),
                           child: Text(
                             topic,
-                            style: GoogleFonts.manrope(
-                              fontSize: 11,
-                              fontWeight: FontWeight.w700,
-                              color: AppColors.onSurface,
+                            style: GoogleFonts.pressStart2p(
+                              fontSize: 5.5,
+                              color: const Color(0xFFF9E2AF),
                             ),
                           ),
                         );
@@ -494,30 +724,39 @@ class _HouseSyllabusCard extends StatelessWidget {
                       children: [
                         Text(
                           '${building.currentXp} / ${building.xpRequired} XP',
-                          style: GoogleFonts.manrope(
-                            fontWeight: FontWeight.w700,
-                            fontSize: 11.5,
-                            color: AppColors.onSurface,
+                          style: GoogleFonts.pressStart2p(
+                            fontSize: 6,
+                            color: Colors.white70,
                           ),
                         ),
                         Text(
-                          '${(progress * 100).round()}% Mastered',
-                          style: GoogleFonts.plusJakartaSans(
-                            fontWeight: FontWeight.w800,
-                            fontSize: 11.5,
+                          '${(progress * 100).round()}% MASTERED',
+                          style: GoogleFonts.pressStart2p(
+                            fontSize: 6,
                             color: color,
                           ),
                         ),
                       ],
                     ),
                     const SizedBox(height: 6),
-                    ClipRRect(
-                      borderRadius: BorderRadius.circular(5),
-                      child: LinearProgressIndicator(
-                        value: progress.clamp(0.0, 1.0),
-                        minHeight: 6,
-                        backgroundColor: color.withValues(alpha: 0.15),
-                        valueColor: AlwaysStoppedAnimation<Color>(color),
+                    Container(
+                      height: 12,
+                      padding: const EdgeInsets.all(1.5),
+                      decoration: BoxDecoration(
+                        color: const Color(0xFF07121C),
+                        border: Border.all(
+                          color: const Color(0xFF6B5A3E),
+                          width: 1.5,
+                        ),
+                        borderRadius: BorderRadius.circular(2),
+                      ),
+                      child: ClipRRect(
+                        borderRadius: BorderRadius.circular(1),
+                        child: FractionallySizedBox(
+                          alignment: Alignment.centerLeft,
+                          widthFactor: progress.clamp(0.02, 1.0),
+                          child: Container(color: color),
+                        ),
                       ),
                     ),
                     const SizedBox(height: 14),
@@ -527,20 +766,51 @@ class _HouseSyllabusCard extends StatelessWidget {
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         Text(
-                          '${building.lessonsAvailable} Lessons Available',
-                          style: GoogleFonts.manrope(
-                            fontSize: 11.5,
-                            fontWeight: FontWeight.w600,
-                            color: AppColors.textSecondary,
+                          '${building.lessonsAvailable} LESSONS',
+                          style: GoogleFonts.pressStart2p(
+                            fontSize: 6,
+                            color: Colors.white54,
                           ),
                         ),
-                        Text(
-                          'ENTER REALM →',
-                          style: GoogleFonts.plusJakartaSans(
-                            fontWeight: FontWeight.w900,
-                            fontSize: 12,
-                            color: color,
-                            letterSpacing: 0.4,
+                        Container(
+                          padding: const EdgeInsets.symmetric(
+                            horizontal: 10,
+                            vertical: 6,
+                          ),
+                          decoration: BoxDecoration(
+                            color: color.withValues(alpha: 0.18),
+                            border: Border.all(
+                              color: color,
+                              width: 1.5,
+                            ),
+                            borderRadius: BorderRadius.circular(3),
+                            boxShadow: [
+                              BoxShadow(
+                                color: Colors.black.withValues(alpha: 0.4),
+                                offset: const Offset(1, 1),
+                                blurRadius: 0,
+                              ),
+                            ],
+                          ),
+                          child: Row(
+                            mainAxisSize: MainAxisSize.min,
+                            children: [
+                              Text(
+                                'ENTER REALM',
+                                style: GoogleFonts.pressStart2p(
+                                  fontSize: 6.5,
+                                  color: const Color(0xFFF9E2AF),
+                                ),
+                              ),
+                              const SizedBox(width: 4),
+                              Text(
+                                '▶',
+                                style: GoogleFonts.pressStart2p(
+                                  fontSize: 7,
+                                  color: color,
+                                ),
+                              ),
+                            ],
                           ),
                         ),
                       ],
@@ -556,70 +826,67 @@ class _HouseSyllabusCard extends StatelessWidget {
   }
 }
 
-class _RealmOverviewBanner extends StatelessWidget {
-  const _RealmOverviewBanner({
+// ═══════════════════════════════════════════════════════════════════════════
+//  PIXEL REALM OVERVIEW BANNER
+// ═══════════════════════════════════════════════════════════════════════════
+
+class _PixelRealmOverviewBanner extends StatelessWidget {
+  const _PixelRealmOverviewBanner({
     required this.totalRealms,
     required this.unlockedRealms,
     required this.totalXp,
+    required this.glowAnim,
   });
 
   final int totalRealms;
   final int unlockedRealms;
   final int totalXp;
+  final Animation<double> glowAnim;
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 16),
-      decoration: BoxDecoration(
-        gradient: const LinearGradient(
-          begin: Alignment.topLeft,
-          end: Alignment.bottomRight,
-          colors: [
-            Color(0xFF133E2B),
-            Color(0xFF1E5B3D),
-            Color(0xFF164831),
-          ],
-        ),
-        borderRadius: BorderRadius.circular(20),
-        boxShadow: [
-          BoxShadow(
-            color: const Color(0xFF133E2B).withValues(alpha: 0.25),
-            blurRadius: 16,
-            offset: const Offset(0, 6),
-          ),
-        ],
-      ),
+    return AnimatedBuilder(
+      animation: glowAnim,
+      builder: (context, child) {
+        final glow = 0.12 + glowAnim.value * 0.14;
+        return _PixelPanel(
+          borderColor: const Color(0xFF3D6B4F),
+          glowColor: const Color(0xFF7ACB74),
+          glowAlpha: glow,
+          padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 14),
+          child: child!,
+        );
+      },
       child: Row(
         children: [
           Expanded(
             child: _BannerMetric(
-              label: 'Realms Open',
+              label: 'REALMS OPEN',
               value: '$unlockedRealms / $totalRealms',
               accentColor: const Color(0xFF86E2A5),
             ),
           ),
           Container(
             width: 1,
-            height: 34,
-            color: Colors.white.withValues(alpha: 0.18),
+            height: 32,
+            color: const Color(0xFF6B5A3E).withValues(alpha: 0.7),
           ),
           Expanded(
             child: _BannerMetric(
-              label: 'Campus XP',
+              label: 'CAMPUS XP',
               value: '$totalXp XP',
               accentColor: const Color(0xFFFFD167),
             ),
           ),
           Container(
             width: 1,
-            height: 34,
-            color: Colors.white.withValues(alpha: 0.18),
+            height: 32,
+            color: const Color(0xFF6B5A3E).withValues(alpha: 0.7),
           ),
           Expanded(
             child: _BannerMetric(
-              label: 'Curriculum',
-              value: 'Mathematics',
+              label: 'CURRICULUM',
+              value: 'MATH',
               accentColor: const Color(0xFF9FD9FF),
             ),
           ),
@@ -648,19 +915,17 @@ class _BannerMetric extends StatelessWidget {
       children: [
         Text(
           value,
-          style: GoogleFonts.plusJakartaSans(
+          style: GoogleFonts.pressStart2p(
             color: accentColor,
-            fontWeight: FontWeight.w900,
-            fontSize: 16,
+            fontSize: 9.5,
           ),
         ),
-        const SizedBox(height: 2),
+        const SizedBox(height: 5),
         Text(
           label,
-          style: GoogleFonts.manrope(
-            color: Colors.white.withValues(alpha: 0.78),
-            fontSize: 11.5,
-            fontWeight: FontWeight.w600,
+          style: GoogleFonts.pressStart2p(
+            color: Colors.white60,
+            fontSize: 5.5,
           ),
         ),
       ],
@@ -668,8 +933,12 @@ class _BannerMetric extends StatelessWidget {
   }
 }
 
-class _FilterChip extends StatelessWidget {
-  const _FilterChip({
+// ═══════════════════════════════════════════════════════════════════════════
+//  PIXEL FILTER TAB
+// ═══════════════════════════════════════════════════════════════════════════
+
+class _PixelFilterTab extends StatelessWidget {
+  const _PixelFilterTab({
     required this.label,
     required this.isSelected,
     required this.onTap,
@@ -681,42 +950,276 @@ class _FilterChip extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Material(
-      color: Colors.transparent,
-      child: InkWell(
-        onTap: onTap,
-        borderRadius: BorderRadius.circular(12),
-        child: AnimatedContainer(
-          duration: const Duration(milliseconds: 180),
-          padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 8),
-          decoration: BoxDecoration(
+    return GestureDetector(
+      onTap: onTap,
+      child: AnimatedContainer(
+        duration: const Duration(milliseconds: 180),
+        padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
+        decoration: BoxDecoration(
+          color: isSelected
+              ? const Color(0xFFFFD167)
+              : const Color(0xFF0D1F2D),
+          border: Border.all(
             color: isSelected
-                ? AppColors.primary
-                : Colors.white.withValues(alpha: 0.90),
-            borderRadius: BorderRadius.circular(12),
-            border: Border.all(
-              color: isSelected ? AppColors.primary : const Color(0xFFD6E3DC),
-            ),
-            boxShadow: isSelected
-                ? [
-                    BoxShadow(
-                      color: AppColors.primary.withValues(alpha: 0.20),
-                      blurRadius: 8,
-                      offset: const Offset(0, 3),
-                    ),
-                  ]
-                : null,
+                ? const Color(0xFFFFD167)
+                : const Color(0xFF6B5A3E),
+            width: 2,
           ),
-          child: Text(
-            label,
-            style: GoogleFonts.manrope(
-              fontSize: 12.5,
-              fontWeight: FontWeight.w700,
-              color: isSelected ? Colors.white : AppColors.onSurface,
+          borderRadius: BorderRadius.circular(4),
+          boxShadow: [
+            if (isSelected)
+              BoxShadow(
+                color: const Color(0xFFFFD167).withValues(alpha: 0.35),
+                blurRadius: 10,
+              ),
+            BoxShadow(
+              color: Colors.black.withValues(alpha: 0.5),
+              offset: const Offset(2, 2),
+              blurRadius: 0,
             ),
+          ],
+        ),
+        child: Text(
+          label,
+          style: GoogleFonts.pressStart2p(
+            fontSize: 6.5,
+            color: isSelected
+                ? const Color(0xFF4A3400)
+                : const Color(0xFFF9E2AF),
           ),
         ),
       ),
     );
   }
+}
+
+// ═══════════════════════════════════════════════════════════════════════════
+//  SHARED PIXEL PRIMITIVES
+// ═══════════════════════════════════════════════════════════════════════════
+
+class _PixelPanel extends StatelessWidget {
+  const _PixelPanel({
+    required this.child,
+    this.borderColor = const Color(0xFF6B5A3E),
+    this.glowColor,
+    this.glowAlpha = 0.0,
+    this.padding = const EdgeInsets.all(16),
+  });
+
+  final Widget child;
+  final Color borderColor;
+  final Color? glowColor;
+  final double glowAlpha;
+  final EdgeInsets padding;
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      padding: padding,
+      decoration: BoxDecoration(
+        color: const Color(0xFF0D1F2D),
+        border: Border.all(color: borderColor, width: 2),
+        borderRadius: BorderRadius.circular(4),
+        boxShadow: [
+          if (glowColor != null && glowAlpha > 0)
+            BoxShadow(
+              color: glowColor!.withValues(alpha: glowAlpha),
+              blurRadius: 14,
+              spreadRadius: 1,
+            ),
+          BoxShadow(
+            color: Colors.black.withValues(alpha: 0.5),
+            offset: const Offset(3, 3),
+            blurRadius: 0,
+          ),
+        ],
+      ),
+      child: child,
+    );
+  }
+}
+
+class _PixelBackButton extends StatelessWidget {
+  const _PixelBackButton({required this.onTap, this.label = 'BACK'});
+  final VoidCallback onTap;
+  final String label;
+
+  @override
+  Widget build(BuildContext context) {
+    return GestureDetector(
+      onTap: onTap,
+      child: Container(
+        padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
+        decoration: BoxDecoration(
+          color: const Color(0xFF1A2744),
+          border: Border.all(color: const Color(0xFF6B5A3E), width: 2),
+          borderRadius: BorderRadius.circular(4),
+          boxShadow: [
+            BoxShadow(
+              color: Colors.black.withValues(alpha: 0.5),
+              offset: const Offset(2, 2),
+              blurRadius: 0,
+            ),
+          ],
+        ),
+        child: Row(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            const Icon(Icons.arrow_back, color: Color(0xFFF9E2AF), size: 14),
+            const SizedBox(width: 6),
+            Text(
+              label,
+              style: GoogleFonts.pressStart2p(
+                fontSize: 7,
+                color: const Color(0xFFF9E2AF),
+              ),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+}
+
+class _GrassHeadingStrip extends StatelessWidget {
+  const _GrassHeadingStrip({
+    required this.title,
+    required this.subtitle,
+  });
+
+  final String title;
+  final String subtitle;
+
+  @override
+  Widget build(BuildContext context) {
+    return Stack(
+      clipBehavior: Clip.none,
+      children: [
+        ClipRRect(
+          borderRadius: BorderRadius.circular(4),
+          child: SizedBox(
+            height: 48,
+            width: double.infinity,
+            child: ShaderMask(
+              shaderCallback: (rect) => LinearGradient(
+                colors: [
+                  Colors.white.withValues(alpha: 0.6),
+                  Colors.white.withValues(alpha: 0.3),
+                ],
+              ).createShader(rect),
+              blendMode: BlendMode.dstIn,
+              child: Image.asset(
+                TileAssets.grassTileTwoX,
+                fit: BoxFit.cover,
+                repeat: ImageRepeat.repeatX,
+                errorBuilder: (_, __, ___) => Container(
+                  color: const Color(0xFF2A5A3A),
+                ),
+              ),
+            ),
+          ),
+        ),
+        Positioned.fill(
+          child: Container(
+            decoration: BoxDecoration(
+              border: Border.all(
+                color: const Color(0xFF3D6B4F),
+                width: 2,
+              ),
+              borderRadius: BorderRadius.circular(4),
+              boxShadow: [
+                BoxShadow(
+                  color: const Color(0xFF1A3D2A).withValues(alpha: 0.6),
+                  offset: const Offset(3, 3),
+                  blurRadius: 0,
+                ),
+              ],
+            ),
+          ),
+        ),
+        Positioned.fill(
+          child: Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 14),
+            child: Row(
+              children: [
+                Image.asset(
+                  NatureAssets.bushesLeafyBush,
+                  width: 26,
+                  height: 26,
+                  errorBuilder: (_, __, ___) => const Icon(
+                    Icons.eco_rounded,
+                    color: Color(0xFF7ACB74),
+                    size: 20,
+                  ),
+                ),
+                const SizedBox(width: 10),
+                Text(
+                  title,
+                  style: GoogleFonts.pressStart2p(
+                    fontSize: 9,
+                    color: const Color(0xFFF9E2AF),
+                    shadows: [
+                      Shadow(
+                        color: Colors.black.withValues(alpha: 0.8),
+                        offset: const Offset(1, 1),
+                      ),
+                    ],
+                  ),
+                ),
+                const Spacer(),
+                Text(
+                  subtitle,
+                  style: GoogleFonts.pressStart2p(
+                    fontSize: 6.5,
+                    color: Colors.white70,
+                  ),
+                ),
+              ],
+            ),
+          ),
+        ),
+      ],
+    );
+  }
+}
+
+class _PixelParticlePainter extends CustomPainter {
+  _PixelParticlePainter({required this.progress, required this.size});
+
+  final double progress;
+  final Size size;
+
+  static final List<math.Point<double>> _basePoints = List.generate(
+    28,
+    (i) => math.Point(
+      (i * 37.0 + 13.0) % 1000 / 1000,
+      (i * 53.0 + 29.0) % 1000 / 1000,
+    ),
+  );
+
+  @override
+  void paint(Canvas canvas, Size canvasSize) {
+    final goldPaint = Paint()..color = const Color(0xFFFFD167).withValues(alpha: 0.35);
+    final greenPaint = Paint()..color = const Color(0xFF7ACB74).withValues(alpha: 0.25);
+
+    for (int i = 0; i < _basePoints.length; i++) {
+      final base = _basePoints[i];
+      final yOffset = (base.y - progress + 1.0) % 1.0;
+      final xOffset = (base.x + math.sin((progress * 2 * math.pi) + i) * 0.03) % 1.0;
+
+      final px = xOffset * canvasSize.width;
+      final py = yOffset * canvasSize.height;
+
+      final paint = i % 2 == 0 ? goldPaint : greenPaint;
+      final pSize = (i % 3 == 0) ? 4.0 : 3.0;
+
+      canvas.drawRect(
+        Rect.fromLTWH(px, py, pSize, pSize),
+        paint,
+      );
+    }
+  }
+
+  @override
+  bool shouldRepaint(covariant _PixelParticlePainter old) => true;
 }

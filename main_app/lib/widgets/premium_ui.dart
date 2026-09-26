@@ -119,6 +119,31 @@ class WorldBackdrop extends StatelessWidget {
           ),
         ),
         child: Stack(children: [
+          // The subject-selection archipelago remains the visual anchor for
+          // non-game screens too, at a restrained opacity for readability.
+          Positioned.fill(
+            child: Opacity(
+              opacity: .14,
+              child: Image.asset(
+                'assets/images/splash_background.jpg',
+                fit: BoxFit.cover,
+              ),
+            ),
+          ),
+          Positioned.fill(
+            child: DecoratedBox(
+              decoration: BoxDecoration(
+                gradient: LinearGradient(
+                  begin: Alignment.topCenter,
+                  end: Alignment.bottomCenter,
+                  colors: [
+                    const Color(0xFFEAF8FF).withValues(alpha: .72),
+                    const Color(0xFFF7FAF6).withValues(alpha: .88),
+                  ],
+                ),
+              ),
+            ),
+          ),
           Positioned(
             top: -110,
             right: -75,

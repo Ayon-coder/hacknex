@@ -1,42 +1,57 @@
+import 'dart:math' as math;
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
+import '../config/game_assets.dart';
 import '../game/managers/building_manager.dart';
 import '../models/player_profile.dart';
+import '../models/rank_progress.dart';
 import '../services/student_progress_service.dart';
 import '../theme/app_theme.dart';
-import '../widgets/premium_ui.dart';
 import '../widgets/rank_badge.dart';
 import 'knowledge_profile_screen.dart';
 import 'world_archipelago_screen.dart';
 
+// ─────────────────────────────────────────────────────────────────────────────
+// PixelArt Leaderboard – feels like opening the ranking scroll inside the
+// island world from the Map / Archipelago screen.
+// ─────────────────────────────────────────────────────────────────────────────
+
 class LeaderboardScreen extends StatefulWidget {
   const LeaderboardScreen({super.key, this.onBackToSubjectSelection});
-
   final VoidCallback? onBackToSubjectSelection;
 
   @override
   State<LeaderboardScreen> createState() => _LeaderboardScreenState();
 }
 
-class _LeaderboardScreenState extends State<LeaderboardScreen> {
+class _LeaderboardScreenState extends State<LeaderboardScreen>
+    with TickerProviderStateMixin {
   String _scope = 'Global';
   String _period = 'Weekly';
   late Future<_LeaderboardData> _data;
+  late final AnimationController _particleCtrl = AnimationController(
+    vsync: this,
+    duration: const Duration(seconds: 14),
+  )..repeat();
+  late final AnimationController _glowCtrl = AnimationController(
+    vsync: this,
+    duration: const Duration(seconds: 3),
+  )..repeat(reverse: true);
 
   @override
   void initState() {
-  super.initState();
-  _data = _load();
-}
+    super.initState();
+    _data = _load();
+  }
 
   Future<_LeaderboardData> _load() async {
     final profile = await PlayerProfile.load() ?? const PlayerProfile();
     final progress = await StudentProgress.load();
     final xp = BuildingManager().allBuildings.fold<int>(
-      0,
-      (sum, building) => sum + building.currentXp,
-    );
+          0,
+          (sum, building) => sum + building.currentXp,
+        );
     return _LeaderboardData(
       profile: profile,
       xp: xp,
@@ -46,163 +61,218 @@ class _LeaderboardScreenState extends State<LeaderboardScreen> {
   }
 
   @override
+  void dispose() {
+    _particleCtrl.dispose();
+    _glowCtrl.dispose();
+    super.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
+    final size = MediaQuery.sizeOf(context);
     return Scaffold(
-      body: WorldBackdrop(
-        child: SafeArea(
-          bottom: false,
-          child: FutureBuilder<_LeaderboardData>(
-            future: _data,
-            builder: (context, snapshot) {
-              if (!snapshot.hasData) {
-                return const Center(child: CircularProgressIndicator());
-              }
-              final data = snapshot.data!;
-              final currentUserName = data.profile.name.trim().isEmpty
-                  ? 'You'
-                  : data.profile.name;
+      backgroundColor: const Color(0xFF0F172A),
+      body: Stack(
+        fit: StackFit.expand,
+        children: [
+          // ── Splash background ──
+          Positioned.fill(
+            child: Image.asset(
+              'assets/images/splash_background.jpg',
+              fit: BoxFit.cover,
+            ),
+          ),
+          // Dark overlay for readability
+          Positioned.fill(
+            child: DecoratedBox(
+              decoration: BoxDecoration(
+                gradient: RadialGradient(
+                  center: Alignment.center,
+                  radius: 1.3,
+                  colors: [
+                    Colors.black.withValues(alpha: 0.45),
+                    Colors.black.withValues(alpha: 0.72),
+                  ],
+                ),
+              ),
+            ),
+          ),
 
-              final entries = [
-                _RankEntry('Aarav Sharma', 1420, 15),
-                _RankEntry('Riya Patel', 1280, 14),
-                _RankEntry('Arjun Verma', 1150, 13),
-                _RankEntry(currentUserName, data.xp, data.level, isCurrentUser: true),
-                _RankEntry('Neha Gupta', 960, 11),
-                _RankEntry('Rohan Das', 840, 10),
-                _RankEntry('Ananya Sen', 780, 9),
-                _RankEntry('Kabir Mehta', 690, 8),
-              ]..sort((a, b) => b.xp.compareTo(a.xp));
+          // ── Animated pixel particles ──
+          AnimatedBuilder(
+            animation: _particleCtrl,
+            builder: (context, _) => CustomPaint(
+              painter: _PixelParticlePainter(
+                progress: _particleCtrl.value,
+                size: size,
+              ),
+              size: size,
+            ),
+          ),
 
-              final ranked = entries
-                  .asMap()
-                  .entries
-                  .map((entry) => entry.value.copyWith(rank: entry.key + 1))
-                  .toList();
+          // ── Main content ──
+          SafeArea(
+            bottom: false,
+            child: FutureBuilder<_LeaderboardData>(
+              future: _data,
+              builder: (context, snapshot) {
+                if (!snapshot.hasData) {
+                  return const Center(
+                    child: CircularProgressIndicator(
+                      color: Color(0xFFFFD167),
+                    ),
+                  );
+                }
+                final data = snapshot.data!;
+                final currentUserName = data.profile.name.trim().isEmpty
+                    ? 'You'
+                    : data.profile.name;
 
-              final currentUserRankEntry = ranked.firstWhere(
-                (e) => e.isCurrentUser,
-                orElse: () => ranked.first,
-              );
+                final entries = [
+                  _RankEntry('Aarav Sharma', 1420, 15),
+                  _RankEntry('Riya Patel', 1280, 14),
+                  _RankEntry('Arjun Verma', 1150, 13),
+                  _RankEntry(currentUserName, data.xp, data.level,
+                      isCurrentUser: true),
+                  _RankEntry('Neha Gupta', 960, 11),
+                  _RankEntry('Rohan Das', 840, 10),
+                  _RankEntry('Ananya Sen', 780, 9),
+                  _RankEntry('Kabir Mehta', 690, 8),
+                ]..sort((a, b) => b.xp.compareTo(a.xp));
 
-              return Center(
-                child: ConstrainedBox(
-                  constraints: const BoxConstraints(maxWidth: 960),
-                  child: CustomScrollView(
-                    slivers: [
-                      // Header & Spotlight
-                      SliverToBoxAdapter(
-                        child: Padding(
-                          padding: const EdgeInsets.fromLTRB(20, 18, 20, 14),
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Align(
-                                alignment: Alignment.centerLeft,
-                                child: TextButton.icon(
-                                  onPressed: () {
-                                    if (widget.onBackToSubjectSelection != null) {
+                final ranked = entries
+                    .asMap()
+                    .entries
+                    .map((entry) => entry.value.copyWith(rank: entry.key + 1))
+                    .toList();
+
+                final currentUserRankEntry = ranked.firstWhere(
+                  (e) => e.isCurrentUser,
+                  orElse: () => ranked.first,
+                );
+
+                return Center(
+                  child: ConstrainedBox(
+                    constraints: const BoxConstraints(maxWidth: 960),
+                    child: CustomScrollView(
+                      slivers: [
+                        SliverToBoxAdapter(
+                          child: Padding(
+                            padding:
+                                const EdgeInsets.fromLTRB(20, 12, 20, 0),
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                // ── Back button ──
+                                _PixelBackButton(
+                                  onTap: () {
+                                    if (widget.onBackToSubjectSelection !=
+                                        null) {
                                       Navigator.of(context).pop();
                                       widget.onBackToSubjectSelection!();
                                       return;
                                     }
                                     Navigator.of(context).pushReplacement(
-                                      MaterialPageRoute(builder: (_) => const WorldArchipelagoScreen()),
+                                      MaterialPageRoute(
+                                        builder: (_) =>
+                                            const WorldArchipelagoScreen(),
+                                      ),
                                     );
                                   },
-                                  icon: const Icon(Icons.arrow_back_rounded),
-                                  label: const Text('Subject Selection'),
-                                  style: TextButton.styleFrom(
-                                    foregroundColor: AppColors.primary,
-                                    textStyle: GoogleFonts.plusJakartaSans(
-                                      fontWeight: FontWeight.w800,
-                                    ),
-                                  ),
                                 ),
-                              ),
-                              const SizedBox(height: 4),
-                              // Arena Header Card (Clean & Spacious)
-                              _ArenaHeaderCard(
-                                userRank: currentUserRankEntry.rank,
-                                userXp: currentUserRankEntry.xp,
-                                userLevel: currentUserRankEntry.level,
-                              ),
-                              const SizedBox(height: 18),
+                                const SizedBox(height: 10),
 
-                              // Scope and Timeframe Filter Bar (Clean Text Pills)
-                              _LeaderboardFilters(
-                                scope: _scope,
-                                period: _period,
-                                onScope: (v) => setState(() => _scope = v),
-                                onPeriod: (v) => setState(() => _period = v),
-                              ),
-                              const SizedBox(height: 24),
+                                // ── Grass-textured heading ──
+                                _GrassHeadingStrip(
+                                  title: 'HALL OF CHAMPIONS',
+                                  subtitle:
+                                      'Compete across mathematical realms',
+                                ),
+                                const SizedBox(height: 14),
 
-                              // Podium
-                              _ChampionshipPodium(
-                                entries: ranked.take(3).toList(),
-                              ),
-                              const SizedBox(height: 24),
+                                // ── Arena Header Card ──
+                                _PixelArenaHeader(
+                                  userRank: currentUserRankEntry.rank,
+                                  userXp: currentUserRankEntry.xp,
+                                  userLevel: currentUserRankEntry.level,
+                                  glowAnim: _glowCtrl,
+                                ),
+                                const SizedBox(height: 16),
 
-                              // Leaderboard list heading (No extra icons)
-                              Row(
-                                children: [
-                                  Text(
-                                    'League Standings',
-                                    style: GoogleFonts.plusJakartaSans(
-                                      fontSize: 18,
-                                      fontWeight: FontWeight.w800,
-                                      color: AppColors.onSurface,
-                                    ),
-                                  ),
-                                  const Spacer(),
-                                  Text(
-                                    '${ranked.length} Scholars',
-                                    style: GoogleFonts.manrope(
-                                      fontSize: 12.5,
-                                      fontWeight: FontWeight.w700,
-                                      color: AppColors.textSecondary,
-                                    ),
-                                  ),
-                                ],
-                              ),
-                              const SizedBox(height: 12),
-                            ],
+                                // ── Filter pills ──
+                                _PixelFilters(
+                                  scope: _scope,
+                                  period: _period,
+                                  onScope: (v) =>
+                                      setState(() => _scope = v),
+                                  onPeriod: (v) =>
+                                      setState(() => _period = v),
+                                ),
+                                const SizedBox(height: 20),
+
+                                // ── Podium ──
+                                _PixelPodium(
+                                  entries: ranked.take(3).toList(),
+                                  glowAnim: _glowCtrl,
+                                ),
+                                const SizedBox(height: 20),
+
+                                // ── Grass-textured sub-heading ──
+                                _GrassHeadingStrip(
+                                  title: 'LEAGUE STANDINGS',
+                                  subtitle: '${ranked.length} Scholars',
+                                  small: true,
+                                ),
+                                const SizedBox(height: 12),
+                              ],
+                            ),
                           ),
                         ),
-                      ),
 
-                      // Rank 4+ List
-                      SliverPadding(
-                        padding: const EdgeInsets.fromLTRB(
-                          20,
-                          0,
-                          20,
-                          kNavBarReserve + 30,
-                        ),
-                        sliver: SliverList(
-                          delegate: SliverChildBuilderDelegate(
-                            (context, index) {
-                              final entry = ranked.skip(3).toList()[index];
-                              return Padding(
-                                padding: const EdgeInsets.only(bottom: 10),
-                                child: _RankTile(entry: entry),
-                              );
-                            },
-                            childCount: ranked.length > 3 ? ranked.length - 3 : 0,
+                        // ── Rank list 4+ ──
+                        SliverPadding(
+                          padding: const EdgeInsets.fromLTRB(
+                            20,
+                            0,
+                            20,
+                            kNavBarReserve + 30,
+                          ),
+                          sliver: SliverList(
+                            delegate: SliverChildBuilderDelegate(
+                              (context, index) {
+                                final entry =
+                                    ranked.skip(3).toList()[index];
+                                return Padding(
+                                  padding:
+                                      const EdgeInsets.only(bottom: 8),
+                                  child: _PixelRankTile(
+                                    entry: entry,
+                                    glowAnim: _glowCtrl,
+                                  ),
+                                );
+                              },
+                              childCount: ranked.length > 3
+                                  ? ranked.length - 3
+                                  : 0,
+                            ),
                           ),
                         ),
-                      ),
-                    ],
+                      ],
+                    ),
                   ),
-                ),
-              );
-            },
+                );
+              },
+            ),
           ),
-        ),
+        ],
       ),
     );
   }
 }
+
+// ═══════════════════════════════════════════════════════════════════════════
+//  DATA MODELS
+// ═══════════════════════════════════════════════════════════════════════════
 
 class _LeaderboardData {
   const _LeaderboardData({
@@ -241,99 +311,351 @@ class _RankEntry {
       );
 }
 
-class _ArenaHeaderCard extends StatelessWidget {
-  const _ArenaHeaderCard({
+// ═══════════════════════════════════════════════════════════════════════════
+//  PIXEL PARTICLE PAINTER
+// ═══════════════════════════════════════════════════════════════════════════
+
+class _PixelParticlePainter extends CustomPainter {
+  final double progress;
+  final Size size;
+  _PixelParticlePainter({required this.progress, required this.size});
+
+  static final _rng = math.Random(42);
+  static final _particles = List.generate(
+    35,
+    (_) => Offset(_rng.nextDouble(), _rng.nextDouble()),
+  );
+
+  @override
+  void paint(Canvas canvas, Size size) {
+    final paint = Paint();
+    const pixelSize = 3.0;
+    for (int i = 0; i < _particles.length; i++) {
+      final p = _particles[i];
+      final drift = math.sin(progress * math.pi * 2 + i * 1.3) * 0.02;
+      final alpha = 0.15 + 0.25 * math.sin(progress * math.pi * 2 * 1.5 + i);
+      final isGold = i % 3 == 0;
+      paint.color = (isGold ? const Color(0xFFFFD167) : const Color(0xFF7ACB74))
+          .withValues(alpha: alpha.clamp(0.05, 0.5));
+      canvas.drawRect(
+        Rect.fromLTWH(
+          (p.dx + drift) * size.width,
+          (p.dy + progress * 0.15) % 1.0 * size.height,
+          pixelSize,
+          pixelSize,
+        ),
+        paint,
+      );
+    }
+  }
+
+  @override
+  bool shouldRepaint(covariant _PixelParticlePainter old) => true;
+}
+
+// ═══════════════════════════════════════════════════════════════════════════
+//  PIXEL BACK BUTTON
+// ═══════════════════════════════════════════════════════════════════════════
+
+class _PixelBackButton extends StatelessWidget {
+  const _PixelBackButton({required this.onTap});
+  final VoidCallback onTap;
+
+  @override
+  Widget build(BuildContext context) {
+    return GestureDetector(
+      onTap: onTap,
+      child: Container(
+        padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
+        decoration: BoxDecoration(
+          color: const Color(0xFF1A2744),
+          border: Border.all(color: const Color(0xFF6B5A3E), width: 2),
+          borderRadius: BorderRadius.circular(4),
+          boxShadow: [
+            BoxShadow(
+              color: Colors.black.withValues(alpha: 0.5),
+              offset: const Offset(2, 2),
+              blurRadius: 0,
+            ),
+          ],
+        ),
+        child: Row(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            const Icon(Icons.arrow_back, color: Color(0xFFF9E2AF), size: 14),
+            const SizedBox(width: 6),
+            Text(
+              'BACK TO WORLD',
+              style: GoogleFonts.pressStart2p(
+                fontSize: 7,
+                color: const Color(0xFFF9E2AF),
+              ),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+}
+
+// ═══════════════════════════════════════════════════════════════════════════
+//  GRASS-TEXTURED HEADING STRIP
+// ═══════════════════════════════════════════════════════════════════════════
+
+class _GrassHeadingStrip extends StatelessWidget {
+  const _GrassHeadingStrip({
+    required this.title,
+    required this.subtitle,
+    this.small = false,
+  });
+  final String title;
+  final String subtitle;
+  final bool small;
+
+  @override
+  Widget build(BuildContext context) {
+    return Stack(
+      clipBehavior: Clip.none,
+      children: [
+        // Grass tile strip background
+        ClipRRect(
+          borderRadius: BorderRadius.circular(4),
+          child: SizedBox(
+            height: small ? 38 : 50,
+            width: double.infinity,
+            child: ShaderMask(
+              shaderCallback: (rect) => LinearGradient(
+                colors: [
+                  Colors.white.withValues(alpha: 0.6),
+                  Colors.white.withValues(alpha: 0.3),
+                ],
+              ).createShader(rect),
+              blendMode: BlendMode.dstIn,
+              child: Image.asset(
+                TileAssets.grassTileTwoX,
+                fit: BoxFit.cover,
+                repeat: ImageRepeat.repeatX,
+                errorBuilder: (_, __, ___) => Container(
+                  color: const Color(0xFF2A5A3A),
+                ),
+              ),
+            ),
+          ),
+        ),
+        // Overlay pixel border
+        Positioned.fill(
+          child: Container(
+            decoration: BoxDecoration(
+              border: Border.all(
+                color: const Color(0xFF3D6B4F),
+                width: 2,
+              ),
+              borderRadius: BorderRadius.circular(4),
+              boxShadow: [
+                BoxShadow(
+                  color: const Color(0xFF1A3D2A).withValues(alpha: 0.6),
+                  offset: const Offset(3, 3),
+                  blurRadius: 0,
+                ),
+              ],
+            ),
+          ),
+        ),
+        // Text content
+        Positioned.fill(
+          child: Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 14),
+            child: Row(
+              children: [
+                // Small decorative bush icon
+                Image.asset(
+                  NatureAssets.bushesLeafyBush,
+                  width: small ? 20 : 28,
+                  height: small ? 20 : 28,
+                  errorBuilder: (_, __, ___) => Icon(
+                    Icons.eco_rounded,
+                    color: const Color(0xFF7ACB74),
+                    size: small ? 16 : 20,
+                  ),
+                ),
+                const SizedBox(width: 10),
+                Text(
+                  title,
+                  style: GoogleFonts.pressStart2p(
+                    fontSize: small ? 8 : 10,
+                    color: const Color(0xFFF9E2AF),
+                    shadows: [
+                      Shadow(
+                        color: Colors.black.withValues(alpha: 0.8),
+                        offset: const Offset(1, 1),
+                      ),
+                    ],
+                  ),
+                ),
+                const Spacer(),
+                Text(
+                  subtitle,
+                  style: GoogleFonts.pressStart2p(
+                    fontSize: small ? 6 : 7,
+                    color: Colors.white70,
+                  ),
+                ),
+              ],
+            ),
+          ),
+        ),
+      ],
+    );
+  }
+}
+
+// ═══════════════════════════════════════════════════════════════════════════
+//  PIXEL ARENA HEADER
+// ═══════════════════════════════════════════════════════════════════════════
+
+class _PixelArenaHeader extends StatelessWidget {
+  const _PixelArenaHeader({
     required this.userRank,
     required this.userXp,
     required this.userLevel,
+    required this.glowAnim,
   });
 
   final int userRank;
   final int userXp;
   final int userLevel;
+  final Animation<double> glowAnim;
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      padding: const EdgeInsets.all(22),
-      decoration: BoxDecoration(
-        gradient: const LinearGradient(
-          begin: Alignment.topLeft,
-          end: Alignment.bottomRight,
-          colors: [
-            Color(0xFF0F3622),
-            Color(0xFF1E5637),
-            Color(0xFF14452C),
-          ],
-        ),
-        borderRadius: BorderRadius.circular(24),
-        boxShadow: [
-          BoxShadow(
-            color: const Color(0xFF0F3622).withValues(alpha: 0.30),
-            blurRadius: 22,
-            offset: const Offset(0, 10),
+    return AnimatedBuilder(
+      animation: glowAnim,
+      builder: (context, child) {
+        final glow = 0.15 + glowAnim.value * 0.15;
+        return Container(
+          padding: const EdgeInsets.all(16),
+          decoration: BoxDecoration(
+            color: const Color(0xFF0D1F2D),
+            border: Border.all(
+              color: const Color(0xFF6B5A3E),
+              width: 2,
+            ),
+            borderRadius: BorderRadius.circular(4),
+            boxShadow: [
+              BoxShadow(
+                color: const Color(0xFFFFD167).withValues(alpha: glow),
+                blurRadius: 20,
+                spreadRadius: 2,
+              ),
+              BoxShadow(
+                color: Colors.black.withValues(alpha: 0.6),
+                offset: const Offset(3, 3),
+                blurRadius: 0,
+              ),
+            ],
           ),
-        ],
-      ),
+          child: child,
+        );
+      },
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Text(
-            'Hall of Champions',
-            style: GoogleFonts.plusJakartaSans(
-              fontSize: 24,
-              fontWeight: FontWeight.w900,
-              color: Colors.white,
-            ),
-          ),
-          const SizedBox(height: 4),
-          Text(
-            'Compete across mathematical realms to claim glory.',
-            style: GoogleFonts.manrope(
-              fontSize: 13,
-              color: Colors.white.withValues(alpha: 0.78),
-            ),
-          ),
-          const SizedBox(height: 18),
-
-          // User Spotlight Pill (Clean, accurate stats)
-          Container(
-            padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
-            decoration: BoxDecoration(
-              color: Colors.white.withValues(alpha: 0.12),
-              borderRadius: BorderRadius.circular(16),
-              border: Border.all(
-                color: Colors.white.withValues(alpha: 0.20),
+          // Top bar with pixel icons
+          Row(
+            children: [
+              Image.asset(
+                UiAssets.iconsTrophyCupIcon,
+                width: 24,
+                height: 24,
+                errorBuilder: (_, __, ___) =>
+                    const Icon(Icons.emoji_events, color: Color(0xFFFFD167), size: 20),
               ),
+              const SizedBox(width: 8),
+              Text(
+                'MATHEMATICS SKY ARENA',
+                style: GoogleFonts.pressStart2p(
+                  fontSize: 7,
+                  color: const Color(0xFFFFD167),
+                ),
+              ),
+              const Spacer(),
+              Image.asset(
+                UiAssets.iconsGoldenStarBadgeIcon,
+                width: 20,
+                height: 20,
+                errorBuilder: (_, __, ___) =>
+                    const Icon(Icons.star, color: Color(0xFFFFD167), size: 16),
+              ),
+            ],
+          ),
+          const SizedBox(height: 12),
+
+          // User spotlight row
+          Container(
+            padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 10),
+            decoration: BoxDecoration(
+              color: Colors.white.withValues(alpha: 0.06),
+              border: Border.all(
+                color: const Color(0xFF6B5A3E).withValues(alpha: 0.6),
+                width: 1,
+              ),
+              borderRadius: BorderRadius.circular(3),
             ),
             child: Row(
               children: [
+                // Pixel character avatar
                 Container(
-                  padding: const EdgeInsets.symmetric(
-                    horizontal: 10,
-                    vertical: 4,
+                  width: 36,
+                  height: 36,
+                  decoration: BoxDecoration(
+                    border: Border.all(
+                      color: const Color(0xFFFFD167),
+                      width: 2,
+                    ),
+                    borderRadius: BorderRadius.circular(2),
                   ),
+                  child: ClipRRect(
+                    borderRadius: BorderRadius.circular(1),
+                    child: Image.asset(
+                      PlayerAssets.idleArcanistIdleFront01TwoX,
+                      fit: BoxFit.cover,
+                      errorBuilder: (_, __, ___) => Container(
+                        color: const Color(0xFF1A3A5A),
+                        child: const Icon(Icons.person, color: Color(0xFFFFD167), size: 20),
+                      ),
+                    ),
+                  ),
+                ),
+                const SizedBox(width: 12),
+                // Rank badge
+                Container(
+                  padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 3),
                   decoration: BoxDecoration(
                     color: const Color(0xFFFFD167),
-                    borderRadius: BorderRadius.circular(8),
+                    borderRadius: BorderRadius.circular(2),
+                    boxShadow: [
+                      BoxShadow(
+                        color: Colors.black.withValues(alpha: 0.4),
+                        offset: const Offset(1, 1),
+                        blurRadius: 0,
+                      ),
+                    ],
                   ),
                   child: Text(
-                    'YOUR RANK #$userRank',
-                    style: GoogleFonts.plusJakartaSans(
-                      fontWeight: FontWeight.w900,
-                      fontSize: 11,
+                    'RANK #$userRank',
+                    style: GoogleFonts.pressStart2p(
+                      fontSize: 7,
                       color: const Color(0xFF573900),
                     ),
                   ),
                 ),
-                const SizedBox(width: 14),
+                const SizedBox(width: 10),
                 Expanded(child: RankBadge(xp: userXp, onDark: true)),
                 Text(
                   '$userXp XP',
-                  style: GoogleFonts.plusJakartaSans(
+                  style: GoogleFonts.pressStart2p(
+                    fontSize: 8,
                     color: const Color(0xFFFFD167),
-                    fontWeight: FontWeight.w900,
-                    fontSize: 14,
                   ),
                 ),
               ],
@@ -345,8 +667,12 @@ class _ArenaHeaderCard extends StatelessWidget {
   }
 }
 
-class _LeaderboardFilters extends StatelessWidget {
-  const _LeaderboardFilters({
+// ═══════════════════════════════════════════════════════════════════════════
+//  PIXEL FILTER TABS
+// ═══════════════════════════════════════════════════════════════════════════
+
+class _PixelFilters extends StatelessWidget {
+  const _PixelFilters({
     required this.scope,
     required this.period,
     required this.onScope,
@@ -360,53 +686,32 @@ class _LeaderboardFilters extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
+    return Row(
       children: [
-        Row(
-          children: [
-            Expanded(
-              child: SingleChildScrollView(
-                scrollDirection: Axis.horizontal,
-                child: Row(
-                  children: [
-                    for (final name in ['Global', 'Friends', 'School']) ...[
-                      _FilterTab(
-                        label: name,
-                        isSelected: scope == name,
-                        onTap: () => onScope(name),
-                      ),
-                      const SizedBox(width: 8),
-                    ],
-                  ],
-                ),
-              ),
-            ),
-            const SizedBox(width: 10),
-            SingleChildScrollView(
-              scrollDirection: Axis.horizontal,
-              child: Row(
-                children: [
-                  for (final p in ['Weekly', 'All-Time']) ...[
-                    _FilterTab(
-                      label: p,
-                      isSelected: period == p,
-                      onTap: () => onPeriod(p),
-                    ),
-                    const SizedBox(width: 6),
-                  ],
-                ],
-              ),
-            ),
-          ],
-        ),
+        for (final name in ['Global', 'Friends', 'School']) ...[
+          _PixelTab(
+            label: name.toUpperCase(),
+            isSelected: scope == name,
+            onTap: () => onScope(name),
+          ),
+          const SizedBox(width: 6),
+        ],
+        const Spacer(),
+        for (final p in ['Weekly', 'All-Time']) ...[
+          _PixelTab(
+            label: p.toUpperCase(),
+            isSelected: period == p,
+            onTap: () => onPeriod(p),
+          ),
+          const SizedBox(width: 6),
+        ],
       ],
     );
   }
 }
 
-class _FilterTab extends StatelessWidget {
-  const _FilterTab({
+class _PixelTab extends StatelessWidget {
+  const _PixelTab({
     required this.label,
     required this.isSelected,
     required this.onTap,
@@ -418,39 +723,44 @@ class _FilterTab extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Material(
-      color: Colors.transparent,
-      child: InkWell(
-        onTap: onTap,
-        borderRadius: BorderRadius.circular(12),
-        child: AnimatedContainer(
-          duration: const Duration(milliseconds: 160),
-          padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 7),
-          decoration: BoxDecoration(
+    return GestureDetector(
+      onTap: onTap,
+      child: AnimatedContainer(
+        duration: const Duration(milliseconds: 150),
+        padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
+        decoration: BoxDecoration(
+          color: isSelected
+              ? const Color(0xFF2A5A3A)
+              : const Color(0xFF1A2744),
+          border: Border.all(
             color: isSelected
-                ? AppColors.primary
-                : Colors.white.withValues(alpha: 0.85),
-            borderRadius: BorderRadius.circular(12),
-            border: Border.all(
-              color: isSelected ? AppColors.primary : const Color(0xFFD6E3DC),
-            ),
-            boxShadow: isSelected
-                ? [
-                    BoxShadow(
-                      color: AppColors.primary.withValues(alpha: 0.20),
-                      blurRadius: 8,
-                      offset: const Offset(0, 3),
-                    ),
-                  ]
-                : null,
+                ? const Color(0xFF7ACB74)
+                : const Color(0xFF3A4A5A),
+            width: 1.5,
           ),
-          child: Text(
-            label,
-            style: GoogleFonts.manrope(
-              fontSize: 12,
-              fontWeight: FontWeight.w700,
-              color: isSelected ? Colors.white : AppColors.onSurface,
-            ),
+          borderRadius: BorderRadius.circular(3),
+          boxShadow: isSelected
+              ? [
+                  BoxShadow(
+                    color: const Color(0xFF7ACB74).withValues(alpha: 0.3),
+                    blurRadius: 6,
+                  ),
+                ]
+              : [
+                  BoxShadow(
+                    color: Colors.black.withValues(alpha: 0.4),
+                    offset: const Offset(1, 1),
+                    blurRadius: 0,
+                  ),
+                ],
+        ),
+        child: Text(
+          label,
+          style: GoogleFonts.pressStart2p(
+            fontSize: 6,
+            color: isSelected
+                ? const Color(0xFFF9E2AF)
+                : const Color(0xFF8A9BB0),
           ),
         ),
       ),
@@ -458,14 +768,18 @@ class _FilterTab extends StatelessWidget {
   }
 }
 
-class _ChampionshipPodium extends StatelessWidget {
-  const _ChampionshipPodium({required this.entries});
+// ═══════════════════════════════════════════════════════════════════════════
+//  PIXEL PODIUM
+// ═══════════════════════════════════════════════════════════════════════════
+
+class _PixelPodium extends StatelessWidget {
+  const _PixelPodium({required this.entries, required this.glowAnim});
   final List<_RankEntry> entries;
+  final Animation<double> glowAnim;
 
   @override
   Widget build(BuildContext context) {
     if (entries.isEmpty) return const SizedBox.shrink();
-
     final rank1 = entries[0];
     final rank2 = entries.length > 1 ? entries[1] : null;
     final rank3 = entries.length > 2 ? entries[2] : null;
@@ -473,55 +787,44 @@ class _ChampionshipPodium extends StatelessWidget {
     return Row(
       crossAxisAlignment: CrossAxisAlignment.end,
       children: [
-        // 2nd Place (Silver)
+        // 2nd place
         if (rank2 != null)
           Expanded(
-            child: _PodiumPedestal(
+            child: _PixelPodiumPedestal(
               entry: rank2,
-              pedestalHeight: 180,
-              medalEmoji: '🥈',
-              medalLabel: '2ND',
-              accentGradient: const LinearGradient(
-                colors: [Color(0xFFE2E8F0), Color(0xFFCBD5E1)],
-              ),
-              borderColor: const Color(0xFFCBD5E1),
-              ringColor: const Color(0xFF94A3B8),
+              height: 155,
+              label: '2ND',
+              accentColor: const Color(0xFF8291A2),
+              borderColor: const Color(0xFF6A7A8A),
+              isChampion: false,
+              glowAnim: glowAnim,
             ),
           ),
-        const SizedBox(width: 12),
-
-        // 1st Place (Gold Champion)
+        const SizedBox(width: 8),
+        // 1st place
         Expanded(
-          child: _PodiumPedestal(
+          child: _PixelPodiumPedestal(
             entry: rank1,
-            pedestalHeight: 220,
-            medalEmoji: '👑',
-            medalLabel: '1ST',
-            accentGradient: const LinearGradient(
-              begin: Alignment.topLeft,
-              end: Alignment.bottomRight,
-              colors: [Color(0xFFFFF7D6), Color(0xFFFFE082)],
-            ),
-            borderColor: const Color(0xFFFFD167),
-            ringColor: const Color(0xFFE5A912),
+            height: 195,
+            label: '1ST',
+            accentColor: const Color(0xFFFFD167),
+            borderColor: const Color(0xFFD4AF37),
             isChampion: true,
+            glowAnim: glowAnim,
           ),
         ),
-        const SizedBox(width: 12),
-
-        // 3rd Place (Bronze)
+        const SizedBox(width: 8),
+        // 3rd place
         if (rank3 != null)
           Expanded(
-            child: _PodiumPedestal(
+            child: _PixelPodiumPedestal(
               entry: rank3,
-              pedestalHeight: 160,
-              medalEmoji: '🥉',
-              medalLabel: '3RD',
-              accentGradient: const LinearGradient(
-                colors: [Color(0xFFFFEDD5), Color(0xFFFED7AA)],
-              ),
-              borderColor: const Color(0xFFFDBA74),
-              ringColor: const Color(0xFFEA580C),
+              height: 135,
+              label: '3RD',
+              accentColor: const Color(0xFFE09A52),
+              borderColor: const Color(0xFFB87333),
+              isChampion: false,
+              glowAnim: glowAnim,
             ),
           ),
       ],
@@ -529,300 +832,359 @@ class _ChampionshipPodium extends StatelessWidget {
   }
 }
 
-class _PodiumPedestal extends StatelessWidget {
-  const _PodiumPedestal({
+class _PixelPodiumPedestal extends StatelessWidget {
+  const _PixelPodiumPedestal({
     required this.entry,
-    required this.pedestalHeight,
-    required this.medalEmoji,
-    required this.medalLabel,
-    required this.accentGradient,
+    required this.height,
+    required this.label,
+    required this.accentColor,
     required this.borderColor,
-    required this.ringColor,
-    this.isChampion = false,
+    required this.isChampion,
+    required this.glowAnim,
   });
 
   final _RankEntry entry;
-  final double pedestalHeight;
-  final String medalEmoji;
-  final String medalLabel;
-  final Gradient accentGradient;
+  final double height;
+  final String label;
+  final Color accentColor;
   final Color borderColor;
-  final Color ringColor;
   final bool isChampion;
+  final Animation<double> glowAnim;
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      decoration: BoxDecoration(
-        color: Colors.white,
-        borderRadius: BorderRadius.circular(24),
-        border: Border.all(
-          color: isChampion ? borderColor : const Color(0xFFE2EAE5),
-          width: isChampion ? 2.5 : 1.5,
-        ),
-        boxShadow: [
-          BoxShadow(
-            color: ringColor.withValues(alpha: isChampion ? 0.22 : 0.10),
-            blurRadius: isChampion ? 20 : 12,
-            offset: const Offset(0, 6),
+    return GestureDetector(
+      onTap: () {
+        Navigator.of(context).push(
+          MaterialPageRoute(
+            builder: (_) => KnowledgeProfileScreen(
+              dummyName: entry.name,
+              dummyXp: entry.xp,
+              dummyLevel: entry.level,
+              dummyQuizzes: (entry.xp ~/ 100) + 2,
+            ),
           ),
-        ],
-      ),
-      child: Material(
-        color: Colors.transparent,
-        child: InkWell(
-          borderRadius: BorderRadius.circular(24),
-          onTap: () {
-            Navigator.of(context).push(
-              MaterialPageRoute(
-                builder: (_) => KnowledgeProfileScreen(
-                  dummyName: entry.name,
-                  dummyXp: entry.xp,
-                  dummyLevel: entry.level,
-                  dummyQuizzes: (entry.xp ~/ 100) + 2,
-                ),
-              ),
-            );
-          },
-          child: Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 16),
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.end,
-              children: [
-                // Medal Badge
-                Container(
-                  padding:
-                      const EdgeInsets.symmetric(horizontal: 8, vertical: 3),
-                  decoration: BoxDecoration(
-                    gradient: accentGradient,
-                    borderRadius: BorderRadius.circular(10),
-                    border: Border.all(color: borderColor),
+        );
+      },
+      child: AnimatedBuilder(
+        animation: glowAnim,
+        builder: (context, child) {
+          final glow = isChampion ? 0.15 + glowAnim.value * 0.2 : 0.0;
+          return Container(
+            height: height,
+            padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 12),
+            decoration: BoxDecoration(
+              color: const Color(0xFF0D1F2D),
+              border: Border.all(color: borderColor, width: 2),
+              borderRadius: BorderRadius.circular(4),
+              boxShadow: [
+                if (isChampion)
+                  BoxShadow(
+                    color: accentColor.withValues(alpha: glow),
+                    blurRadius: 16,
+                    spreadRadius: 2,
                   ),
-                  child: Row(
-                    mainAxisSize: MainAxisSize.min,
-                    children: [
-                      Text(medalEmoji, style: const TextStyle(fontSize: 14)),
-                      const SizedBox(width: 4),
-                      Text(
-                        medalLabel,
-                        style: GoogleFonts.plusJakartaSans(
-                          fontWeight: FontWeight.w900,
-                          fontSize: 11,
-                          color: AppColors.onSurface,
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
-                const SizedBox(height: 10),
-
-                // Initial Avatar with Ring (Clean typography, no arbitrary icons)
-                Container(
-                  padding: const EdgeInsets.all(3),
-                  decoration: BoxDecoration(
-                    shape: BoxShape.circle,
-                    border: Border.all(
-                      color: ringColor,
-                      width: isChampion ? 2.5 : 1.8,
-                    ),
-                  ),
-                  child: CircleAvatar(
-                    radius: isChampion ? 28 : 22,
-                    backgroundColor: ringColor.withValues(alpha: 0.15),
-                    child: Text(
-                      entry.name.isNotEmpty ? entry.name[0].toUpperCase() : '?',
-                      style: GoogleFonts.plusJakartaSans(
-                        color: ringColor,
-                        fontWeight: FontWeight.w900,
-                        fontSize: isChampion ? 22 : 17,
-                      ),
-                    ),
-                  ),
-                ),
-                const SizedBox(height: 8),
-
-                // Name
-                Text(
-                  entry.name,
-                  maxLines: 1,
-                  overflow: TextOverflow.ellipsis,
-                  style: GoogleFonts.plusJakartaSans(
-                    fontWeight: FontWeight.w800,
-                    fontSize: isChampion ? 14 : 12.5,
-                    color: AppColors.onSurface,
-                  ),
-                ),
-                const SizedBox(height: 2),
-
-                RankBadge(xp: entry.xp, compact: true),
-                const SizedBox(height: 4),
-
-                // XP Badge
-                Text(
-                  '${entry.xp} XP',
-                  style: GoogleFonts.plusJakartaSans(
-                    fontWeight: FontWeight.w900,
-                    fontSize: isChampion ? 13 : 11.5,
-                    color: AppColors.primary,
-                  ),
-                ),
-                const SizedBox(height: 2),
-
-                // Level
-                Text(
-                  'Level ${entry.level}',
-                  style: GoogleFonts.manrope(
-                    fontSize: 11,
-                    fontWeight: FontWeight.w600,
-                    color: AppColors.textSecondary,
-                  ),
+                BoxShadow(
+                  color: Colors.black.withValues(alpha: 0.5),
+                  offset: const Offset(3, 3),
+                  blurRadius: 0,
                 ),
               ],
             ),
-          ),
+            child: child,
+          );
+        },
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            // Medal label
+            Container(
+              padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 3),
+              decoration: BoxDecoration(
+                color: accentColor,
+                borderRadius: BorderRadius.circular(2),
+                boxShadow: [
+                  BoxShadow(
+                    color: Colors.black.withValues(alpha: 0.3),
+                    offset: const Offset(1, 1),
+                    blurRadius: 0,
+                  ),
+                ],
+              ),
+              child: Text(
+                label,
+                style: GoogleFonts.pressStart2p(
+                  fontSize: 7,
+                  color: const Color(0xFF1A0A00),
+                ),
+              ),
+            ),
+            const SizedBox(height: 8),
+
+            // Character sprite avatar
+            Container(
+              width: isChampion ? 48 : 38,
+              height: isChampion ? 48 : 38,
+              decoration: BoxDecoration(
+                border: Border.all(color: accentColor, width: 2),
+                borderRadius: BorderRadius.circular(2),
+                color: const Color(0xFF1A2744),
+              ),
+              child: ClipRRect(
+                borderRadius: BorderRadius.circular(1),
+                child: Image.asset(
+                  PlayerAssets.idleArcanistIdleFront01TwoX,
+                  fit: BoxFit.cover,
+                  errorBuilder: (_, __, ___) => Center(
+                    child: Text(
+                      entry.name.isNotEmpty ? entry.name[0].toUpperCase() : '?',
+                      style: GoogleFonts.pressStart2p(
+                        fontSize: isChampion ? 16 : 12,
+                        color: accentColor,
+                      ),
+                    ),
+                  ),
+                ),
+              ),
+            ),
+            const SizedBox(height: 6),
+
+            // Name
+            Text(
+              entry.name,
+              maxLines: 1,
+              overflow: TextOverflow.ellipsis,
+              style: GoogleFonts.pressStart2p(
+                fontSize: 6,
+                color: Colors.white,
+              ),
+            ),
+            const SizedBox(height: 4),
+
+            // Rank emblem
+            RankBadge(xp: entry.xp, compact: true, onDark: true),
+            const SizedBox(height: 4),
+
+            // XP
+            Text(
+              '${entry.xp} XP',
+              style: GoogleFonts.pressStart2p(
+                fontSize: 7,
+                color: accentColor,
+              ),
+            ),
+            const SizedBox(height: 2),
+
+            // Level
+            Text(
+              'LVL ${entry.level}',
+              style: GoogleFonts.pressStart2p(
+                fontSize: 6,
+                color: Colors.white54,
+              ),
+            ),
+          ],
         ),
       ),
     );
   }
 }
 
-class _RankTile extends StatelessWidget {
-  const _RankTile({required this.entry});
+// ═══════════════════════════════════════════════════════════════════════════
+//  PIXEL RANK TILE (4th place onward)
+// ═══════════════════════════════════════════════════════════════════════════
+
+class _PixelRankTile extends StatelessWidget {
+  const _PixelRankTile({required this.entry, required this.glowAnim});
   final _RankEntry entry;
+  final Animation<double> glowAnim;
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      decoration: BoxDecoration(
-        color: entry.isCurrentUser
-            ? AppColors.primaryContainer.withValues(alpha: 0.18)
-            : Colors.white,
-        borderRadius: BorderRadius.circular(18),
-        border: Border.all(
-          color: entry.isCurrentUser
-              ? AppColors.primary
-              : const Color(0xFFE2EAE5),
-          width: entry.isCurrentUser ? 1.8 : 1.0,
-        ),
-        boxShadow: [
-          BoxShadow(
-            color: Colors.black.withValues(alpha: 0.03),
-            blurRadius: 10,
-            offset: const Offset(0, 4),
+    final tier = RankProgression.forXp(entry.xp);
+
+    return GestureDetector(
+      onTap: () {
+        Navigator.of(context).push(
+          MaterialPageRoute(
+            builder: (_) => KnowledgeProfileScreen(
+              dummyName: entry.name,
+              dummyXp: entry.xp,
+              dummyLevel: entry.level,
+              dummyQuizzes: (entry.xp ~/ 100) + 2,
+            ),
           ),
-        ],
-      ),
-      child: Material(
-        color: Colors.transparent,
-        child: InkWell(
-          borderRadius: BorderRadius.circular(18),
-          onTap: () {
-            Navigator.of(context).push(
-              MaterialPageRoute(
-                builder: (_) => KnowledgeProfileScreen(
-                  dummyName: entry.name,
-                  dummyXp: entry.xp,
-                  dummyLevel: entry.level,
-                  dummyQuizzes: (entry.xp ~/ 100) + 2,
+        );
+      },
+      child: AnimatedBuilder(
+        animation: glowAnim,
+        builder: (context, child) {
+          final isMe = entry.isCurrentUser;
+          final glow = isMe ? 0.2 + glowAnim.value * 0.2 : 0.0;
+          return Container(
+            padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 10),
+            decoration: BoxDecoration(
+              color: isMe
+                  ? const Color(0xFF1A3A2A)
+                  : const Color(0xFF0D1F2D),
+              border: Border.all(
+                color: isMe
+                    ? const Color(0xFF7ACB74)
+                    : const Color(0xFF2A3A4A),
+                width: isMe ? 2 : 1.5,
+              ),
+              borderRadius: BorderRadius.circular(4),
+              boxShadow: [
+                if (isMe)
+                  BoxShadow(
+                    color: const Color(0xFF7ACB74).withValues(alpha: glow),
+                    blurRadius: 12,
+                    spreadRadius: 1,
+                  ),
+                BoxShadow(
+                  color: Colors.black.withValues(alpha: 0.4),
+                  offset: const Offset(2, 2),
+                  blurRadius: 0,
+                ),
+              ],
+            ),
+            child: child,
+          );
+        },
+        child: Row(
+          children: [
+            // Rank number
+            Container(
+              width: 32,
+              height: 32,
+              decoration: BoxDecoration(
+                color: const Color(0xFF1A2744),
+                border: Border.all(
+                  color: const Color(0xFF3A4A5A),
+                  width: 1.5,
+                ),
+                borderRadius: BorderRadius.circular(2),
+              ),
+              child: Center(
+                child: Text(
+                  '#${entry.rank}',
+                  style: GoogleFonts.pressStart2p(
+                    fontSize: 7,
+                    color: const Color(0xFFF9E2AF),
+                  ),
                 ),
               ),
-            );
-          },
-          child: Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
-            child: Row(
-              children: [
-                // Rank Number Badge
-                Container(
-                  width: 36,
-                  height: 36,
-                  decoration: BoxDecoration(
-                    color: const Color(0xFFF1F5F3),
-                    borderRadius: BorderRadius.circular(10),
-                  ),
-                  child: Center(
+            ),
+            const SizedBox(width: 10),
+
+            // Mini character sprite
+            Container(
+              width: 30,
+              height: 30,
+              decoration: BoxDecoration(
+                border: Border.all(
+                  color: tier.color.withValues(alpha: 0.7),
+                  width: 1.5,
+                ),
+                borderRadius: BorderRadius.circular(2),
+                color: const Color(0xFF1A2744),
+              ),
+              child: ClipRRect(
+                borderRadius: BorderRadius.circular(1),
+                child: Image.asset(
+                  PlayerAssets.idleArcanistIdleFront01,
+                  fit: BoxFit.cover,
+                  errorBuilder: (_, __, ___) => Center(
                     child: Text(
-                      '#${entry.rank}',
-                      style: GoogleFonts.plusJakartaSans(
-                        fontWeight: FontWeight.w900,
-                        fontSize: 13,
-                        color: AppColors.onSurface,
+                      entry.name.isNotEmpty ? entry.name[0].toUpperCase() : '?',
+                      style: GoogleFonts.pressStart2p(
+                        fontSize: 10,
+                        color: tier.color,
                       ),
                     ),
                   ),
                 ),
-                const SizedBox(width: 14),
+              ),
+            ),
+            const SizedBox(width: 10),
 
-                // Initial Avatar (Clean typography)
-                CircleAvatar(
-                  radius: 18,
-                  backgroundColor: AppColors.primary.withValues(alpha: 0.10),
-                  child: Text(
-                    entry.name.isNotEmpty ? entry.name[0].toUpperCase() : '?',
-                    style: GoogleFonts.plusJakartaSans(
-                      fontSize: 13,
-                      fontWeight: FontWeight.w900,
-                      color: AppColors.primary,
-                    ),
-                  ),
-                ),
-                const SizedBox(width: 14),
-
-                // Name & Current User Tag
-                Expanded(
-                  child: Row(
+            // Name & progress bar
+            Expanded(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Row(
                     children: [
                       Flexible(
                         child: Text(
                           entry.name,
                           overflow: TextOverflow.ellipsis,
-                          style: GoogleFonts.plusJakartaSans(
-                            fontWeight: FontWeight.w800,
-                            fontSize: 14,
-                            color: AppColors.onSurface,
+                          style: GoogleFonts.pressStart2p(
+                            fontSize: 7,
+                            color: Colors.white,
                           ),
                         ),
                       ),
                       if (entry.isCurrentUser) ...[
-                        const SizedBox(width: 8),
+                        const SizedBox(width: 6),
                         Container(
                           padding: const EdgeInsets.symmetric(
-                            horizontal: 7,
+                            horizontal: 5,
                             vertical: 2,
                           ),
                           decoration: BoxDecoration(
-                            color: AppColors.primary,
-                            borderRadius: BorderRadius.circular(6),
+                            color: const Color(0xFF7ACB74),
+                            borderRadius: BorderRadius.circular(2),
                           ),
                           child: Text(
                             'YOU',
-                            style: GoogleFonts.plusJakartaSans(
-                              fontWeight: FontWeight.w900,
-                              fontSize: 9.5,
-                              color: Colors.white,
+                            style: GoogleFonts.pressStart2p(
+                              fontSize: 5,
+                              color: const Color(0xFF003300),
                             ),
                           ),
                         ),
                       ],
                     ],
                   ),
-                ),
-
-                RankBadge(xp: entry.xp, compact: true),
-                const SizedBox(width: 10),
-
-                // XP Tag
-                Text(
-                  '${entry.xp} XP',
-                  style: GoogleFonts.plusJakartaSans(
-                    fontWeight: FontWeight.w900,
-                    fontSize: 14,
-                    color: AppColors.primary,
+                  const SizedBox(height: 5),
+                  // Pixel progress bar
+                  ClipRRect(
+                    borderRadius: BorderRadius.circular(1),
+                    child: SizedBox(
+                      width: 80,
+                      child: LinearProgressIndicator(
+                        value: RankProgression.progressFor(entry.xp),
+                        minHeight: 4,
+                        backgroundColor:
+                            tier.color.withValues(alpha: 0.2),
+                        valueColor: AlwaysStoppedAnimation(tier.color),
+                      ),
+                    ),
                   ),
-                ),
-              ],
+                ],
+              ),
             ),
-          ),
+
+            RankBadge(xp: entry.xp, compact: true, onDark: true),
+            const SizedBox(width: 8),
+
+            // XP value
+            Text(
+              '${entry.xp}',
+              style: GoogleFonts.pressStart2p(
+                fontSize: 8,
+                color: const Color(0xFFFFD167),
+              ),
+            ),
+            Text(
+              ' XP',
+              style: GoogleFonts.pressStart2p(
+                fontSize: 6,
+                color: const Color(0xFFFFD167).withValues(alpha: 0.6),
+              ),
+            ),
+          ],
         ),
       ),
     );
