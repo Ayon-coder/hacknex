@@ -1,0 +1,69 @@
+# ==============================================================================
+# Environment & Secrets (NEVER COMMIT API KEYS)
+# ==============================================================================
+.env
+.env.*
+!.env.example
+*.env
+
+# ==============================================================================
+# Python & Virtual Environments (main_app_back)
+# ==============================================================================
+__pycache__/
+*.py[cod]
+*$py.class
+.venv/
+venv/
+ENV/
+env/
+.pytest_cache/
+*.egg-info/
+.mypy_cache/
+.ruff_cache/
+
+# ==============================================================================
+# Audio Cache & Generated Media Output
+# ==============================================================================
+*.wav
+*.mp3
+theme_preview.wav
+audio_cache/
+
+# ==============================================================================
+# Flutter & Dart Build Output (main_app)
+# ==============================================================================
+**/build/
+**/.dart_tool/
+**/.pub-cache/
+**/.pub/
+**/.flutter-plugins
+**/.flutter-plugins-dependencies
+**/assets_manifest.json
+
+# Platform specific build artifacts
+**/android/.gradle/
+**/android/local.properties
+**/android/app/debug/
+**/android/app/profile/
+**/android/app/release/
+**/ios/Pods/
+**/ios/.symlinks/
+**/ios/Runner.xcworkspace/
+**/ios/Flutter/App.framework
+**/ios/Flutter/Flutter.framework
+**/ios/Flutter/Flutter.podspec
+**/ios/DerivedData/
+**/linux/flutter/ephemeral/
+**/macos/Flutter/ephemeral/
+**/windows/flutter/ephemeral/
+
+# ==============================================================================
+# IDEs & System Files
+# ==============================================================================
+.idea/
+.vscode/
+*.swp
+*.swo
+*~
+.DS_Store
+Thumbs.db

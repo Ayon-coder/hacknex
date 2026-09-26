@@ -1,0 +1,1846 @@
+{
+  "schema_version": 2,
+  "reference_image": "game-assets/reference/arcanist_island_full_reference.png",
+  "objects": {
+    "buildings.alchemy_lab": {
+      "name": "Alchemy Lab",
+      "type": "building",
+      "position": "east",
+      "preferred_asset": "game-assets/buildings/alchemy_lab.png",
+      "recommendation": "archive_or_keep_as_low_memory_fallback",
+      "visual_identification": "Academy building: Alchemy Lab."
+    },
+    "buildings.alchemy_lab_2x": {
+      "name": "Alchemy Lab",
+      "type": "building",
+      "position": "east",
+      "preferred_asset": "game-assets/buildings/alchemy_lab_2x.png",
+      "recommendation": "use_final_game_asset",
+      "visual_identification": "Academy building: Alchemy Lab."
+    },
+    "buildings.astronomy_tower": {
+      "name": "Astronomy Tower",
+      "type": "building",
+      "position": "north_east",
+      "preferred_asset": "game-assets/buildings/astronomy_tower.png",
+      "recommendation": "archive_or_keep_as_low_memory_fallback",
+      "visual_identification": "Academy building: Astronomy Tower."
+    },
+    "buildings.astronomy_tower_2x": {
+      "name": "Astronomy Tower",
+      "type": "building",
+      "position": "north_east",
+      "preferred_asset": "game-assets/buildings/astronomy_tower_2x.png",
+      "recommendation": "use_final_game_asset",
+      "visual_identification": "Academy building: Astronomy Tower."
+    },
+    "buildings.coding_tower": {
+      "name": "Coding Tower",
+      "type": "building",
+      "position": "south_east",
+      "preferred_asset": "game-assets/buildings/coding_tower.png",
+      "recommendation": "archive_or_keep_as_low_memory_fallback",
+      "visual_identification": "Academy building: Coding Tower."
+    },
+    "buildings.coding_tower_2x": {
+      "name": "Coding Tower",
+      "type": "building",
+      "position": "south_east",
+      "preferred_asset": "game-assets/buildings/coding_tower_2x.png",
+      "recommendation": "use_final_game_asset",
+      "visual_identification": "Academy building: Coding Tower."
+    },
+    "buildings.duel_arena": {
+      "name": "Duel Arena",
+      "type": "building",
+      "position": "west",
+      "preferred_asset": "game-assets/buildings/duel_arena.png",
+      "recommendation": "archive_or_keep_as_low_memory_fallback",
+      "visual_identification": "Academy building: Duel Arena."
+    },
+    "buildings.duel_arena_2x": {
+      "name": "Duel Arena",
+      "type": "building",
+      "position": "west",
+      "preferred_asset": "game-assets/buildings/duel_arena_2x.png",
+      "recommendation": "use_final_game_asset",
+      "visual_identification": "Academy building: Duel Arena."
+    },
+    "buildings.grand_hall": {
+      "name": "Grand Hall",
+      "type": "building",
+      "position": "north",
+      "preferred_asset": "game-assets/buildings/grand_hall.png",
+      "recommendation": "archive_or_keep_as_low_memory_fallback",
+      "visual_identification": "Academy building: Grand Hall."
+    },
+    "buildings.grand_hall_2x": {
+      "name": "Grand Hall",
+      "type": "building",
+      "position": "north",
+      "preferred_asset": "game-assets/buildings/grand_hall_2x.png",
+      "recommendation": "use_final_game_asset",
+      "visual_identification": "Academy building: Grand Hall."
+    },
+    "buildings.history_hall": {
+      "name": "History Hall",
+      "type": "building",
+      "position": "south_west",
+      "preferred_asset": "game-assets/buildings/history_hall.png",
+      "recommendation": "archive_or_keep_as_low_memory_fallback",
+      "visual_identification": "Academy building: History Hall."
+    },
+    "buildings.history_hall_2x": {
+      "name": "History Hall",
+      "type": "building",
+      "position": "south_west",
+      "preferred_asset": "game-assets/buildings/history_hall_2x.png",
+      "recommendation": "use_final_game_asset",
+      "visual_identification": "Academy building: History Hall."
+    },
+    "buildings.library": {
+      "name": "Library",
+      "type": "building",
+      "position": "north_west",
+      "preferred_asset": "game-assets/buildings/library.png",
+      "recommendation": "archive_or_keep_as_low_memory_fallback",
+      "visual_identification": "Academy building: Library."
+    },
+    "buildings.library_2x": {
+      "name": "Library",
+      "type": "building",
+      "position": "north_west",
+      "preferred_asset": "game-assets/buildings/library_2x.png",
+      "recommendation": "use_final_game_asset",
+      "visual_identification": "Academy building: Library."
+    },
+    "decorations.banners.blue_hanging_banner": {
+      "name": "Blue Hanging Banner",
+      "type": "banner",
+      "position": "astronomy_or_magic_zones",
+      "preferred_asset": "game-assets/decorations/banners/blue_hanging_banner.png",
+      "recommendation": "archive_or_keep_as_low_memory_fallback",
+      "visual_identification": "Academy banner or flag: Blue Hanging Banner."
+    },
+    "decorations.banners.blue_hanging_banner_2x": {
+      "name": "Blue Hanging Banner",
+      "type": "banner",
+      "position": "astronomy_or_magic_zones",
+      "preferred_asset": "game-assets/decorations/banners/blue_hanging_banner_2x.png",
+      "recommendation": "use_final_game_asset",
+      "visual_identification": "Academy banner or flag: Blue Hanging Banner."
+    },
+    "decorations.banners.gold_banner_post": {
+      "name": "Gold Banner Post",
+      "type": "banner",
+      "position": "path_edges_and_building_fronts",
+      "preferred_asset": "game-assets/decorations/banners/gold_banner_post.png",
+      "recommendation": "archive_or_keep_as_low_memory_fallback",
+      "visual_identification": "Academy banner or flag: Gold Banner Post."
+    },
+    "decorations.banners.gold_banner_post_2x": {
+      "name": "Gold Banner Post",
+      "type": "banner",
+      "position": "path_edges_and_building_fronts",
+      "preferred_asset": "game-assets/decorations/banners/gold_banner_post_2x.png",
+      "recommendation": "use_final_game_asset",
+      "visual_identification": "Academy banner or flag: Gold Banner Post."
+    },
+    "decorations.banners.gold_flag_post": {
+      "name": "Gold Flag Post",
+      "type": "banner",
+      "position": "path_edges_and_building_fronts",
+      "preferred_asset": "game-assets/decorations/banners/gold_flag_post.png",
+      "recommendation": "archive_or_keep_as_low_memory_fallback",
+      "visual_identification": "Academy banner or flag: Gold Flag Post."
+    },
+    "decorations.banners.gold_flag_post_2x": {
+      "name": "Gold Flag Post",
+      "type": "banner",
+      "position": "path_edges_and_building_fronts",
+      "preferred_asset": "game-assets/decorations/banners/gold_flag_post_2x.png",
+      "recommendation": "use_final_game_asset",
+      "visual_identification": "Academy banner or flag: Gold Flag Post."
+    },
+    "decorations.banners.purple_banner_lamp_post": {
+      "name": "Purple Banner Lamp Post",
+      "type": "banner",
+      "position": "enchanted_forest_or_coding_tower",
+      "preferred_asset": "game-assets/decorations/banners/purple_banner_lamp_post.png",
+      "recommendation": "archive_or_keep_as_low_memory_fallback",
+      "visual_identification": "Academy banner or flag: Purple Banner Lamp Post."
+    },
+    "decorations.banners.purple_banner_lamp_post_2x": {
+      "name": "Purple Banner Lamp Post",
+      "type": "banner",
+      "position": "enchanted_forest_or_coding_tower",
+      "preferred_asset": "game-assets/decorations/banners/purple_banner_lamp_post_2x.png",
+      "recommendation": "use_final_game_asset",
+      "visual_identification": "Academy banner or flag: Purple Banner Lamp Post."
+    },
+    "decorations.banners.purple_hanging_banner": {
+      "name": "Purple Hanging Banner",
+      "type": "banner",
+      "position": "enchanted_forest_or_coding_tower",
+      "preferred_asset": "game-assets/decorations/banners/purple_hanging_banner.png",
+      "recommendation": "archive_or_keep_as_low_memory_fallback",
+      "visual_identification": "Academy banner or flag: Purple Hanging Banner."
+    },
+    "decorations.banners.purple_hanging_banner_2x": {
+      "name": "Purple Hanging Banner",
+      "type": "banner",
+      "position": "enchanted_forest_or_coding_tower",
+      "preferred_asset": "game-assets/decorations/banners/purple_hanging_banner_2x.png",
+      "recommendation": "use_final_game_asset",
+      "visual_identification": "Academy banner or flag: Purple Hanging Banner."
+    },
+    "decorations.banners.purple_vertical_banner": {
+      "name": "Purple Vertical Banner",
+      "type": "banner",
+      "position": "enchanted_forest_or_coding_tower",
+      "preferred_asset": "game-assets/decorations/banners/purple_vertical_banner.png",
+      "recommendation": "archive_or_keep_as_low_memory_fallback",
+      "visual_identification": "Academy banner or flag: Purple Vertical Banner."
+    },
+    "decorations.banners.purple_vertical_banner_2x": {
+      "name": "Purple Vertical Banner",
+      "type": "banner",
+      "position": "enchanted_forest_or_coding_tower",
+      "preferred_asset": "game-assets/decorations/banners/purple_vertical_banner_2x.png",
+      "recommendation": "use_final_game_asset",
+      "visual_identification": "Academy banner or flag: Purple Vertical Banner."
+    },
+    "decorations.banners.short_purple_hanging_banner": {
+      "name": "Short Purple Hanging Banner",
+      "type": "banner",
+      "position": "enchanted_forest_or_coding_tower",
+      "preferred_asset": "game-assets/decorations/banners/short_purple_hanging_banner.png",
+      "recommendation": "archive_or_keep_as_low_memory_fallback",
+      "visual_identification": "Academy banner or flag: Short Purple Hanging Banner."
+    },
+    "decorations.banners.short_purple_hanging_banner_2x": {
+      "name": "Short Purple Hanging Banner",
+      "type": "banner",
+      "position": "enchanted_forest_or_coding_tower",
+      "preferred_asset": "game-assets/decorations/banners/short_purple_hanging_banner_2x.png",
+      "recommendation": "use_final_game_asset",
+      "visual_identification": "Academy banner or flag: Short Purple Hanging Banner."
+    },
+    "decorations.containers.blue_cauldron": {
+      "name": "Blue Cauldron",
+      "type": "container_prop",
+      "position": "alchemy_lab_yard",
+      "preferred_asset": "game-assets/decorations/containers/blue_cauldron.png",
+      "recommendation": "archive_or_keep_as_low_memory_fallback",
+      "visual_identification": "Container/storage prop: Blue Cauldron."
+    },
+    "decorations.containers.blue_cauldron_2x": {
+      "name": "Blue Cauldron",
+      "type": "container_prop",
+      "position": "alchemy_lab_yard",
+      "preferred_asset": "game-assets/decorations/containers/blue_cauldron_2x.png",
+      "recommendation": "use_final_game_asset",
+      "visual_identification": "Container/storage prop: Blue Cauldron."
+    },
+    "decorations.containers.blue_supply_crate": {
+      "name": "Blue Supply Crate",
+      "type": "container_prop",
+      "position": "astronomy_or_magic_zones",
+      "preferred_asset": "game-assets/decorations/containers/blue_supply_crate.png",
+      "recommendation": "archive_or_keep_as_low_memory_fallback",
+      "visual_identification": "Container/storage prop: Blue Supply Crate."
+    },
+    "decorations.containers.blue_supply_crate_2x": {
+      "name": "Blue Supply Crate",
+      "type": "container_prop",
+      "position": "astronomy_or_magic_zones",
+      "preferred_asset": "game-assets/decorations/containers/blue_supply_crate_2x.png",
+      "recommendation": "use_final_game_asset",
+      "visual_identification": "Container/storage prop: Blue Supply Crate."
+    },
+    "decorations.containers.brown_treasure_crate": {
+      "name": "Brown Treasure Crate",
+      "type": "container_prop",
+      "position": "general_academy",
+      "preferred_asset": "game-assets/decorations/containers/brown_treasure_crate.png",
+      "recommendation": "archive_or_keep_as_low_memory_fallback",
+      "visual_identification": "Container/storage prop: Brown Treasure Crate."
+    },
+    "decorations.containers.brown_treasure_crate_2x": {
+      "name": "Brown Treasure Crate",
+      "type": "container_prop",
+      "position": "general_academy",
+      "preferred_asset": "game-assets/decorations/containers/brown_treasure_crate_2x.png",
+      "recommendation": "use_final_game_asset",
+      "visual_identification": "Container/storage prop: Brown Treasure Crate."
+    },
+    "decorations.containers.dark_metal_barrel": {
+      "name": "Dark Metal Barrel",
+      "type": "container_prop",
+      "position": "alchemy_lab_yard",
+      "preferred_asset": "game-assets/decorations/containers/dark_metal_barrel.png",
+      "recommendation": "archive_or_keep_as_low_memory_fallback",
+      "visual_identification": "Container/storage prop: Dark Metal Barrel."
+    },
+    "decorations.containers.dark_metal_barrel_2x": {
+      "name": "Dark Metal Barrel",
+      "type": "container_prop",
+      "position": "alchemy_lab_yard",
+      "preferred_asset": "game-assets/decorations/containers/dark_metal_barrel_2x.png",
+      "recommendation": "use_final_game_asset",
+      "visual_identification": "Container/storage prop: Dark Metal Barrel."
+    },
+    "decorations.containers.green_liquid_barrel": {
+      "name": "Green Liquid Barrel",
+      "type": "container_prop",
+      "position": "alchemy_lab_yard",
+      "preferred_asset": "game-assets/decorations/containers/green_liquid_barrel.png",
+      "recommendation": "archive_or_keep_as_low_memory_fallback",
+      "visual_identification": "Container/storage prop: Green Liquid Barrel."
+    },
+    "decorations.containers.green_liquid_barrel_2x": {
+      "name": "Green Liquid Barrel",
+      "type": "container_prop",
+      "position": "alchemy_lab_yard",
+      "preferred_asset": "game-assets/decorations/containers/green_liquid_barrel_2x.png",
+      "recommendation": "use_final_game_asset",
+      "visual_identification": "Container/storage prop: Green Liquid Barrel."
+    },
+    "decorations.containers.stone_barrel": {
+      "name": "Stone Barrel",
+      "type": "container_prop",
+      "position": "alchemy_lab_yard",
+      "preferred_asset": "game-assets/decorations/containers/stone_barrel.png",
+      "recommendation": "archive_or_keep_as_low_memory_fallback",
+      "visual_identification": "Container/storage prop: Stone Barrel."
+    },
+    "decorations.containers.stone_barrel_2x": {
+      "name": "Stone Barrel",
+      "type": "container_prop",
+      "position": "alchemy_lab_yard",
+      "preferred_asset": "game-assets/decorations/containers/stone_barrel_2x.png",
+      "recommendation": "use_final_game_asset",
+      "visual_identification": "Container/storage prop: Stone Barrel."
+    },
+    "decorations.containers.tall_wooden_barrel": {
+      "name": "Tall Wooden Barrel",
+      "type": "container_prop",
+      "position": "alchemy_lab_yard",
+      "preferred_asset": "game-assets/decorations/containers/tall_wooden_barrel.png",
+      "recommendation": "archive_or_keep_as_low_memory_fallback",
+      "visual_identification": "Container/storage prop: Tall Wooden Barrel."
+    },
+    "decorations.containers.tall_wooden_barrel_2x": {
+      "name": "Tall Wooden Barrel",
+      "type": "container_prop",
+      "position": "alchemy_lab_yard",
+      "preferred_asset": "game-assets/decorations/containers/tall_wooden_barrel_2x.png",
+      "recommendation": "use_final_game_asset",
+      "visual_identification": "Container/storage prop: Tall Wooden Barrel."
+    },
+    "decorations.containers.wooden_barrel": {
+      "name": "Wooden Barrel",
+      "type": "container_prop",
+      "position": "alchemy_lab_yard",
+      "preferred_asset": "game-assets/decorations/containers/wooden_barrel.png",
+      "recommendation": "archive_or_keep_as_low_memory_fallback",
+      "visual_identification": "Container/storage prop: Wooden Barrel."
+    },
+    "decorations.containers.wooden_barrel_2x": {
+      "name": "Wooden Barrel",
+      "type": "container_prop",
+      "position": "alchemy_lab_yard",
+      "preferred_asset": "game-assets/decorations/containers/wooden_barrel_2x.png",
+      "recommendation": "use_final_game_asset",
+      "visual_identification": "Container/storage prop: Wooden Barrel."
+    },
+    "decorations.fences.wooden_gate": {
+      "name": "Wooden Gate",
+      "type": "fence",
+      "position": "perimeter_and_building_lawns",
+      "preferred_asset": "game-assets/decorations/fences/wooden_gate.png",
+      "recommendation": "archive_or_keep_as_low_memory_fallback",
+      "visual_identification": "Perimeter fence or gate prop: Wooden Gate."
+    },
+    "decorations.fences.wooden_gate_2x": {
+      "name": "Wooden Gate",
+      "type": "fence",
+      "position": "perimeter_and_building_lawns",
+      "preferred_asset": "game-assets/decorations/fences/wooden_gate_2x.png",
+      "recommendation": "use_final_game_asset",
+      "visual_identification": "Perimeter fence or gate prop: Wooden Gate."
+    },
+    "decorations.lamps.black_lantern_post": {
+      "name": "Black Lantern Post",
+      "type": "lamp",
+      "position": "path_edges_and_building_fronts",
+      "preferred_asset": "game-assets/decorations/lamps/black_lantern_post.png",
+      "recommendation": "archive_or_keep_as_low_memory_fallback",
+      "visual_identification": "Path lighting prop: Black Lantern Post."
+    },
+    "decorations.lamps.black_lantern_post_2x": {
+      "name": "Black Lantern Post",
+      "type": "lamp",
+      "position": "path_edges_and_building_fronts",
+      "preferred_asset": "game-assets/decorations/lamps/black_lantern_post_2x.png",
+      "recommendation": "use_final_game_asset",
+      "visual_identification": "Path lighting prop: Black Lantern Post."
+    },
+    "decorations.lamps.gold_lantern_post": {
+      "name": "Gold Lantern Post",
+      "type": "lamp",
+      "position": "path_edges_and_building_fronts",
+      "preferred_asset": "game-assets/decorations/lamps/gold_lantern_post.png",
+      "recommendation": "archive_or_keep_as_low_memory_fallback",
+      "visual_identification": "Path lighting prop: Gold Lantern Post."
+    },
+    "decorations.lamps.gold_lantern_post_2x": {
+      "name": "Gold Lantern Post",
+      "type": "lamp",
+      "position": "path_edges_and_building_fronts",
+      "preferred_asset": "game-assets/decorations/lamps/gold_lantern_post_2x.png",
+      "recommendation": "use_final_game_asset",
+      "visual_identification": "Path lighting prop: Gold Lantern Post."
+    },
+    "decorations.lamps.lantern_post": {
+      "name": "Lantern Post",
+      "type": "lamp",
+      "position": "path_edges_and_building_fronts",
+      "preferred_asset": "game-assets/decorations/lamps/lantern_post.png",
+      "recommendation": "archive_or_keep_as_low_memory_fallback",
+      "visual_identification": "Path lighting prop: Lantern Post."
+    },
+    "decorations.lamps.lantern_post_2x": {
+      "name": "Lantern Post",
+      "type": "lamp",
+      "position": "path_edges_and_building_fronts",
+      "preferred_asset": "game-assets/decorations/lamps/lantern_post_2x.png",
+      "recommendation": "use_final_game_asset",
+      "visual_identification": "Path lighting prop: Lantern Post."
+    },
+    "decorations.lamps.stone_lantern": {
+      "name": "Stone Lantern",
+      "type": "lamp",
+      "position": "path_edges_and_building_fronts",
+      "preferred_asset": "game-assets/decorations/lamps/stone_lantern.png",
+      "recommendation": "archive_or_keep_as_low_memory_fallback",
+      "visual_identification": "Path lighting prop: Stone Lantern."
+    },
+    "decorations.lamps.stone_lantern_2x": {
+      "name": "Stone Lantern",
+      "type": "lamp",
+      "position": "path_edges_and_building_fronts",
+      "preferred_asset": "game-assets/decorations/lamps/stone_lantern_2x.png",
+      "recommendation": "use_final_game_asset",
+      "visual_identification": "Path lighting prop: Stone Lantern."
+    },
+    "decorations.props.blue_fountain": {
+      "name": "Blue Fountain",
+      "type": "world_prop",
+      "position": "east",
+      "preferred_asset": "game-assets/decorations/props/blue_fountain.png",
+      "recommendation": "archive_or_keep_as_low_memory_fallback",
+      "visual_identification": "Environmental landmark or prop: Blue Fountain."
+    },
+    "decorations.props.blue_fountain_2x": {
+      "name": "Blue Fountain",
+      "type": "world_prop",
+      "position": "east",
+      "preferred_asset": "game-assets/decorations/props/blue_fountain_2x.png",
+      "recommendation": "use_final_game_asset",
+      "visual_identification": "Environmental landmark or prop: Blue Fountain."
+    },
+    "decorations.props.broken_stone_wall": {
+      "name": "Broken Stone Wall",
+      "type": "world_prop",
+      "position": "general_academy",
+      "preferred_asset": "game-assets/decorations/props/broken_stone_wall.png",
+      "recommendation": "archive_or_keep_as_low_memory_fallback",
+      "visual_identification": "Environmental landmark or prop: Broken Stone Wall."
+    },
+    "decorations.props.broken_stone_wall_2x": {
+      "name": "Broken Stone Wall",
+      "type": "world_prop",
+      "position": "general_academy",
+      "preferred_asset": "game-assets/decorations/props/broken_stone_wall_2x.png",
+      "recommendation": "use_final_game_asset",
+      "visual_identification": "Environmental landmark or prop: Broken Stone Wall."
+    },
+    "decorations.props.central_fountain": {
+      "name": "Central Fountain",
+      "type": "world_prop",
+      "position": "center",
+      "preferred_asset": "game-assets/decorations/props/central_fountain.png",
+      "recommendation": "archive_or_keep_as_low_memory_fallback",
+      "visual_identification": "Environmental landmark or prop: Central Fountain."
+    },
+    "decorations.props.central_fountain_2x": {
+      "name": "Central Fountain",
+      "type": "world_prop",
+      "position": "center",
+      "preferred_asset": "game-assets/decorations/props/central_fountain_2x.png",
+      "recommendation": "use_final_game_asset",
+      "visual_identification": "Environmental landmark or prop: Central Fountain."
+    },
+    "decorations.props.stone_floor_platform": {
+      "name": "Stone Floor Platform",
+      "type": "world_prop",
+      "position": "central_plaza",
+      "preferred_asset": "game-assets/decorations/props/stone_floor_platform.png",
+      "recommendation": "archive_or_keep_as_low_memory_fallback",
+      "visual_identification": "Environmental landmark or prop: Stone Floor Platform."
+    },
+    "decorations.props.stone_floor_platform_2x": {
+      "name": "Stone Floor Platform",
+      "type": "world_prop",
+      "position": "central_plaza",
+      "preferred_asset": "game-assets/decorations/props/stone_floor_platform_2x.png",
+      "recommendation": "use_final_game_asset",
+      "visual_identification": "Environmental landmark or prop: Stone Floor Platform."
+    },
+    "decorations.props.stone_guardian_statue": {
+      "name": "Stone Guardian Statue",
+      "type": "world_prop",
+      "position": "general_academy",
+      "preferred_asset": "game-assets/decorations/props/stone_guardian_statue.png",
+      "recommendation": "archive_or_keep_as_low_memory_fallback",
+      "visual_identification": "Environmental landmark or prop: Stone Guardian Statue."
+    },
+    "decorations.props.stone_guardian_statue_2x": {
+      "name": "Stone Guardian Statue",
+      "type": "world_prop",
+      "position": "general_academy",
+      "preferred_asset": "game-assets/decorations/props/stone_guardian_statue_2x.png",
+      "recommendation": "use_final_game_asset",
+      "visual_identification": "Environmental landmark or prop: Stone Guardian Statue."
+    },
+    "decorations.props.stone_pillar": {
+      "name": "Stone Pillar",
+      "type": "world_prop",
+      "position": "general_academy",
+      "preferred_asset": "game-assets/decorations/props/stone_pillar.png",
+      "recommendation": "archive_or_keep_as_low_memory_fallback",
+      "visual_identification": "Environmental landmark or prop: Stone Pillar."
+    },
+    "decorations.props.stone_pillar_2x": {
+      "name": "Stone Pillar",
+      "type": "world_prop",
+      "position": "general_academy",
+      "preferred_asset": "game-assets/decorations/props/stone_pillar_2x.png",
+      "recommendation": "use_final_game_asset",
+      "visual_identification": "Environmental landmark or prop: Stone Pillar."
+    },
+    "decorations.props.stone_well": {
+      "name": "Stone Well",
+      "type": "world_prop",
+      "position": "general_academy",
+      "preferred_asset": "game-assets/decorations/props/stone_well.png",
+      "recommendation": "archive_or_keep_as_low_memory_fallback",
+      "visual_identification": "Environmental landmark or prop: Stone Well."
+    },
+    "decorations.props.stone_well_2x": {
+      "name": "Stone Well",
+      "type": "world_prop",
+      "position": "general_academy",
+      "preferred_asset": "game-assets/decorations/props/stone_well_2x.png",
+      "recommendation": "use_final_game_asset",
+      "visual_identification": "Environmental landmark or prop: Stone Well."
+    },
+    "decorations.signs.direction_signpost": {
+      "name": "Direction Signpost",
+      "type": "sign",
+      "position": "path_edges_and_building_fronts",
+      "preferred_asset": "game-assets/decorations/signs/direction_signpost.png",
+      "recommendation": "archive_or_keep_as_low_memory_fallback",
+      "visual_identification": "Wayfinding or interaction sign: Direction Signpost."
+    },
+    "decorations.signs.direction_signpost_2x": {
+      "name": "Direction Signpost",
+      "type": "sign",
+      "position": "path_edges_and_building_fronts",
+      "preferred_asset": "game-assets/decorations/signs/direction_signpost_2x.png",
+      "recommendation": "use_final_game_asset",
+      "visual_identification": "Wayfinding or interaction sign: Direction Signpost."
+    },
+    "decorations.signs.hanging_sign_frame": {
+      "name": "Hanging Sign Frame",
+      "type": "sign",
+      "position": "path_edges_and_building_fronts",
+      "preferred_asset": "game-assets/decorations/signs/hanging_sign_frame.png",
+      "recommendation": "archive_or_keep_as_low_memory_fallback",
+      "visual_identification": "Wayfinding or interaction sign: Hanging Sign Frame."
+    },
+    "decorations.signs.hanging_sign_frame_2x": {
+      "name": "Hanging Sign Frame",
+      "type": "sign",
+      "position": "path_edges_and_building_fronts",
+      "preferred_asset": "game-assets/decorations/signs/hanging_sign_frame_2x.png",
+      "recommendation": "use_final_game_asset",
+      "visual_identification": "Wayfinding or interaction sign: Hanging Sign Frame."
+    },
+    "decorations.signs.shield_signpost": {
+      "name": "Shield Signpost",
+      "type": "sign",
+      "position": "duel_arena",
+      "preferred_asset": "game-assets/decorations/signs/shield_signpost.png",
+      "recommendation": "archive_or_keep_as_low_memory_fallback",
+      "visual_identification": "Wayfinding or interaction sign: Shield Signpost."
+    },
+    "decorations.signs.shield_signpost_2x": {
+      "name": "Shield Signpost",
+      "type": "sign",
+      "position": "duel_arena",
+      "preferred_asset": "game-assets/decorations/signs/shield_signpost_2x.png",
+      "recommendation": "use_final_game_asset",
+      "visual_identification": "Wayfinding or interaction sign: Shield Signpost."
+    },
+    "decorations.signs.small_signpost": {
+      "name": "Small Signpost",
+      "type": "sign",
+      "position": "path_edges_and_building_fronts",
+      "preferred_asset": "game-assets/decorations/signs/small_signpost.png",
+      "recommendation": "archive_or_keep_as_low_memory_fallback",
+      "visual_identification": "Wayfinding or interaction sign: Small Signpost."
+    },
+    "decorations.signs.small_signpost_2x": {
+      "name": "Small Signpost",
+      "type": "sign",
+      "position": "path_edges_and_building_fronts",
+      "preferred_asset": "game-assets/decorations/signs/small_signpost_2x.png",
+      "recommendation": "use_final_game_asset",
+      "visual_identification": "Wayfinding or interaction sign: Small Signpost."
+    },
+    "decorations.signs.square_signpost": {
+      "name": "Square Signpost",
+      "type": "sign",
+      "position": "path_edges_and_building_fronts",
+      "preferred_asset": "game-assets/decorations/signs/square_signpost.png",
+      "recommendation": "archive_or_keep_as_low_memory_fallback",
+      "visual_identification": "Wayfinding or interaction sign: Square Signpost."
+    },
+    "decorations.signs.square_signpost_2x": {
+      "name": "Square Signpost",
+      "type": "sign",
+      "position": "path_edges_and_building_fronts",
+      "preferred_asset": "game-assets/decorations/signs/square_signpost_2x.png",
+      "recommendation": "use_final_game_asset",
+      "visual_identification": "Wayfinding or interaction sign: Square Signpost."
+    },
+    "decorations.signs.tiny_shield_marker": {
+      "name": "Tiny Shield Marker",
+      "type": "sign",
+      "position": "duel_arena",
+      "preferred_asset": "game-assets/decorations/signs/tiny_shield_marker.png",
+      "recommendation": "archive_or_keep_as_low_memory_fallback",
+      "visual_identification": "Wayfinding or interaction sign: Tiny Shield Marker."
+    },
+    "decorations.signs.tiny_shield_marker_2x": {
+      "name": "Tiny Shield Marker",
+      "type": "sign",
+      "position": "duel_arena",
+      "preferred_asset": "game-assets/decorations/signs/tiny_shield_marker_2x.png",
+      "recommendation": "use_final_game_asset",
+      "visual_identification": "Wayfinding or interaction sign: Tiny Shield Marker."
+    },
+    "decorations.signs.wooden_signpost": {
+      "name": "Wooden Signpost",
+      "type": "sign",
+      "position": "path_edges_and_building_fronts",
+      "preferred_asset": "game-assets/decorations/signs/wooden_signpost.png",
+      "recommendation": "archive_or_keep_as_low_memory_fallback",
+      "visual_identification": "Wayfinding or interaction sign: Wooden Signpost."
+    },
+    "decorations.signs.wooden_signpost_2x": {
+      "name": "Wooden Signpost",
+      "type": "sign",
+      "position": "path_edges_and_building_fronts",
+      "preferred_asset": "game-assets/decorations/signs/wooden_signpost_2x.png",
+      "recommendation": "use_final_game_asset",
+      "visual_identification": "Wayfinding or interaction sign: Wooden Signpost."
+    },
+    "decorations.signs.wooden_wayfinding_sign": {
+      "name": "Wooden Wayfinding Sign",
+      "type": "sign",
+      "position": "path_edges_and_building_fronts",
+      "preferred_asset": "game-assets/decorations/signs/wooden_wayfinding_sign.png",
+      "recommendation": "archive_or_keep_as_low_memory_fallback",
+      "visual_identification": "Wayfinding or interaction sign: Wooden Wayfinding Sign."
+    },
+    "decorations.signs.wooden_wayfinding_sign_2x": {
+      "name": "Wooden Wayfinding Sign",
+      "type": "sign",
+      "position": "path_edges_and_building_fronts",
+      "preferred_asset": "game-assets/decorations/signs/wooden_wayfinding_sign_2x.png",
+      "recommendation": "use_final_game_asset",
+      "visual_identification": "Wayfinding or interaction sign: Wooden Wayfinding Sign."
+    },
+    "effects.magic.blue_ice_spike": {
+      "name": "Blue Ice Spike",
+      "type": "magic_effect",
+      "position": "astronomy_or_magic_zones",
+      "preferred_asset": "game-assets/effects/magic/blue_ice_spike.png",
+      "recommendation": "archive_or_keep_as_low_memory_fallback",
+      "visual_identification": "Visual effect sprite: Blue Ice Spike."
+    },
+    "effects.magic.blue_ice_spike_2x": {
+      "name": "Blue Ice Spike",
+      "type": "magic_effect",
+      "position": "astronomy_or_magic_zones",
+      "preferred_asset": "game-assets/effects/magic/blue_ice_spike_2x.png",
+      "recommendation": "use_final_game_asset",
+      "visual_identification": "Visual effect sprite: Blue Ice Spike."
+    },
+    "effects.magic.blue_magic_floor_decal": {
+      "name": "Blue Magic Floor Decal",
+      "type": "magic_effect",
+      "position": "astronomy_or_magic_zones",
+      "preferred_asset": "game-assets/effects/magic/blue_magic_floor_decal.png",
+      "recommendation": "archive_or_keep_as_low_memory_fallback",
+      "visual_identification": "Visual effect sprite: Blue Magic Floor Decal."
+    },
+    "effects.magic.blue_magic_floor_decal_2x": {
+      "name": "Blue Magic Floor Decal",
+      "type": "magic_effect",
+      "position": "astronomy_or_magic_zones",
+      "preferred_asset": "game-assets/effects/magic/blue_magic_floor_decal_2x.png",
+      "recommendation": "use_final_game_asset",
+      "visual_identification": "Visual effect sprite: Blue Magic Floor Decal."
+    },
+    "effects.magic.blue_magic_floor_decal_variant": {
+      "name": "Blue Magic Floor Decal Variant",
+      "type": "magic_effect",
+      "position": "astronomy_or_magic_zones",
+      "preferred_asset": "game-assets/effects/magic/blue_magic_floor_decal_variant.png",
+      "recommendation": "archive_or_keep_as_low_memory_fallback",
+      "visual_identification": "Visual effect sprite: Blue Magic Floor Decal Variant."
+    },
+    "effects.magic.blue_magic_floor_decal_variant_2x": {
+      "name": "Blue Magic Floor Decal Variant",
+      "type": "magic_effect",
+      "position": "astronomy_or_magic_zones",
+      "preferred_asset": "game-assets/effects/magic/blue_magic_floor_decal_variant_2x.png",
+      "recommendation": "use_final_game_asset",
+      "visual_identification": "Visual effect sprite: Blue Magic Floor Decal Variant."
+    },
+    "effects.magic.blue_magic_spark": {
+      "name": "Blue Magic Spark",
+      "type": "magic_effect",
+      "position": "astronomy_or_magic_zones",
+      "preferred_asset": "game-assets/effects/magic/blue_magic_spark.png",
+      "recommendation": "archive_or_keep_as_low_memory_fallback",
+      "visual_identification": "Visual effect sprite: Blue Magic Spark."
+    },
+    "effects.magic.blue_magic_spark_2x": {
+      "name": "Blue Magic Spark",
+      "type": "magic_effect",
+      "position": "astronomy_or_magic_zones",
+      "preferred_asset": "game-assets/effects/magic/blue_magic_spark_2x.png",
+      "recommendation": "use_final_game_asset",
+      "visual_identification": "Visual effect sprite: Blue Magic Spark."
+    },
+    "effects.magic.blue_starburst": {
+      "name": "Blue Starburst",
+      "type": "magic_effect",
+      "position": "astronomy_or_magic_zones",
+      "preferred_asset": "game-assets/effects/magic/blue_starburst.png",
+      "recommendation": "archive_or_keep_as_low_memory_fallback",
+      "visual_identification": "Visual effect sprite: Blue Starburst."
+    },
+    "effects.magic.blue_starburst_2x": {
+      "name": "Blue Starburst",
+      "type": "magic_effect",
+      "position": "astronomy_or_magic_zones",
+      "preferred_asset": "game-assets/effects/magic/blue_starburst_2x.png",
+      "recommendation": "use_final_game_asset",
+      "visual_identification": "Visual effect sprite: Blue Starburst."
+    },
+    "effects.magic.purple_magic_circle": {
+      "name": "Purple Magic Circle",
+      "type": "magic_effect",
+      "position": "enchanted_forest_or_coding_tower",
+      "preferred_asset": "game-assets/effects/magic/purple_magic_circle.png",
+      "recommendation": "archive_or_keep_as_low_memory_fallback",
+      "visual_identification": "Visual effect sprite: Purple Magic Circle."
+    },
+    "effects.magic.purple_magic_circle_2x": {
+      "name": "Purple Magic Circle",
+      "type": "magic_effect",
+      "position": "enchanted_forest_or_coding_tower",
+      "preferred_asset": "game-assets/effects/magic/purple_magic_circle_2x.png",
+      "recommendation": "use_final_game_asset",
+      "visual_identification": "Visual effect sprite: Purple Magic Circle."
+    },
+    "effects.magic.violet_starburst": {
+      "name": "Violet Starburst",
+      "type": "magic_effect",
+      "position": "astronomy_or_magic_zones",
+      "preferred_asset": "game-assets/effects/magic/violet_starburst.png",
+      "recommendation": "archive_or_keep_as_low_memory_fallback",
+      "visual_identification": "Visual effect sprite: Violet Starburst."
+    },
+    "effects.magic.violet_starburst_2x": {
+      "name": "Violet Starburst",
+      "type": "magic_effect",
+      "position": "astronomy_or_magic_zones",
+      "preferred_asset": "game-assets/effects/magic/violet_starburst_2x.png",
+      "recommendation": "use_final_game_asset",
+      "visual_identification": "Visual effect sprite: Violet Starburst."
+    },
+    "effects.particles.brown_dust_spark": {
+      "name": "Brown Dust Spark",
+      "type": "particle_effect",
+      "position": "general_academy",
+      "preferred_asset": "game-assets/effects/particles/brown_dust_spark.png",
+      "recommendation": "archive_or_keep_as_low_memory_fallback",
+      "visual_identification": "Visual effect sprite: Brown Dust Spark."
+    },
+    "effects.particles.brown_dust_spark_2x": {
+      "name": "Brown Dust Spark",
+      "type": "particle_effect",
+      "position": "general_academy",
+      "preferred_asset": "game-assets/effects/particles/brown_dust_spark_2x.png",
+      "recommendation": "use_final_game_asset",
+      "visual_identification": "Visual effect sprite: Brown Dust Spark."
+    },
+    "effects.particles.gold_sparkle_cluster": {
+      "name": "Gold Sparkle Cluster",
+      "type": "particle_effect",
+      "position": "general_academy",
+      "preferred_asset": "game-assets/effects/particles/gold_sparkle_cluster.png",
+      "recommendation": "archive_or_keep_as_low_memory_fallback",
+      "visual_identification": "Visual effect sprite: Gold Sparkle Cluster."
+    },
+    "effects.particles.gold_sparkle_cluster_2x": {
+      "name": "Gold Sparkle Cluster",
+      "type": "particle_effect",
+      "position": "general_academy",
+      "preferred_asset": "game-assets/effects/particles/gold_sparkle_cluster_2x.png",
+      "recommendation": "use_final_game_asset",
+      "visual_identification": "Visual effect sprite: Gold Sparkle Cluster."
+    },
+    "effects.particles.golden_burst": {
+      "name": "Golden Burst",
+      "type": "particle_effect",
+      "position": "general_academy",
+      "preferred_asset": "game-assets/effects/particles/golden_burst.png",
+      "recommendation": "archive_or_keep_as_low_memory_fallback",
+      "visual_identification": "Visual effect sprite: Golden Burst."
+    },
+    "effects.particles.golden_burst_2x": {
+      "name": "Golden Burst",
+      "type": "particle_effect",
+      "position": "general_academy",
+      "preferred_asset": "game-assets/effects/particles/golden_burst_2x.png",
+      "recommendation": "use_final_game_asset",
+      "visual_identification": "Visual effect sprite: Golden Burst."
+    },
+    "effects.particles.purple_sparkle_cluster": {
+      "name": "Purple Sparkle Cluster",
+      "type": "particle_effect",
+      "position": "enchanted_forest_or_coding_tower",
+      "preferred_asset": "game-assets/effects/particles/purple_sparkle_cluster.png",
+      "recommendation": "archive_or_keep_as_low_memory_fallback",
+      "visual_identification": "Visual effect sprite: Purple Sparkle Cluster."
+    },
+    "effects.particles.purple_sparkle_cluster_2x": {
+      "name": "Purple Sparkle Cluster",
+      "type": "particle_effect",
+      "position": "enchanted_forest_or_coding_tower",
+      "preferred_asset": "game-assets/effects/particles/purple_sparkle_cluster_2x.png",
+      "recommendation": "use_final_game_asset",
+      "visual_identification": "Visual effect sprite: Purple Sparkle Cluster."
+    },
+    "effects.particles.small_purple_spark": {
+      "name": "Small Purple Spark",
+      "type": "particle_effect",
+      "position": "enchanted_forest_or_coding_tower",
+      "preferred_asset": "game-assets/effects/particles/small_purple_spark.png",
+      "recommendation": "archive_or_keep_as_low_memory_fallback",
+      "visual_identification": "Visual effect sprite: Small Purple Spark."
+    },
+    "effects.particles.small_purple_spark_2x": {
+      "name": "Small Purple Spark",
+      "type": "particle_effect",
+      "position": "enchanted_forest_or_coding_tower",
+      "preferred_asset": "game-assets/effects/particles/small_purple_spark_2x.png",
+      "recommendation": "use_final_game_asset",
+      "visual_identification": "Visual effect sprite: Small Purple Spark."
+    },
+    "effects.particles.tiny_gold_spark": {
+      "name": "Tiny Gold Spark",
+      "type": "particle_effect",
+      "position": "general_academy",
+      "preferred_asset": "game-assets/effects/particles/tiny_gold_spark.png",
+      "recommendation": "archive_or_keep_as_low_memory_fallback",
+      "visual_identification": "Visual effect sprite: Tiny Gold Spark."
+    },
+    "effects.particles.tiny_gold_spark_2x": {
+      "name": "Tiny Gold Spark",
+      "type": "particle_effect",
+      "position": "general_academy",
+      "preferred_asset": "game-assets/effects/particles/tiny_gold_spark_2x.png",
+      "recommendation": "use_final_game_asset",
+      "visual_identification": "Visual effect sprite: Tiny Gold Spark."
+    },
+    "effects.particles.tiny_purple_spark": {
+      "name": "Tiny Purple Spark",
+      "type": "particle_effect",
+      "position": "enchanted_forest_or_coding_tower",
+      "preferred_asset": "game-assets/effects/particles/tiny_purple_spark.png",
+      "recommendation": "archive_or_keep_as_low_memory_fallback",
+      "visual_identification": "Visual effect sprite: Tiny Purple Spark."
+    },
+    "effects.particles.tiny_purple_spark_2x": {
+      "name": "Tiny Purple Spark",
+      "type": "particle_effect",
+      "position": "enchanted_forest_or_coding_tower",
+      "preferred_asset": "game-assets/effects/particles/tiny_purple_spark_2x.png",
+      "recommendation": "use_final_game_asset",
+      "visual_identification": "Visual effect sprite: Tiny Purple Spark."
+    },
+    "effects.particles.tiny_white_spark": {
+      "name": "Tiny White Spark",
+      "type": "particle_effect",
+      "position": "general_academy",
+      "preferred_asset": "game-assets/effects/particles/tiny_white_spark.png",
+      "recommendation": "archive_or_keep_as_low_memory_fallback",
+      "visual_identification": "Visual effect sprite: Tiny White Spark."
+    },
+    "effects.particles.tiny_white_spark_2x": {
+      "name": "Tiny White Spark",
+      "type": "particle_effect",
+      "position": "general_academy",
+      "preferred_asset": "game-assets/effects/particles/tiny_white_spark_2x.png",
+      "recommendation": "use_final_game_asset",
+      "visual_identification": "Visual effect sprite: Tiny White Spark."
+    },
+    "effects.particles.white_light_spark": {
+      "name": "White Light Spark",
+      "type": "particle_effect",
+      "position": "general_academy",
+      "preferred_asset": "game-assets/effects/particles/white_light_spark.png",
+      "recommendation": "archive_or_keep_as_low_memory_fallback",
+      "visual_identification": "Visual effect sprite: White Light Spark."
+    },
+    "effects.particles.white_light_spark_2x": {
+      "name": "White Light Spark",
+      "type": "particle_effect",
+      "position": "general_academy",
+      "preferred_asset": "game-assets/effects/particles/white_light_spark_2x.png",
+      "recommendation": "use_final_game_asset",
+      "visual_identification": "Visual effect sprite: White Light Spark."
+    },
+    "effects.smoke.smoke_puff": {
+      "name": "Smoke Puff",
+      "type": "smoke_effect",
+      "position": "alchemy_lab_yard",
+      "preferred_asset": "game-assets/effects/smoke/smoke_puff.png",
+      "recommendation": "archive_or_keep_as_low_memory_fallback",
+      "visual_identification": "Visual effect sprite: Smoke Puff."
+    },
+    "effects.smoke.smoke_puff_2x": {
+      "name": "Smoke Puff",
+      "type": "smoke_effect",
+      "position": "alchemy_lab_yard",
+      "preferred_asset": "game-assets/effects/smoke/smoke_puff_2x.png",
+      "recommendation": "use_final_game_asset",
+      "visual_identification": "Visual effect sprite: Smoke Puff."
+    },
+    "nature.bushes.gray_rock_bush": {
+      "name": "Gray Rock Bush",
+      "type": "bush",
+      "position": "perimeter_and_building_lawns",
+      "preferred_asset": "game-assets/nature/bushes/gray_rock_bush.png",
+      "recommendation": "archive_or_keep_as_low_memory_fallback",
+      "visual_identification": "Nature asset: Gray Rock Bush."
+    },
+    "nature.bushes.gray_rock_bush_2x": {
+      "name": "Gray Rock Bush",
+      "type": "bush",
+      "position": "perimeter_and_building_lawns",
+      "preferred_asset": "game-assets/nature/bushes/gray_rock_bush_2x.png",
+      "recommendation": "use_final_game_asset",
+      "visual_identification": "Nature asset: Gray Rock Bush."
+    },
+    "nature.bushes.leafy_bush": {
+      "name": "Leafy Bush",
+      "type": "bush",
+      "position": "perimeter_and_building_lawns",
+      "preferred_asset": "game-assets/nature/bushes/leafy_bush.png",
+      "recommendation": "archive_or_keep_as_low_memory_fallback",
+      "visual_identification": "Nature asset: Leafy Bush."
+    },
+    "nature.bushes.leafy_bush_2x": {
+      "name": "Leafy Bush",
+      "type": "bush",
+      "position": "perimeter_and_building_lawns",
+      "preferred_asset": "game-assets/nature/bushes/leafy_bush_2x.png",
+      "recommendation": "use_final_game_asset",
+      "visual_identification": "Nature asset: Leafy Bush."
+    },
+    "nature.bushes.pink_flower_bush": {
+      "name": "Pink Flower Bush",
+      "type": "bush",
+      "position": "perimeter_and_building_lawns",
+      "preferred_asset": "game-assets/nature/bushes/pink_flower_bush.png",
+      "recommendation": "archive_or_keep_as_low_memory_fallback",
+      "visual_identification": "Nature asset: Pink Flower Bush."
+    },
+    "nature.bushes.pink_flower_bush_2x": {
+      "name": "Pink Flower Bush",
+      "type": "bush",
+      "position": "perimeter_and_building_lawns",
+      "preferred_asset": "game-assets/nature/bushes/pink_flower_bush_2x.png",
+      "recommendation": "use_final_game_asset",
+      "visual_identification": "Nature asset: Pink Flower Bush."
+    },
+    "nature.bushes.small_leafy_patch": {
+      "name": "Small Leafy Patch",
+      "type": "bush",
+      "position": "perimeter_and_building_lawns",
+      "preferred_asset": "game-assets/nature/bushes/small_leafy_patch.png",
+      "recommendation": "archive_or_keep_as_low_memory_fallback",
+      "visual_identification": "Nature asset: Small Leafy Patch."
+    },
+    "nature.bushes.small_leafy_patch_2x": {
+      "name": "Small Leafy Patch",
+      "type": "bush",
+      "position": "perimeter_and_building_lawns",
+      "preferred_asset": "game-assets/nature/bushes/small_leafy_patch_2x.png",
+      "recommendation": "use_final_game_asset",
+      "visual_identification": "Nature asset: Small Leafy Patch."
+    },
+    "nature.bushes.yellow_flower_bush": {
+      "name": "Yellow Flower Bush",
+      "type": "bush",
+      "position": "perimeter_and_building_lawns",
+      "preferred_asset": "game-assets/nature/bushes/yellow_flower_bush.png",
+      "recommendation": "archive_or_keep_as_low_memory_fallback",
+      "visual_identification": "Nature asset: Yellow Flower Bush."
+    },
+    "nature.bushes.yellow_flower_bush_2x": {
+      "name": "Yellow Flower Bush",
+      "type": "bush",
+      "position": "perimeter_and_building_lawns",
+      "preferred_asset": "game-assets/nature/bushes/yellow_flower_bush_2x.png",
+      "recommendation": "use_final_game_asset",
+      "visual_identification": "Nature asset: Yellow Flower Bush."
+    },
+    "nature.flowers.flower_cliff_column": {
+      "name": "Flower Cliff Column",
+      "type": "flower",
+      "position": "perimeter_and_building_lawns",
+      "preferred_asset": "game-assets/nature/flowers/flower_cliff_column.png",
+      "recommendation": "archive_or_keep_as_low_memory_fallback",
+      "visual_identification": "Nature asset: Flower Cliff Column."
+    },
+    "nature.flowers.flower_cliff_column_2x": {
+      "name": "Flower Cliff Column",
+      "type": "flower",
+      "position": "perimeter_and_building_lawns",
+      "preferred_asset": "game-assets/nature/flowers/flower_cliff_column_2x.png",
+      "recommendation": "use_final_game_asset",
+      "visual_identification": "Nature asset: Flower Cliff Column."
+    },
+    "nature.flowers.flower_grass_mound": {
+      "name": "Flower Grass Mound",
+      "type": "flower",
+      "position": "perimeter_and_building_lawns",
+      "preferred_asset": "game-assets/nature/flowers/flower_grass_mound.png",
+      "recommendation": "archive_or_keep_as_low_memory_fallback",
+      "visual_identification": "Nature asset: Flower Grass Mound."
+    },
+    "nature.flowers.flower_grass_mound_2x": {
+      "name": "Flower Grass Mound",
+      "type": "flower",
+      "position": "perimeter_and_building_lawns",
+      "preferred_asset": "game-assets/nature/flowers/flower_grass_mound_2x.png",
+      "recommendation": "use_final_game_asset",
+      "visual_identification": "Nature asset: Flower Grass Mound."
+    },
+    "nature.flowers.pink_flower_grass_tile": {
+      "name": "Pink Flower Grass Tile",
+      "type": "flower",
+      "position": "perimeter_and_building_lawns",
+      "preferred_asset": "game-assets/nature/flowers/pink_flower_grass_tile.png",
+      "recommendation": "archive_or_keep_as_low_memory_fallback",
+      "visual_identification": "Nature asset: Pink Flower Grass Tile."
+    },
+    "nature.flowers.pink_flower_grass_tile_2x": {
+      "name": "Pink Flower Grass Tile",
+      "type": "flower",
+      "position": "perimeter_and_building_lawns",
+      "preferred_asset": "game-assets/nature/flowers/pink_flower_grass_tile_2x.png",
+      "recommendation": "use_final_game_asset",
+      "visual_identification": "Nature asset: Pink Flower Grass Tile."
+    },
+    "nature.flowers.pink_flower_patch": {
+      "name": "Pink Flower Patch",
+      "type": "flower",
+      "position": "perimeter_and_building_lawns",
+      "preferred_asset": "game-assets/nature/flowers/pink_flower_patch.png",
+      "recommendation": "archive_or_keep_as_low_memory_fallback",
+      "visual_identification": "Nature asset: Pink Flower Patch."
+    },
+    "nature.flowers.pink_flower_patch_2x": {
+      "name": "Pink Flower Patch",
+      "type": "flower",
+      "position": "perimeter_and_building_lawns",
+      "preferred_asset": "game-assets/nature/flowers/pink_flower_patch_2x.png",
+      "recommendation": "use_final_game_asset",
+      "visual_identification": "Nature asset: Pink Flower Patch."
+    },
+    "nature.flowers.purple_flower_grass_tile": {
+      "name": "Purple Flower Grass Tile",
+      "type": "flower",
+      "position": "enchanted_forest_or_coding_tower",
+      "preferred_asset": "game-assets/nature/flowers/purple_flower_grass_tile.png",
+      "recommendation": "archive_or_keep_as_low_memory_fallback",
+      "visual_identification": "Nature asset: Purple Flower Grass Tile."
+    },
+    "nature.flowers.purple_flower_grass_tile_2x": {
+      "name": "Purple Flower Grass Tile",
+      "type": "flower",
+      "position": "enchanted_forest_or_coding_tower",
+      "preferred_asset": "game-assets/nature/flowers/purple_flower_grass_tile_2x.png",
+      "recommendation": "use_final_game_asset",
+      "visual_identification": "Nature asset: Purple Flower Grass Tile."
+    },
+    "nature.flowers.purple_flower_patch": {
+      "name": "Purple Flower Patch",
+      "type": "flower",
+      "position": "enchanted_forest_or_coding_tower",
+      "preferred_asset": "game-assets/nature/flowers/purple_flower_patch.png",
+      "recommendation": "archive_or_keep_as_low_memory_fallback",
+      "visual_identification": "Nature asset: Purple Flower Patch."
+    },
+    "nature.flowers.purple_flower_patch_2x": {
+      "name": "Purple Flower Patch",
+      "type": "flower",
+      "position": "enchanted_forest_or_coding_tower",
+      "preferred_asset": "game-assets/nature/flowers/purple_flower_patch_2x.png",
+      "recommendation": "use_final_game_asset",
+      "visual_identification": "Nature asset: Purple Flower Patch."
+    },
+    "nature.flowers.tiny_flower_cluster": {
+      "name": "Tiny Flower Cluster",
+      "type": "flower",
+      "position": "perimeter_and_building_lawns",
+      "preferred_asset": "game-assets/nature/flowers/tiny_flower_cluster.png",
+      "recommendation": "archive_or_keep_as_low_memory_fallback",
+      "visual_identification": "Nature asset: Tiny Flower Cluster."
+    },
+    "nature.flowers.tiny_flower_cluster_2x": {
+      "name": "Tiny Flower Cluster",
+      "type": "flower",
+      "position": "perimeter_and_building_lawns",
+      "preferred_asset": "game-assets/nature/flowers/tiny_flower_cluster_2x.png",
+      "recommendation": "use_final_game_asset",
+      "visual_identification": "Nature asset: Tiny Flower Cluster."
+    },
+    "nature.flowers.tiny_ground_sprout": {
+      "name": "Tiny Ground Sprout",
+      "type": "flower",
+      "position": "perimeter_and_building_lawns",
+      "preferred_asset": "game-assets/nature/flowers/tiny_ground_sprout.png",
+      "recommendation": "archive_or_keep_as_low_memory_fallback",
+      "visual_identification": "Nature asset: Tiny Ground Sprout."
+    },
+    "nature.flowers.tiny_ground_sprout_2x": {
+      "name": "Tiny Ground Sprout",
+      "type": "flower",
+      "position": "perimeter_and_building_lawns",
+      "preferred_asset": "game-assets/nature/flowers/tiny_ground_sprout_2x.png",
+      "recommendation": "use_final_game_asset",
+      "visual_identification": "Nature asset: Tiny Ground Sprout."
+    },
+    "nature.flowers.white_flower_grass_tile": {
+      "name": "White Flower Grass Tile",
+      "type": "flower",
+      "position": "perimeter_and_building_lawns",
+      "preferred_asset": "game-assets/nature/flowers/white_flower_grass_tile.png",
+      "recommendation": "archive_or_keep_as_low_memory_fallback",
+      "visual_identification": "Nature asset: White Flower Grass Tile."
+    },
+    "nature.flowers.white_flower_grass_tile_2x": {
+      "name": "White Flower Grass Tile",
+      "type": "flower",
+      "position": "perimeter_and_building_lawns",
+      "preferred_asset": "game-assets/nature/flowers/white_flower_grass_tile_2x.png",
+      "recommendation": "use_final_game_asset",
+      "visual_identification": "Nature asset: White Flower Grass Tile."
+    },
+    "nature.flowers.yellow_flower_bed": {
+      "name": "Yellow Flower Bed",
+      "type": "flower",
+      "position": "perimeter_and_building_lawns",
+      "preferred_asset": "game-assets/nature/flowers/yellow_flower_bed.png",
+      "recommendation": "archive_or_keep_as_low_memory_fallback",
+      "visual_identification": "Nature asset: Yellow Flower Bed."
+    },
+    "nature.flowers.yellow_flower_bed_2x": {
+      "name": "Yellow Flower Bed",
+      "type": "flower",
+      "position": "perimeter_and_building_lawns",
+      "preferred_asset": "game-assets/nature/flowers/yellow_flower_bed_2x.png",
+      "recommendation": "use_final_game_asset",
+      "visual_identification": "Nature asset: Yellow Flower Bed."
+    },
+    "nature.flowers.yellow_flower_patch": {
+      "name": "Yellow Flower Patch",
+      "type": "flower",
+      "position": "perimeter_and_building_lawns",
+      "preferred_asset": "game-assets/nature/flowers/yellow_flower_patch.png",
+      "recommendation": "archive_or_keep_as_low_memory_fallback",
+      "visual_identification": "Nature asset: Yellow Flower Patch."
+    },
+    "nature.flowers.yellow_flower_patch_2x": {
+      "name": "Yellow Flower Patch",
+      "type": "flower",
+      "position": "perimeter_and_building_lawns",
+      "preferred_asset": "game-assets/nature/flowers/yellow_flower_patch_2x.png",
+      "recommendation": "use_final_game_asset",
+      "visual_identification": "Nature asset: Yellow Flower Patch."
+    },
+    "nature.flowers.yellow_flower_shrub": {
+      "name": "Yellow Flower Shrub",
+      "type": "flower",
+      "position": "perimeter_and_building_lawns",
+      "preferred_asset": "game-assets/nature/flowers/yellow_flower_shrub.png",
+      "recommendation": "archive_or_keep_as_low_memory_fallback",
+      "visual_identification": "Nature asset: Yellow Flower Shrub."
+    },
+    "nature.flowers.yellow_flower_shrub_2x": {
+      "name": "Yellow Flower Shrub",
+      "type": "flower",
+      "position": "perimeter_and_building_lawns",
+      "preferred_asset": "game-assets/nature/flowers/yellow_flower_shrub_2x.png",
+      "recommendation": "use_final_game_asset",
+      "visual_identification": "Nature asset: Yellow Flower Shrub."
+    },
+    "nature.rocks.rock_cluster": {
+      "name": "Rock Cluster",
+      "type": "rock",
+      "position": "perimeter_and_building_lawns",
+      "preferred_asset": "game-assets/nature/rocks/rock_cluster.png",
+      "recommendation": "archive_or_keep_as_low_memory_fallback",
+      "visual_identification": "Nature asset: Rock Cluster."
+    },
+    "nature.rocks.rock_cluster_2x": {
+      "name": "Rock Cluster",
+      "type": "rock",
+      "position": "perimeter_and_building_lawns",
+      "preferred_asset": "game-assets/nature/rocks/rock_cluster_2x.png",
+      "recommendation": "use_final_game_asset",
+      "visual_identification": "Nature asset: Rock Cluster."
+    },
+    "nature.rocks.small_rock_pile": {
+      "name": "Small Rock Pile",
+      "type": "rock",
+      "position": "perimeter_and_building_lawns",
+      "preferred_asset": "game-assets/nature/rocks/small_rock_pile.png",
+      "recommendation": "archive_or_keep_as_low_memory_fallback",
+      "visual_identification": "Nature asset: Small Rock Pile."
+    },
+    "nature.rocks.small_rock_pile_2x": {
+      "name": "Small Rock Pile",
+      "type": "rock",
+      "position": "perimeter_and_building_lawns",
+      "preferred_asset": "game-assets/nature/rocks/small_rock_pile_2x.png",
+      "recommendation": "use_final_game_asset",
+      "visual_identification": "Nature asset: Small Rock Pile."
+    },
+    "nature.trees.autumn_tree": {
+      "name": "Autumn Tree",
+      "type": "tree",
+      "position": "perimeter_and_building_lawns",
+      "preferred_asset": "game-assets/nature/trees/autumn_tree.png",
+      "recommendation": "archive_or_keep_as_low_memory_fallback",
+      "visual_identification": "Nature asset: Autumn Tree."
+    },
+    "nature.trees.autumn_tree_2x": {
+      "name": "Autumn Tree",
+      "type": "tree",
+      "position": "perimeter_and_building_lawns",
+      "preferred_asset": "game-assets/nature/trees/autumn_tree_2x.png",
+      "recommendation": "use_final_game_asset",
+      "visual_identification": "Nature asset: Autumn Tree."
+    },
+    "nature.trees.broadleaf_tree": {
+      "name": "Broadleaf Tree",
+      "type": "tree",
+      "position": "perimeter_and_building_lawns",
+      "preferred_asset": "game-assets/nature/trees/broadleaf_tree.png",
+      "recommendation": "archive_or_keep_as_low_memory_fallback",
+      "visual_identification": "Nature asset: Broadleaf Tree."
+    },
+    "nature.trees.broadleaf_tree_2x": {
+      "name": "Broadleaf Tree",
+      "type": "tree",
+      "position": "perimeter_and_building_lawns",
+      "preferred_asset": "game-assets/nature/trees/broadleaf_tree_2x.png",
+      "recommendation": "use_final_game_asset",
+      "visual_identification": "Nature asset: Broadleaf Tree."
+    },
+    "nature.trees.enchanted_forest_tree": {
+      "name": "Enchanted Forest Tree",
+      "type": "tree",
+      "position": "east_south_east",
+      "preferred_asset": "game-assets/nature/trees/enchanted_forest_tree.png",
+      "recommendation": "archive_or_keep_as_low_memory_fallback",
+      "visual_identification": "Nature asset: Enchanted Forest Tree."
+    },
+    "nature.trees.enchanted_forest_tree_2x": {
+      "name": "Enchanted Forest Tree",
+      "type": "tree",
+      "position": "east_south_east",
+      "preferred_asset": "game-assets/nature/trees/enchanted_forest_tree_2x.png",
+      "recommendation": "use_final_game_asset",
+      "visual_identification": "Nature asset: Enchanted Forest Tree."
+    },
+    "nature.trees.firewood_stack": {
+      "name": "Firewood Stack",
+      "type": "tree",
+      "position": "perimeter_and_building_lawns",
+      "preferred_asset": "game-assets/nature/trees/firewood_stack.png",
+      "recommendation": "archive_or_keep_as_low_memory_fallback",
+      "visual_identification": "Nature asset: Firewood Stack."
+    },
+    "nature.trees.firewood_stack_2x": {
+      "name": "Firewood Stack",
+      "type": "tree",
+      "position": "perimeter_and_building_lawns",
+      "preferred_asset": "game-assets/nature/trees/firewood_stack_2x.png",
+      "recommendation": "use_final_game_asset",
+      "visual_identification": "Nature asset: Firewood Stack."
+    },
+    "nature.trees.full_pine_tree": {
+      "name": "Full Pine Tree",
+      "type": "tree",
+      "position": "perimeter_and_building_lawns",
+      "preferred_asset": "game-assets/nature/trees/full_pine_tree.png",
+      "recommendation": "archive_or_keep_as_low_memory_fallback",
+      "visual_identification": "Nature asset: Full Pine Tree."
+    },
+    "nature.trees.full_pine_tree_2x": {
+      "name": "Full Pine Tree",
+      "type": "tree",
+      "position": "perimeter_and_building_lawns",
+      "preferred_asset": "game-assets/nature/trees/full_pine_tree_2x.png",
+      "recommendation": "use_final_game_asset",
+      "visual_identification": "Nature asset: Full Pine Tree."
+    },
+    "nature.trees.log_pile": {
+      "name": "Log Pile",
+      "type": "tree",
+      "position": "perimeter_and_building_lawns",
+      "preferred_asset": "game-assets/nature/trees/log_pile.png",
+      "recommendation": "archive_or_keep_as_low_memory_fallback",
+      "visual_identification": "Nature asset: Log Pile."
+    },
+    "nature.trees.log_pile_2x": {
+      "name": "Log Pile",
+      "type": "tree",
+      "position": "perimeter_and_building_lawns",
+      "preferred_asset": "game-assets/nature/trees/log_pile_2x.png",
+      "recommendation": "use_final_game_asset",
+      "visual_identification": "Nature asset: Log Pile."
+    },
+    "nature.trees.medium_pine_tree": {
+      "name": "Medium Pine Tree",
+      "type": "tree",
+      "position": "perimeter_and_building_lawns",
+      "preferred_asset": "game-assets/nature/trees/medium_pine_tree.png",
+      "recommendation": "archive_or_keep_as_low_memory_fallback",
+      "visual_identification": "Nature asset: Medium Pine Tree."
+    },
+    "nature.trees.medium_pine_tree_2x": {
+      "name": "Medium Pine Tree",
+      "type": "tree",
+      "position": "perimeter_and_building_lawns",
+      "preferred_asset": "game-assets/nature/trees/medium_pine_tree_2x.png",
+      "recommendation": "use_final_game_asset",
+      "visual_identification": "Nature asset: Medium Pine Tree."
+    },
+    "nature.trees.round_leaf_tree": {
+      "name": "Round Leaf Tree",
+      "type": "tree",
+      "position": "perimeter_and_building_lawns",
+      "preferred_asset": "game-assets/nature/trees/round_leaf_tree.png",
+      "recommendation": "archive_or_keep_as_low_memory_fallback",
+      "visual_identification": "Nature asset: Round Leaf Tree."
+    },
+    "nature.trees.round_leaf_tree_2x": {
+      "name": "Round Leaf Tree",
+      "type": "tree",
+      "position": "perimeter_and_building_lawns",
+      "preferred_asset": "game-assets/nature/trees/round_leaf_tree_2x.png",
+      "recommendation": "use_final_game_asset",
+      "visual_identification": "Nature asset: Round Leaf Tree."
+    },
+    "nature.trees.round_tree": {
+      "name": "Round Tree",
+      "type": "tree",
+      "position": "perimeter_and_building_lawns",
+      "preferred_asset": "game-assets/nature/trees/round_tree.png",
+      "recommendation": "archive_or_keep_as_low_memory_fallback",
+      "visual_identification": "Nature asset: Round Tree."
+    },
+    "nature.trees.round_tree_2x": {
+      "name": "Round Tree",
+      "type": "tree",
+      "position": "perimeter_and_building_lawns",
+      "preferred_asset": "game-assets/nature/trees/round_tree_2x.png",
+      "recommendation": "use_final_game_asset",
+      "visual_identification": "Nature asset: Round Tree."
+    },
+    "nature.trees.small_broadleaf_tree": {
+      "name": "Small Broadleaf Tree",
+      "type": "tree",
+      "position": "perimeter_and_building_lawns",
+      "preferred_asset": "game-assets/nature/trees/small_broadleaf_tree.png",
+      "recommendation": "archive_or_keep_as_low_memory_fallback",
+      "visual_identification": "Nature asset: Small Broadleaf Tree."
+    },
+    "nature.trees.small_broadleaf_tree_2x": {
+      "name": "Small Broadleaf Tree",
+      "type": "tree",
+      "position": "perimeter_and_building_lawns",
+      "preferred_asset": "game-assets/nature/trees/small_broadleaf_tree_2x.png",
+      "recommendation": "use_final_game_asset",
+      "visual_identification": "Nature asset: Small Broadleaf Tree."
+    },
+    "nature.trees.small_pine_tree": {
+      "name": "Small Pine Tree",
+      "type": "tree",
+      "position": "perimeter_and_building_lawns",
+      "preferred_asset": "game-assets/nature/trees/small_pine_tree.png",
+      "recommendation": "archive_or_keep_as_low_memory_fallback",
+      "visual_identification": "Nature asset: Small Pine Tree."
+    },
+    "nature.trees.small_pine_tree_2x": {
+      "name": "Small Pine Tree",
+      "type": "tree",
+      "position": "perimeter_and_building_lawns",
+      "preferred_asset": "game-assets/nature/trees/small_pine_tree_2x.png",
+      "recommendation": "use_final_game_asset",
+      "visual_identification": "Nature asset: Small Pine Tree."
+    },
+    "nature.trees.small_sapling": {
+      "name": "Small Sapling",
+      "type": "tree",
+      "position": "perimeter_and_building_lawns",
+      "preferred_asset": "game-assets/nature/trees/small_sapling.png",
+      "recommendation": "archive_or_keep_as_low_memory_fallback",
+      "visual_identification": "Nature asset: Small Sapling."
+    },
+    "nature.trees.small_sapling_2x": {
+      "name": "Small Sapling",
+      "type": "tree",
+      "position": "perimeter_and_building_lawns",
+      "preferred_asset": "game-assets/nature/trees/small_sapling_2x.png",
+      "recommendation": "use_final_game_asset",
+      "visual_identification": "Nature asset: Small Sapling."
+    },
+    "nature.trees.small_tree_stump": {
+      "name": "Small Tree Stump",
+      "type": "tree",
+      "position": "perimeter_and_building_lawns",
+      "preferred_asset": "game-assets/nature/trees/small_tree_stump.png",
+      "recommendation": "archive_or_keep_as_low_memory_fallback",
+      "visual_identification": "Nature asset: Small Tree Stump."
+    },
+    "nature.trees.small_tree_stump_2x": {
+      "name": "Small Tree Stump",
+      "type": "tree",
+      "position": "perimeter_and_building_lawns",
+      "preferred_asset": "game-assets/nature/trees/small_tree_stump_2x.png",
+      "recommendation": "use_final_game_asset",
+      "visual_identification": "Nature asset: Small Tree Stump."
+    },
+    "nature.trees.tall_pine_tree": {
+      "name": "Tall Pine Tree",
+      "type": "tree",
+      "position": "perimeter_and_building_lawns",
+      "preferred_asset": "game-assets/nature/trees/tall_pine_tree.png",
+      "recommendation": "archive_or_keep_as_low_memory_fallback",
+      "visual_identification": "Nature asset: Tall Pine Tree."
+    },
+    "nature.trees.tall_pine_tree_2x": {
+      "name": "Tall Pine Tree",
+      "type": "tree",
+      "position": "perimeter_and_building_lawns",
+      "preferred_asset": "game-assets/nature/trees/tall_pine_tree_2x.png",
+      "recommendation": "use_final_game_asset",
+      "visual_identification": "Nature asset: Tall Pine Tree."
+    },
+    "nature.trees.tree_stump": {
+      "name": "Tree Stump",
+      "type": "tree",
+      "position": "perimeter_and_building_lawns",
+      "preferred_asset": "game-assets/nature/trees/tree_stump.png",
+      "recommendation": "archive_or_keep_as_low_memory_fallback",
+      "visual_identification": "Nature asset: Tree Stump."
+    },
+    "nature.trees.tree_stump_2x": {
+      "name": "Tree Stump",
+      "type": "tree",
+      "position": "perimeter_and_building_lawns",
+      "preferred_asset": "game-assets/nature/trees/tree_stump_2x.png",
+      "recommendation": "use_final_game_asset",
+      "visual_identification": "Nature asset: Tree Stump."
+    },
+    "tiles.cliffs.grass_cliff_column": {
+      "name": "Grass Cliff Column",
+      "type": "cliff_tile",
+      "position": "terrain_foundation",
+      "preferred_asset": "game-assets/tiles/cliffs/grass_cliff_column.png",
+      "recommendation": "archive_or_keep_as_low_memory_fallback",
+      "visual_identification": "Terrain tile: Grass Cliff Column."
+    },
+    "tiles.cliffs.grass_cliff_column_2x": {
+      "name": "Grass Cliff Column",
+      "type": "cliff_tile",
+      "position": "terrain_foundation",
+      "preferred_asset": "game-assets/tiles/cliffs/grass_cliff_column_2x.png",
+      "recommendation": "use_final_game_asset",
+      "visual_identification": "Terrain tile: Grass Cliff Column."
+    },
+    "tiles.cliffs.leafy_cliff_column": {
+      "name": "Leafy Cliff Column",
+      "type": "cliff_tile",
+      "position": "terrain_foundation",
+      "preferred_asset": "game-assets/tiles/cliffs/leafy_cliff_column.png",
+      "recommendation": "archive_or_keep_as_low_memory_fallback",
+      "visual_identification": "Terrain tile: Leafy Cliff Column."
+    },
+    "tiles.cliffs.leafy_cliff_column_2x": {
+      "name": "Leafy Cliff Column",
+      "type": "cliff_tile",
+      "position": "terrain_foundation",
+      "preferred_asset": "game-assets/tiles/cliffs/leafy_cliff_column_2x.png",
+      "recommendation": "use_final_game_asset",
+      "visual_identification": "Terrain tile: Leafy Cliff Column."
+    },
+    "tiles.cliffs.tall_grass_cliff_chunk": {
+      "name": "Tall Grass Cliff Chunk",
+      "type": "cliff_tile",
+      "position": "terrain_foundation",
+      "preferred_asset": "game-assets/tiles/cliffs/tall_grass_cliff_chunk.png",
+      "recommendation": "archive_or_keep_as_low_memory_fallback",
+      "visual_identification": "Terrain tile: Tall Grass Cliff Chunk."
+    },
+    "tiles.cliffs.tall_grass_cliff_chunk_2x": {
+      "name": "Tall Grass Cliff Chunk",
+      "type": "cliff_tile",
+      "position": "terrain_foundation",
+      "preferred_asset": "game-assets/tiles/cliffs/tall_grass_cliff_chunk_2x.png",
+      "recommendation": "use_final_game_asset",
+      "visual_identification": "Terrain tile: Tall Grass Cliff Chunk."
+    },
+    "tiles.grass.blue_gold_trim_tile": {
+      "name": "Blue Gold Trim Tile",
+      "type": "grass_tile",
+      "position": "astronomy_or_magic_zones",
+      "preferred_asset": "game-assets/tiles/grass/blue_gold_trim_tile.png",
+      "recommendation": "archive_or_keep_as_low_memory_fallback",
+      "visual_identification": "Terrain tile: Blue Gold Trim Tile."
+    },
+    "tiles.grass.blue_gold_trim_tile_2x": {
+      "name": "Blue Gold Trim Tile",
+      "type": "grass_tile",
+      "position": "astronomy_or_magic_zones",
+      "preferred_asset": "game-assets/tiles/grass/blue_gold_trim_tile_2x.png",
+      "recommendation": "use_final_game_asset",
+      "visual_identification": "Terrain tile: Blue Gold Trim Tile."
+    },
+    "tiles.grass.clover_grass_tile": {
+      "name": "Clover Grass Tile",
+      "type": "grass_tile",
+      "position": "terrain_foundation",
+      "preferred_asset": "game-assets/tiles/grass/clover_grass_tile.png",
+      "recommendation": "archive_or_keep_as_low_memory_fallback",
+      "visual_identification": "Terrain tile: Clover Grass Tile."
+    },
+    "tiles.grass.clover_grass_tile_2x": {
+      "name": "Clover Grass Tile",
+      "type": "grass_tile",
+      "position": "terrain_foundation",
+      "preferred_asset": "game-assets/tiles/grass/clover_grass_tile_2x.png",
+      "recommendation": "use_final_game_asset",
+      "visual_identification": "Terrain tile: Clover Grass Tile."
+    },
+    "tiles.grass.gold_flecked_blue_tile": {
+      "name": "Gold Flecked Blue Tile",
+      "type": "grass_tile",
+      "position": "astronomy_or_magic_zones",
+      "preferred_asset": "game-assets/tiles/grass/gold_flecked_blue_tile.png",
+      "recommendation": "archive_or_keep_as_low_memory_fallback",
+      "visual_identification": "Terrain tile: Gold Flecked Blue Tile."
+    },
+    "tiles.grass.gold_flecked_blue_tile_2x": {
+      "name": "Gold Flecked Blue Tile",
+      "type": "grass_tile",
+      "position": "astronomy_or_magic_zones",
+      "preferred_asset": "game-assets/tiles/grass/gold_flecked_blue_tile_2x.png",
+      "recommendation": "use_final_game_asset",
+      "visual_identification": "Terrain tile: Gold Flecked Blue Tile."
+    },
+    "tiles.grass.grass_mound": {
+      "name": "Grass Mound",
+      "type": "grass_tile",
+      "position": "terrain_foundation",
+      "preferred_asset": "game-assets/tiles/grass/grass_mound.png",
+      "recommendation": "archive_or_keep_as_low_memory_fallback",
+      "visual_identification": "Terrain tile: Grass Mound."
+    },
+    "tiles.grass.grass_mound_2x": {
+      "name": "Grass Mound",
+      "type": "grass_tile",
+      "position": "terrain_foundation",
+      "preferred_asset": "game-assets/tiles/grass/grass_mound_2x.png",
+      "recommendation": "use_final_game_asset",
+      "visual_identification": "Terrain tile: Grass Mound."
+    },
+    "tiles.grass.grass_tile": {
+      "name": "Grass Tile",
+      "type": "grass_tile",
+      "position": "terrain_foundation",
+      "preferred_asset": "game-assets/tiles/grass/grass_tile.png",
+      "recommendation": "archive_or_keep_as_low_memory_fallback",
+      "visual_identification": "Terrain tile: Grass Tile."
+    },
+    "tiles.grass.grass_tile_2x": {
+      "name": "Grass Tile",
+      "type": "grass_tile",
+      "position": "terrain_foundation",
+      "preferred_asset": "game-assets/tiles/grass/grass_tile_2x.png",
+      "recommendation": "use_final_game_asset",
+      "visual_identification": "Terrain tile: Grass Tile."
+    },
+    "tiles.grass.grass_with_stones_tile": {
+      "name": "Grass With Stones Tile",
+      "type": "grass_tile",
+      "position": "terrain_foundation",
+      "preferred_asset": "game-assets/tiles/grass/grass_with_stones_tile.png",
+      "recommendation": "archive_or_keep_as_low_memory_fallback",
+      "visual_identification": "Terrain tile: Grass With Stones Tile."
+    },
+    "tiles.grass.grass_with_stones_tile_2x": {
+      "name": "Grass With Stones Tile",
+      "type": "grass_tile",
+      "position": "terrain_foundation",
+      "preferred_asset": "game-assets/tiles/grass/grass_with_stones_tile_2x.png",
+      "recommendation": "use_final_game_asset",
+      "visual_identification": "Terrain tile: Grass With Stones Tile."
+    },
+    "tiles.grass.leafy_ground_tile": {
+      "name": "Leafy Ground Tile",
+      "type": "grass_tile",
+      "position": "terrain_foundation",
+      "preferred_asset": "game-assets/tiles/grass/leafy_ground_tile.png",
+      "recommendation": "archive_or_keep_as_low_memory_fallback",
+      "visual_identification": "Terrain tile: Leafy Ground Tile."
+    },
+    "tiles.grass.leafy_ground_tile_2x": {
+      "name": "Leafy Ground Tile",
+      "type": "grass_tile",
+      "position": "terrain_foundation",
+      "preferred_asset": "game-assets/tiles/grass/leafy_ground_tile_2x.png",
+      "recommendation": "use_final_game_asset",
+      "visual_identification": "Terrain tile: Leafy Ground Tile."
+    },
+    "tiles.grass.purple_crystal_ground_tile": {
+      "name": "Purple Crystal Ground Tile",
+      "type": "grass_tile",
+      "position": "enchanted_forest_or_coding_tower",
+      "preferred_asset": "game-assets/tiles/grass/purple_crystal_ground_tile.png",
+      "recommendation": "archive_or_keep_as_low_memory_fallback",
+      "visual_identification": "Terrain tile: Purple Crystal Ground Tile."
+    },
+    "tiles.grass.purple_crystal_ground_tile_2x": {
+      "name": "Purple Crystal Ground Tile",
+      "type": "grass_tile",
+      "position": "enchanted_forest_or_coding_tower",
+      "preferred_asset": "game-assets/tiles/grass/purple_crystal_ground_tile_2x.png",
+      "recommendation": "use_final_game_asset",
+      "visual_identification": "Terrain tile: Purple Crystal Ground Tile."
+    },
+    "tiles.grass.purple_crystal_ore_tile": {
+      "name": "Purple Crystal Ore Tile",
+      "type": "grass_tile",
+      "position": "enchanted_forest_or_coding_tower",
+      "preferred_asset": "game-assets/tiles/grass/purple_crystal_ore_tile.png",
+      "recommendation": "archive_or_keep_as_low_memory_fallback",
+      "visual_identification": "Terrain tile: Purple Crystal Ore Tile."
+    },
+    "tiles.grass.purple_crystal_ore_tile_2x": {
+      "name": "Purple Crystal Ore Tile",
+      "type": "grass_tile",
+      "position": "enchanted_forest_or_coding_tower",
+      "preferred_asset": "game-assets/tiles/grass/purple_crystal_ore_tile_2x.png",
+      "recommendation": "use_final_game_asset",
+      "visual_identification": "Terrain tile: Purple Crystal Ore Tile."
+    },
+    "tiles.roads.cobblestone_tile": {
+      "name": "Cobblestone Tile",
+      "type": "road_tile",
+      "position": "radial_path_network",
+      "preferred_asset": "game-assets/tiles/roads/cobblestone_tile.png",
+      "recommendation": "archive_or_keep_as_low_memory_fallback",
+      "visual_identification": "Terrain tile: Cobblestone Tile."
+    },
+    "tiles.roads.cobblestone_tile_2x": {
+      "name": "Cobblestone Tile",
+      "type": "road_tile",
+      "position": "radial_path_network",
+      "preferred_asset": "game-assets/tiles/roads/cobblestone_tile_2x.png",
+      "recommendation": "use_final_game_asset",
+      "visual_identification": "Terrain tile: Cobblestone Tile."
+    },
+    "tiles.roads.dark_wood_plank_tile": {
+      "name": "Dark Wood Plank Tile",
+      "type": "road_tile",
+      "position": "radial_path_network",
+      "preferred_asset": "game-assets/tiles/roads/dark_wood_plank_tile.png",
+      "recommendation": "archive_or_keep_as_low_memory_fallback",
+      "visual_identification": "Terrain tile: Dark Wood Plank Tile."
+    },
+    "tiles.roads.dark_wood_plank_tile_2x": {
+      "name": "Dark Wood Plank Tile",
+      "type": "road_tile",
+      "position": "radial_path_network",
+      "preferred_asset": "game-assets/tiles/roads/dark_wood_plank_tile_2x.png",
+      "recommendation": "use_final_game_asset",
+      "visual_identification": "Terrain tile: Dark Wood Plank Tile."
+    },
+    "tiles.roads.dirt_path_tile": {
+      "name": "Dirt Path Tile",
+      "type": "road_tile",
+      "position": "radial_path_network",
+      "preferred_asset": "game-assets/tiles/roads/dirt_path_tile.png",
+      "recommendation": "archive_or_keep_as_low_memory_fallback",
+      "visual_identification": "Terrain tile: Dirt Path Tile."
+    },
+    "tiles.roads.dirt_path_tile_2x": {
+      "name": "Dirt Path Tile",
+      "type": "road_tile",
+      "position": "radial_path_network",
+      "preferred_asset": "game-assets/tiles/roads/dirt_path_tile_2x.png",
+      "recommendation": "use_final_game_asset",
+      "visual_identification": "Terrain tile: Dirt Path Tile."
+    },
+    "tiles.roads.stone_path_tile": {
+      "name": "Stone Path Tile",
+      "type": "road_tile",
+      "position": "radial_path_network",
+      "preferred_asset": "game-assets/tiles/roads/stone_path_tile.png",
+      "recommendation": "archive_or_keep_as_low_memory_fallback",
+      "visual_identification": "Terrain tile: Stone Path Tile."
+    },
+    "tiles.roads.stone_path_tile_2x": {
+      "name": "Stone Path Tile",
+      "type": "road_tile",
+      "position": "radial_path_network",
+      "preferred_asset": "game-assets/tiles/roads/stone_path_tile_2x.png",
+      "recommendation": "use_final_game_asset",
+      "visual_identification": "Terrain tile: Stone Path Tile."
+    },
+    "tiles.roads.wood_plank_tile": {
+      "name": "Wood Plank Tile",
+      "type": "road_tile",
+      "position": "radial_path_network",
+      "preferred_asset": "game-assets/tiles/roads/wood_plank_tile.png",
+      "recommendation": "archive_or_keep_as_low_memory_fallback",
+      "visual_identification": "Terrain tile: Wood Plank Tile."
+    },
+    "tiles.roads.wood_plank_tile_2x": {
+      "name": "Wood Plank Tile",
+      "type": "road_tile",
+      "position": "radial_path_network",
+      "preferred_asset": "game-assets/tiles/roads/wood_plank_tile_2x.png",
+      "recommendation": "use_final_game_asset",
+      "visual_identification": "Terrain tile: Wood Plank Tile."
+    },
+    "tiles.water.blue_magic_water_tile": {
+      "name": "Blue Magic Water Tile",
+      "type": "water_tile",
+      "position": "astronomy_or_magic_zones",
+      "preferred_asset": "game-assets/tiles/water/blue_magic_water_tile.png",
+      "recommendation": "archive_or_keep_as_low_memory_fallback",
+      "visual_identification": "Terrain tile: Blue Magic Water Tile."
+    },
+    "tiles.water.blue_magic_water_tile_2x": {
+      "name": "Blue Magic Water Tile",
+      "type": "water_tile",
+      "position": "astronomy_or_magic_zones",
+      "preferred_asset": "game-assets/tiles/water/blue_magic_water_tile_2x.png",
+      "recommendation": "use_final_game_asset",
+      "visual_identification": "Terrain tile: Blue Magic Water Tile."
+    },
+    "tiles.water.blue_pond_tile": {
+      "name": "Blue Pond Tile",
+      "type": "water_tile",
+      "position": "astronomy_or_magic_zones",
+      "preferred_asset": "game-assets/tiles/water/blue_pond_tile.png",
+      "recommendation": "archive_or_keep_as_low_memory_fallback",
+      "visual_identification": "Terrain tile: Blue Pond Tile."
+    },
+    "tiles.water.blue_pond_tile_2x": {
+      "name": "Blue Pond Tile",
+      "type": "water_tile",
+      "position": "astronomy_or_magic_zones",
+      "preferred_asset": "game-assets/tiles/water/blue_pond_tile_2x.png",
+      "recommendation": "use_final_game_asset",
+      "visual_identification": "Terrain tile: Blue Pond Tile."
+    },
+    "tiles.water.grass_cliff_waterfall_edge": {
+      "name": "Grass Cliff Waterfall Edge",
+      "type": "water_tile",
+      "position": "terrain_foundation",
+      "preferred_asset": "game-assets/tiles/water/grass_cliff_waterfall_edge.png",
+      "recommendation": "archive_or_keep_as_low_memory_fallback",
+      "visual_identification": "Terrain tile: Grass Cliff Waterfall Edge."
+    },
+    "tiles.water.grass_cliff_waterfall_edge_2x": {
+      "name": "Grass Cliff Waterfall Edge",
+      "type": "water_tile",
+      "position": "terrain_foundation",
+      "preferred_asset": "game-assets/tiles/water/grass_cliff_waterfall_edge_2x.png",
+      "recommendation": "use_final_game_asset",
+      "visual_identification": "Terrain tile: Grass Cliff Waterfall Edge."
+    },
+    "tiles.water.narrow_waterfall_segment": {
+      "name": "Narrow Waterfall Segment",
+      "type": "water_tile",
+      "position": "terrain_foundation",
+      "preferred_asset": "game-assets/tiles/water/narrow_waterfall_segment.png",
+      "recommendation": "archive_or_keep_as_low_memory_fallback",
+      "visual_identification": "Terrain tile: Narrow Waterfall Segment."
+    },
+    "tiles.water.narrow_waterfall_segment_2x": {
+      "name": "Narrow Waterfall Segment",
+      "type": "water_tile",
+      "position": "terrain_foundation",
+      "preferred_asset": "game-assets/tiles/water/narrow_waterfall_segment_2x.png",
+      "recommendation": "use_final_game_asset",
+      "visual_identification": "Terrain tile: Narrow Waterfall Segment."
+    },
+    "tiles.water.wide_waterfall_segment": {
+      "name": "Wide Waterfall Segment",
+      "type": "water_tile",
+      "position": "terrain_foundation",
+      "preferred_asset": "game-assets/tiles/water/wide_waterfall_segment.png",
+      "recommendation": "archive_or_keep_as_low_memory_fallback",
+      "visual_identification": "Terrain tile: Wide Waterfall Segment."
+    },
+    "tiles.water.wide_waterfall_segment_2x": {
+      "name": "Wide Waterfall Segment",
+      "type": "water_tile",
+      "position": "terrain_foundation",
+      "preferred_asset": "game-assets/tiles/water/wide_waterfall_segment_2x.png",
+      "recommendation": "use_final_game_asset",
+      "visual_identification": "Terrain tile: Wide Waterfall Segment."
+    }
+  }
+}

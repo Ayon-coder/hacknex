@@ -1,0 +1,77 @@
+name: hexafalls
+description: "A new Flutter project."
+publish_to: 'none'
+
+version: 1.0.0+1
+
+environment:
+  sdk: ^3.9.2
+
+dependencies:
+  flutter:
+    sdk: flutter
+  cupertino_icons: ^1.0.8
+  flame: ^1.35.1
+  flame_tiled: ^3.0.11
+  google_fonts: ^6.2.1
+  curved_navigation_bar: ^1.0.3
+  percent_indicator: ^4.2.3
+  flutter_animate: ^4.5.0
+  cached_network_image: ^3.3.1
+  shared_preferences: ^2.2.3
+  http: ^1.2.2
+  audioplayers: ^6.1.0
+  path_provider: ^2.1.4
+  flutter_dotenv: ^5.2.1
+  crypto: ^3.0.6
+  sqflite: ^2.4.1
+  sqflite_common_ffi: ^2.3.4
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^5.0.0
+
+flutter:
+  uses-material-design: true
+
+  assets:
+    - .env
+    - assets/images/
+    - assets/audio/
+    - game-assets/
+    - game-assets/rank/
+    - game-assets/buildings/
+    - game-assets/player/
+    - game-assets/player/walk/
+    - game-assets/player/cast/
+    - game-assets/player/idle/
+    - game-assets/nature/
+    - game-assets/nature/bushes/
+    - game-assets/nature/flowers/
+    - game-assets/nature/rocks/
+    - game-assets/nature/trees/
+    - game-assets/reference/
+    - game-assets/reference/backgrounds/
+    - game-assets/effects/
+    - game-assets/effects/magic/
+    - game-assets/effects/smoke/
+    - game-assets/effects/particles/
+    - game-assets/npc/
+    - game-assets/decorations/
+    - game-assets/decorations/signs/
+    - game-assets/decorations/containers/
+    - game-assets/decorations/banners/
+    - game-assets/decorations/lamps/
+    - game-assets/decorations/fences/
+    - game-assets/decorations/props/
+    - game-assets/ui/
+    - game-assets/ui/icons/
+    - game-assets/ui/buttons/
+    - game-assets/ui/hud/
+    - game-assets/ui/panels/
+    - game-assets/tiles/
+    - game-assets/tiles/water/
+    - game-assets/tiles/roads/
+    - game-assets/tiles/cliffs/
+    - game-assets/tiles/grass/

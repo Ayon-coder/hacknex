@@ -1,0 +1,402 @@
+# Hexafalls Game Asset Rename Report
+
+Scope: PNG files under `game-assets` only. No game source files were modified, no files were deleted, and PNG pixel data was not recompressed or rewritten; files were renamed only.
+
+Total PNG files renamed: 356
+
+## Grouping
+
+- `buildings`: academy buildings and large landmarks
+- `effects`: spell, sparkle, smoke, and elemental VFX
+- `icons`: inventory, reward, currency, and menu icons
+- `interaction`: interaction prompt bubble
+- `map_decor`: banners, signs, lamps, stone props, fountain
+- `nature`: trees, bushes, flowers, rocks, barrels, small props
+- `npcs`: professor, librarian, guard, and student sprites
+- `player`: arcanist idle, walk, and casting sprites
+- `tiles`: terrain, path, cliff, waterfall, marker, and barrel tiles
+- `ui_elements`: HUD bars, counters, buttons, and nav tabs
+- `ui_panels`: larger UI panels and a border slice
+- `reference_and_background`: full reference image and sky background
+
+## Renames
+
+### buildings
+- `02_sprite_sheet_polished_2x/buildings/buildings_00.png` -> `02_sprite_sheet_polished_2x/buildings/grand_hall.png`
+- `02_sprite_sheet_polished_2x/buildings/buildings_01.png` -> `02_sprite_sheet_polished_2x/buildings/library.png`
+- `02_sprite_sheet_polished_2x/buildings/buildings_02.png` -> `02_sprite_sheet_polished_2x/buildings/astronomy_tower.png`
+- `02_sprite_sheet_polished_2x/buildings/buildings_03.png` -> `02_sprite_sheet_polished_2x/buildings/duel_arena.png`
+- `02_sprite_sheet_polished_2x/buildings/buildings_04.png` -> `02_sprite_sheet_polished_2x/buildings/alchemy_lab.png`
+- `02_sprite_sheet_polished_2x/buildings/buildings_05.png` -> `02_sprite_sheet_polished_2x/buildings/history_hall.png`
+- `02_sprite_sheet_polished_2x/buildings/buildings_06.png` -> `02_sprite_sheet_polished_2x/buildings/coding_tower.png`
+- `02_sprite_sheet_polished_2x/buildings/buildings_07.png` -> `02_sprite_sheet_polished_2x/buildings/enchanted_forest_tree.png`
+- `buildings/buildings_00.png` -> `buildings/grand_hall.png`
+- `buildings/buildings_01.png` -> `buildings/library.png`
+- `buildings/buildings_02.png` -> `buildings/astronomy_tower.png`
+- `buildings/buildings_03.png` -> `buildings/duel_arena.png`
+- `buildings/buildings_04.png` -> `buildings/alchemy_lab.png`
+- `buildings/buildings_05.png` -> `buildings/history_hall.png`
+- `buildings/buildings_06.png` -> `buildings/coding_tower.png`
+- `buildings/buildings_07.png` -> `buildings/enchanted_forest_tree.png`
+
+### effects
+- `02_sprite_sheet_polished_2x/effects/effects_00.png` -> `02_sprite_sheet_polished_2x/effects/purple_magic_circle.png`
+- `02_sprite_sheet_polished_2x/effects/effects_01.png` -> `02_sprite_sheet_polished_2x/effects/purple_sparkle_cluster.png`
+- `02_sprite_sheet_polished_2x/effects/effects_02.png` -> `02_sprite_sheet_polished_2x/effects/tiny_purple_spark.png`
+- `02_sprite_sheet_polished_2x/effects/effects_03.png` -> `02_sprite_sheet_polished_2x/effects/small_purple_spark.png`
+- `02_sprite_sheet_polished_2x/effects/effects_04.png` -> `02_sprite_sheet_polished_2x/effects/tiny_gold_spark.png`
+- `02_sprite_sheet_polished_2x/effects/effects_05.png` -> `02_sprite_sheet_polished_2x/effects/golden_burst.png`
+- `02_sprite_sheet_polished_2x/effects/effects_06.png` -> `02_sprite_sheet_polished_2x/effects/tiny_white_spark.png`
+- `02_sprite_sheet_polished_2x/effects/effects_07.png` -> `02_sprite_sheet_polished_2x/effects/violet_starburst.png`
+- `02_sprite_sheet_polished_2x/effects/effects_08.png` -> `02_sprite_sheet_polished_2x/effects/blue_starburst.png`
+- `02_sprite_sheet_polished_2x/effects/effects_09.png` -> `02_sprite_sheet_polished_2x/effects/gold_sparkle_cluster.png`
+- `02_sprite_sheet_polished_2x/effects/effects_10.png` -> `02_sprite_sheet_polished_2x/effects/brown_dust_spark.png`
+- `02_sprite_sheet_polished_2x/effects/effects_11.png` -> `02_sprite_sheet_polished_2x/effects/white_light_spark.png`
+- `02_sprite_sheet_polished_2x/effects/effects_12.png` -> `02_sprite_sheet_polished_2x/effects/smoke_puff.png`
+- `02_sprite_sheet_polished_2x/effects/effects_13.png` -> `02_sprite_sheet_polished_2x/effects/blue_ice_spike.png`
+- `02_sprite_sheet_polished_2x/effects/effects_14.png` -> `02_sprite_sheet_polished_2x/effects/blue_magic_spark.png`
+- `effects/effects_00.png` -> `effects/purple_magic_circle.png`
+- `effects/effects_01.png` -> `effects/purple_sparkle_cluster.png`
+- `effects/effects_02.png` -> `effects/tiny_purple_spark.png`
+- `effects/effects_03.png` -> `effects/small_purple_spark.png`
+- `effects/effects_04.png` -> `effects/tiny_gold_spark.png`
+- `effects/effects_05.png` -> `effects/golden_burst.png`
+- `effects/effects_06.png` -> `effects/tiny_white_spark.png`
+- `effects/effects_07.png` -> `effects/violet_starburst.png`
+- `effects/effects_08.png` -> `effects/blue_starburst.png`
+- `effects/effects_09.png` -> `effects/gold_sparkle_cluster.png`
+- `effects/effects_10.png` -> `effects/brown_dust_spark.png`
+- `effects/effects_11.png` -> `effects/white_light_spark.png`
+- `effects/effects_12.png` -> `effects/smoke_puff.png`
+- `effects/effects_13.png` -> `effects/blue_ice_spike.png`
+- `effects/effects_14.png` -> `effects/blue_magic_spark.png`
+
+### icons
+- `02_sprite_sheet_polished_2x/icons/icons_00.png` -> `02_sprite_sheet_polished_2x/icons/spellbook_icon.png`
+- `02_sprite_sheet_polished_2x/icons/icons_01.png` -> `02_sprite_sheet_polished_2x/icons/quest_scroll_icon.png`
+- `02_sprite_sheet_polished_2x/icons/icons_02.png` -> `02_sprite_sheet_polished_2x/icons/purple_potion_icon.png`
+- `02_sprite_sheet_polished_2x/icons/icons_03.png` -> `02_sprite_sheet_polished_2x/icons/blue_potion_icon.png`
+- `02_sprite_sheet_polished_2x/icons/icons_04.png` -> `02_sprite_sheet_polished_2x/icons/golden_sun_orb_icon.png`
+- `02_sprite_sheet_polished_2x/icons/icons_05.png` -> `02_sprite_sheet_polished_2x/icons/purple_crystal_cluster_icon.png`
+- `02_sprite_sheet_polished_2x/icons/icons_06.png` -> `02_sprite_sheet_polished_2x/icons/golden_star_badge_icon.png`
+- `02_sprite_sheet_polished_2x/icons/icons_07.png` -> `02_sprite_sheet_polished_2x/icons/shield_badge_icon.png`
+- `02_sprite_sheet_polished_2x/icons/icons_08.png` -> `02_sprite_sheet_polished_2x/icons/trophy_cup_icon.png`
+- `02_sprite_sheet_polished_2x/icons/icons_09.png` -> `02_sprite_sheet_polished_2x/icons/sword_icon.png`
+- `02_sprite_sheet_polished_2x/icons/icons_10.png` -> `02_sprite_sheet_polished_2x/icons/gold_amulet_icon.png`
+- `02_sprite_sheet_polished_2x/icons/icons_11.png` -> `02_sprite_sheet_polished_2x/icons/red_spellbook_icon.png`
+- `02_sprite_sheet_polished_2x/icons/icons_12.png` -> `02_sprite_sheet_polished_2x/icons/purple_gem_icon.png`
+- `02_sprite_sheet_polished_2x/icons/icons_13.png` -> `02_sprite_sheet_polished_2x/icons/gold_chandelier_icon.png`
+- `02_sprite_sheet_polished_2x/icons/icons_14.png` -> `02_sprite_sheet_polished_2x/icons/treasure_chest_icon.png`
+- `02_sprite_sheet_polished_2x/icons/icons_15.png` -> `02_sprite_sheet_polished_2x/icons/blue_diamond_gem_icon.png`
+- `02_sprite_sheet_polished_2x/icons/icons_16.png` -> `02_sprite_sheet_polished_2x/icons/crossed_swords_icon.png`
+- `02_sprite_sheet_polished_2x/icons/icons_17.png` -> `02_sprite_sheet_polished_2x/icons/magic_compass_icon.png`
+- `02_sprite_sheet_polished_2x/icons/icons_18.png` -> `02_sprite_sheet_polished_2x/icons/round_drum_icon.png`
+- `02_sprite_sheet_polished_2x/icons/icons_19.png` -> `02_sprite_sheet_polished_2x/icons/stone_resource_pile_icon.png`
+- `02_sprite_sheet_polished_2x/icons/icons_20.png` -> `02_sprite_sheet_polished_2x/icons/armored_statue_icon.png`
+- `02_sprite_sheet_polished_2x/icons/icons_21.png` -> `02_sprite_sheet_polished_2x/icons/wooden_crate_icon.png`
+- `02_sprite_sheet_polished_2x/icons/icons_22.png` -> `02_sprite_sheet_polished_2x/icons/golden_bell_icon.png`
+- `02_sprite_sheet_polished_2x/icons/icons_23.png` -> `02_sprite_sheet_polished_2x/icons/sealed_envelope_icon.png`
+- `icons/icons_00.png` -> `icons/spellbook_icon.png`
+- `icons/icons_01.png` -> `icons/quest_scroll_icon.png`
+- `icons/icons_02.png` -> `icons/purple_potion_icon.png`
+- `icons/icons_03.png` -> `icons/blue_potion_icon.png`
+- `icons/icons_04.png` -> `icons/golden_sun_orb_icon.png`
+- `icons/icons_05.png` -> `icons/purple_crystal_cluster_icon.png`
+- `icons/icons_06.png` -> `icons/golden_star_badge_icon.png`
+- `icons/icons_07.png` -> `icons/shield_badge_icon.png`
+- `icons/icons_08.png` -> `icons/trophy_cup_icon.png`
+- `icons/icons_09.png` -> `icons/sword_icon.png`
+- `icons/icons_10.png` -> `icons/gold_amulet_icon.png`
+- `icons/icons_11.png` -> `icons/red_spellbook_icon.png`
+- `icons/icons_12.png` -> `icons/purple_gem_icon.png`
+- `icons/icons_13.png` -> `icons/gold_chandelier_icon.png`
+- `icons/icons_14.png` -> `icons/treasure_chest_icon.png`
+- `icons/icons_15.png` -> `icons/blue_diamond_gem_icon.png`
+- `icons/icons_16.png` -> `icons/crossed_swords_icon.png`
+- `icons/icons_17.png` -> `icons/magic_compass_icon.png`
+- `icons/icons_18.png` -> `icons/round_drum_icon.png`
+- `icons/icons_19.png` -> `icons/stone_resource_pile_icon.png`
+- `icons/icons_20.png` -> `icons/armored_statue_icon.png`
+- `icons/icons_21.png` -> `icons/wooden_crate_icon.png`
+- `icons/icons_22.png` -> `icons/golden_bell_icon.png`
+- `icons/icons_23.png` -> `icons/sealed_envelope_icon.png`
+
+### interaction
+- `02_sprite_sheet_polished_2x/interaction/interaction_00.png` -> `02_sprite_sheet_polished_2x/interaction/exclamation_speech_bubble.png`
+- `interaction/interaction_00.png` -> `interaction/exclamation_speech_bubble.png`
+
+### map_decor
+- `02_sprite_sheet_polished_2x/map_decor/map-decor_00.png` -> `02_sprite_sheet_polished_2x/map_decor/purple_hanging_banner.png`
+- `02_sprite_sheet_polished_2x/map_decor/map-decor_01.png` -> `02_sprite_sheet_polished_2x/map_decor/blue_hanging_banner.png`
+- `02_sprite_sheet_polished_2x/map_decor/map-decor_02.png` -> `02_sprite_sheet_polished_2x/map_decor/black_lantern_post.png`
+- `02_sprite_sheet_polished_2x/map_decor/map-decor_03.png` -> `02_sprite_sheet_polished_2x/map_decor/gold_lantern_post.png`
+- `02_sprite_sheet_polished_2x/map_decor/map-decor_04.png` -> `02_sprite_sheet_polished_2x/map_decor/direction_signpost.png`
+- `02_sprite_sheet_polished_2x/map_decor/map-decor_05.png` -> `02_sprite_sheet_polished_2x/map_decor/wooden_wayfinding_sign.png`
+- `02_sprite_sheet_polished_2x/map_decor/map-decor_06.png` -> `02_sprite_sheet_polished_2x/map_decor/wooden_gate.png`
+- `02_sprite_sheet_polished_2x/map_decor/map-decor_07.png` -> `02_sprite_sheet_polished_2x/map_decor/stone_floor_platform.png`
+- `02_sprite_sheet_polished_2x/map_decor/map-decor_08.png` -> `02_sprite_sheet_polished_2x/map_decor/broken_stone_wall.png`
+- `02_sprite_sheet_polished_2x/map_decor/map-decor_09.png` -> `02_sprite_sheet_polished_2x/map_decor/stone_pillar.png`
+- `02_sprite_sheet_polished_2x/map_decor/map-decor_10.png` -> `02_sprite_sheet_polished_2x/map_decor/central_fountain.png`
+- `map_decor/map-decor_00.png` -> `map_decor/purple_hanging_banner.png`
+- `map_decor/map-decor_01.png` -> `map_decor/blue_hanging_banner.png`
+- `map_decor/map-decor_02.png` -> `map_decor/black_lantern_post.png`
+- `map_decor/map-decor_03.png` -> `map_decor/gold_lantern_post.png`
+- `map_decor/map-decor_04.png` -> `map_decor/direction_signpost.png`
+- `map_decor/map-decor_05.png` -> `map_decor/wooden_wayfinding_sign.png`
+- `map_decor/map-decor_06.png` -> `map_decor/wooden_gate.png`
+- `map_decor/map-decor_07.png` -> `map_decor/stone_floor_platform.png`
+- `map_decor/map-decor_08.png` -> `map_decor/broken_stone_wall.png`
+- `map_decor/map-decor_09.png` -> `map_decor/stone_pillar.png`
+- `map_decor/map-decor_10.png` -> `map_decor/central_fountain.png`
+
+### nature
+- `02_sprite_sheet_polished_2x/nature/nature_00.png` -> `02_sprite_sheet_polished_2x/nature/broadleaf_tree.png`
+- `02_sprite_sheet_polished_2x/nature/nature_01.png` -> `02_sprite_sheet_polished_2x/nature/tall_pine_tree.png`
+- `02_sprite_sheet_polished_2x/nature/nature_02.png` -> `02_sprite_sheet_polished_2x/nature/small_pine_tree.png`
+- `02_sprite_sheet_polished_2x/nature/nature_03.png` -> `02_sprite_sheet_polished_2x/nature/medium_pine_tree.png`
+- `02_sprite_sheet_polished_2x/nature/nature_04.png` -> `02_sprite_sheet_polished_2x/nature/round_leaf_tree.png`
+- `02_sprite_sheet_polished_2x/nature/nature_05.png` -> `02_sprite_sheet_polished_2x/nature/autumn_tree.png`
+- `02_sprite_sheet_polished_2x/nature/nature_06.png` -> `02_sprite_sheet_polished_2x/nature/small_tree_stump.png`
+- `02_sprite_sheet_polished_2x/nature/nature_07.png` -> `02_sprite_sheet_polished_2x/nature/leafy_bush.png`
+- `02_sprite_sheet_polished_2x/nature/nature_08.png` -> `02_sprite_sheet_polished_2x/nature/pink_flower_bush.png`
+- `02_sprite_sheet_polished_2x/nature/nature_09.png` -> `02_sprite_sheet_polished_2x/nature/yellow_flower_bush.png`
+- `02_sprite_sheet_polished_2x/nature/nature_10.png` -> `02_sprite_sheet_polished_2x/nature/gray_rock_bush.png`
+- `02_sprite_sheet_polished_2x/nature/nature_11.png` -> `02_sprite_sheet_polished_2x/nature/yellow_flower_patch.png`
+- `02_sprite_sheet_polished_2x/nature/nature_12.png` -> `02_sprite_sheet_polished_2x/nature/tiny_flower_cluster.png`
+- `02_sprite_sheet_polished_2x/nature/nature_13.png` -> `02_sprite_sheet_polished_2x/nature/rock_cluster.png`
+- `02_sprite_sheet_polished_2x/nature/nature_14.png` -> `02_sprite_sheet_polished_2x/nature/small_leafy_patch.png`
+- `02_sprite_sheet_polished_2x/nature/nature_15.png` -> `02_sprite_sheet_polished_2x/nature/log_pile.png`
+- `02_sprite_sheet_polished_2x/nature/nature_16.png` -> `02_sprite_sheet_polished_2x/nature/firewood_stack.png`
+- `02_sprite_sheet_polished_2x/nature/nature_17.png` -> `02_sprite_sheet_polished_2x/nature/yellow_flower_bed.png`
+- `02_sprite_sheet_polished_2x/nature/nature_18.png` -> `02_sprite_sheet_polished_2x/nature/tree_stump.png`
+- `02_sprite_sheet_polished_2x/nature/nature_19.png` -> `02_sprite_sheet_polished_2x/nature/purple_flower_patch.png`
+- `02_sprite_sheet_polished_2x/nature/nature_20.png` -> `02_sprite_sheet_polished_2x/nature/wooden_signpost.png`
+- `02_sprite_sheet_polished_2x/nature/nature_21.png` -> `02_sprite_sheet_polished_2x/nature/lantern_post.png`
+- `02_sprite_sheet_polished_2x/nature/nature_22.png` -> `02_sprite_sheet_polished_2x/nature/purple_banner_lamp_post.png`
+- `02_sprite_sheet_polished_2x/nature/nature_23.png` -> `02_sprite_sheet_polished_2x/nature/blue_fountain.png`
+- `02_sprite_sheet_polished_2x/nature/nature_24.png` -> `02_sprite_sheet_polished_2x/nature/stone_guardian_statue.png`
+- `02_sprite_sheet_polished_2x/nature/nature_25.png` -> `02_sprite_sheet_polished_2x/nature/wooden_barrel.png`
+- `02_sprite_sheet_polished_2x/nature/nature_26.png` -> `02_sprite_sheet_polished_2x/nature/blue_supply_crate.png`
+- `02_sprite_sheet_polished_2x/nature/nature_27.png` -> `02_sprite_sheet_polished_2x/nature/brown_treasure_crate.png`
+- `02_sprite_sheet_polished_2x/nature/nature_28.png` -> `02_sprite_sheet_polished_2x/nature/small_rock_pile.png`
+- `02_sprite_sheet_polished_2x/nature/nature_29.png` -> `02_sprite_sheet_polished_2x/nature/blue_magic_floor_decal.png`
+- `02_sprite_sheet_polished_2x/nature/nature_30.png` -> `02_sprite_sheet_polished_2x/nature/blue_magic_floor_decal_variant.png`
+- `nature/nature_00.png` -> `nature/broadleaf_tree.png`
+- `nature/nature_01.png` -> `nature/tall_pine_tree.png`
+- `nature/nature_02.png` -> `nature/small_pine_tree.png`
+- `nature/nature_03.png` -> `nature/medium_pine_tree.png`
+- `nature/nature_04.png` -> `nature/round_leaf_tree.png`
+- `nature/nature_05.png` -> `nature/autumn_tree.png`
+- `nature/nature_06.png` -> `nature/small_tree_stump.png`
+- `nature/nature_07.png` -> `nature/leafy_bush.png`
+- `nature/nature_08.png` -> `nature/pink_flower_bush.png`
+- `nature/nature_09.png` -> `nature/yellow_flower_bush.png`
+- `nature/nature_10.png` -> `nature/gray_rock_bush.png`
+- `nature/nature_11.png` -> `nature/yellow_flower_patch.png`
+- `nature/nature_12.png` -> `nature/tiny_flower_cluster.png`
+- `nature/nature_13.png` -> `nature/rock_cluster.png`
+- `nature/nature_14.png` -> `nature/small_leafy_patch.png`
+- `nature/nature_15.png` -> `nature/log_pile.png`
+- `nature/nature_16.png` -> `nature/firewood_stack.png`
+- `nature/nature_17.png` -> `nature/yellow_flower_bed.png`
+- `nature/nature_18.png` -> `nature/tree_stump.png`
+- `nature/nature_19.png` -> `nature/purple_flower_patch.png`
+- `nature/nature_20.png` -> `nature/wooden_signpost.png`
+- `nature/nature_21.png` -> `nature/lantern_post.png`
+- `nature/nature_22.png` -> `nature/purple_banner_lamp_post.png`
+- `nature/nature_23.png` -> `nature/blue_fountain.png`
+- `nature/nature_24.png` -> `nature/stone_guardian_statue.png`
+- `nature/nature_25.png` -> `nature/wooden_barrel.png`
+- `nature/nature_26.png` -> `nature/blue_supply_crate.png`
+- `nature/nature_27.png` -> `nature/brown_treasure_crate.png`
+- `nature/nature_28.png` -> `nature/small_rock_pile.png`
+- `nature/nature_29.png` -> `nature/blue_magic_floor_decal.png`
+- `nature/nature_30.png` -> `nature/blue_magic_floor_decal_variant.png`
+
+### npcs
+- `02_sprite_sheet_polished_2x/npcs/npcs_00.png` -> `02_sprite_sheet_polished_2x/npcs/professor_npc.png`
+- `02_sprite_sheet_polished_2x/npcs/npcs_01.png` -> `02_sprite_sheet_polished_2x/npcs/librarian_npc.png`
+- `02_sprite_sheet_polished_2x/npcs/npcs_02.png` -> `02_sprite_sheet_polished_2x/npcs/guard_npc.png`
+- `02_sprite_sheet_polished_2x/npcs/npcs_03.png` -> `02_sprite_sheet_polished_2x/npcs/student_npc.png`
+- `npcs/npcs_00.png` -> `npcs/professor_npc.png`
+- `npcs/npcs_01.png` -> `npcs/librarian_npc.png`
+- `npcs/npcs_02.png` -> `npcs/guard_npc.png`
+- `npcs/npcs_03.png` -> `npcs/student_npc.png`
+
+### player
+- `02_sprite_sheet_polished_2x/player/player_00.png` -> `02_sprite_sheet_polished_2x/player/arcanist_idle_front_01.png`
+- `02_sprite_sheet_polished_2x/player/player_01.png` -> `02_sprite_sheet_polished_2x/player/arcanist_idle_front_02.png`
+- `02_sprite_sheet_polished_2x/player/player_02.png` -> `02_sprite_sheet_polished_2x/player/arcanist_idle_front_03.png`
+- `02_sprite_sheet_polished_2x/player/player_03.png` -> `02_sprite_sheet_polished_2x/player/arcanist_idle_back_01.png`
+- `02_sprite_sheet_polished_2x/player/player_04.png` -> `02_sprite_sheet_polished_2x/player/arcanist_idle_back_02.png`
+- `02_sprite_sheet_polished_2x/player/player_05.png` -> `02_sprite_sheet_polished_2x/player/arcanist_walk_left_01.png`
+- `02_sprite_sheet_polished_2x/player/player_06.png` -> `02_sprite_sheet_polished_2x/player/arcanist_walk_left_02.png`
+- `02_sprite_sheet_polished_2x/player/player_07.png` -> `02_sprite_sheet_polished_2x/player/arcanist_walk_right_01.png`
+- `02_sprite_sheet_polished_2x/player/player_08.png` -> `02_sprite_sheet_polished_2x/player/arcanist_walk_right_02.png`
+- `02_sprite_sheet_polished_2x/player/player_09.png` -> `02_sprite_sheet_polished_2x/player/arcanist_walk_back.png`
+- `02_sprite_sheet_polished_2x/player/player_10.png` -> `02_sprite_sheet_polished_2x/player/arcanist_cast_front_start.png`
+- `02_sprite_sheet_polished_2x/player/player_11.png` -> `02_sprite_sheet_polished_2x/player/arcanist_cast_front_release.png`
+- `02_sprite_sheet_polished_2x/player/player_12.png` -> `02_sprite_sheet_polished_2x/player/arcanist_cast_side_charge.png`
+- `02_sprite_sheet_polished_2x/player/player_13.png` -> `02_sprite_sheet_polished_2x/player/arcanist_cast_side_step.png`
+- `02_sprite_sheet_polished_2x/player/player_14.png` -> `02_sprite_sheet_polished_2x/player/arcanist_cast_side_projectile.png`
+- `player/player_00.png` -> `player/arcanist_idle_front_01.png`
+- `player/player_01.png` -> `player/arcanist_idle_front_02.png`
+- `player/player_02.png` -> `player/arcanist_idle_front_03.png`
+- `player/player_03.png` -> `player/arcanist_idle_back_01.png`
+- `player/player_04.png` -> `player/arcanist_idle_back_02.png`
+- `player/player_05.png` -> `player/arcanist_walk_left_01.png`
+- `player/player_06.png` -> `player/arcanist_walk_left_02.png`
+- `player/player_07.png` -> `player/arcanist_walk_right_01.png`
+- `player/player_08.png` -> `player/arcanist_walk_right_02.png`
+- `player/player_09.png` -> `player/arcanist_walk_back.png`
+- `player/player_10.png` -> `player/arcanist_cast_front_start.png`
+- `player/player_11.png` -> `player/arcanist_cast_front_release.png`
+- `player/player_12.png` -> `player/arcanist_cast_side_charge.png`
+- `player/player_13.png` -> `player/arcanist_cast_side_step.png`
+- `player/player_14.png` -> `player/arcanist_cast_side_projectile.png`
+
+### reference_and_background
+- `00_reference_full/00_full_original_reference.png` -> `00_reference_full/arcanist_island_full_reference.png`
+- `background.png` -> `sky_cloud_background.png`
+
+### tiles
+- `02_sprite_sheet_polished_2x/tiles/tiles_00.png` -> `02_sprite_sheet_polished_2x/tiles/grass_tile.png`
+- `02_sprite_sheet_polished_2x/tiles/tiles_01.png` -> `02_sprite_sheet_polished_2x/tiles/dirt_path_tile.png`
+- `02_sprite_sheet_polished_2x/tiles/tiles_02.png` -> `02_sprite_sheet_polished_2x/tiles/grass_with_stones_tile.png`
+- `02_sprite_sheet_polished_2x/tiles/tiles_03.png` -> `02_sprite_sheet_polished_2x/tiles/stone_path_tile.png`
+- `02_sprite_sheet_polished_2x/tiles/tiles_04.png` -> `02_sprite_sheet_polished_2x/tiles/cobblestone_tile.png`
+- `02_sprite_sheet_polished_2x/tiles/tiles_05.png` -> `02_sprite_sheet_polished_2x/tiles/wood_plank_tile.png`
+- `02_sprite_sheet_polished_2x/tiles/tiles_06.png` -> `02_sprite_sheet_polished_2x/tiles/dark_wood_plank_tile.png`
+- `02_sprite_sheet_polished_2x/tiles/tiles_07.png` -> `02_sprite_sheet_polished_2x/tiles/leafy_ground_tile.png`
+- `02_sprite_sheet_polished_2x/tiles/tiles_08.png` -> `02_sprite_sheet_polished_2x/tiles/clover_grass_tile.png`
+- `02_sprite_sheet_polished_2x/tiles/tiles_09.png` -> `02_sprite_sheet_polished_2x/tiles/purple_flower_grass_tile.png`
+- `02_sprite_sheet_polished_2x/tiles/tiles_10.png` -> `02_sprite_sheet_polished_2x/tiles/pink_flower_grass_tile.png`
+- `02_sprite_sheet_polished_2x/tiles/tiles_11.png` -> `02_sprite_sheet_polished_2x/tiles/purple_crystal_ground_tile.png`
+- `02_sprite_sheet_polished_2x/tiles/tiles_12.png` -> `02_sprite_sheet_polished_2x/tiles/blue_magic_water_tile.png`
+- `02_sprite_sheet_polished_2x/tiles/tiles_13.png` -> `02_sprite_sheet_polished_2x/tiles/white_flower_grass_tile.png`
+- `02_sprite_sheet_polished_2x/tiles/tiles_14.png` -> `02_sprite_sheet_polished_2x/tiles/small_broadleaf_tree.png`
+- `02_sprite_sheet_polished_2x/tiles/tiles_15.png` -> `02_sprite_sheet_polished_2x/tiles/small_pine_tree.png`
+- `02_sprite_sheet_polished_2x/tiles/tiles_16.png` -> `02_sprite_sheet_polished_2x/tiles/round_tree.png`
+- `02_sprite_sheet_polished_2x/tiles/tiles_17.png` -> `02_sprite_sheet_polished_2x/tiles/stone_well.png`
+- `02_sprite_sheet_polished_2x/tiles/tiles_18.png` -> `02_sprite_sheet_polished_2x/tiles/grass_cliff_waterfall_edge.png`
+- `02_sprite_sheet_polished_2x/tiles/tiles_19.png` -> `02_sprite_sheet_polished_2x/tiles/wide_waterfall_segment.png`
+- `02_sprite_sheet_polished_2x/tiles/tiles_20.png` -> `02_sprite_sheet_polished_2x/tiles/narrow_waterfall_segment.png`
+- `02_sprite_sheet_polished_2x/tiles/tiles_21.png` -> `02_sprite_sheet_polished_2x/tiles/small_sapling.png`
+- `02_sprite_sheet_polished_2x/tiles/tiles_22.png` -> `02_sprite_sheet_polished_2x/tiles/tiny_ground_sprout.png`
+- `02_sprite_sheet_polished_2x/tiles/tiles_23.png` -> `02_sprite_sheet_polished_2x/tiles/yellow_flower_shrub.png`
+- `02_sprite_sheet_polished_2x/tiles/tiles_24.png` -> `02_sprite_sheet_polished_2x/tiles/grass_mound.png`
+- `02_sprite_sheet_polished_2x/tiles/tiles_25.png` -> `02_sprite_sheet_polished_2x/tiles/flower_grass_mound.png`
+- `02_sprite_sheet_polished_2x/tiles/tiles_26.png` -> `02_sprite_sheet_polished_2x/tiles/blue_cauldron.png`
+- `02_sprite_sheet_polished_2x/tiles/tiles_27.png` -> `02_sprite_sheet_polished_2x/tiles/pink_flower_patch.png`
+- `02_sprite_sheet_polished_2x/tiles/tiles_28.png` -> `02_sprite_sheet_polished_2x/tiles/tall_grass_cliff_chunk.png`
+- `02_sprite_sheet_polished_2x/tiles/tiles_29.png` -> `02_sprite_sheet_polished_2x/tiles/purple_hanging_banner.png`
+- `02_sprite_sheet_polished_2x/tiles/tiles_30.png` -> `02_sprite_sheet_polished_2x/tiles/purple_vertical_banner.png`
+- `02_sprite_sheet_polished_2x/tiles/tiles_31.png` -> `02_sprite_sheet_polished_2x/tiles/gold_banner_post.png`
+- `02_sprite_sheet_polished_2x/tiles/tiles_32.png` -> `02_sprite_sheet_polished_2x/tiles/gold_flag_post.png`
+- `02_sprite_sheet_polished_2x/tiles/tiles_33.png` -> `02_sprite_sheet_polished_2x/tiles/flower_cliff_column.png`
+- `02_sprite_sheet_polished_2x/tiles/tiles_34.png` -> `02_sprite_sheet_polished_2x/tiles/leafy_cliff_column.png`
+- `02_sprite_sheet_polished_2x/tiles/tiles_35.png` -> `02_sprite_sheet_polished_2x/tiles/grass_cliff_column.png`
+- `02_sprite_sheet_polished_2x/tiles/tiles_36.png` -> `02_sprite_sheet_polished_2x/tiles/stone_lantern.png`
+- `02_sprite_sheet_polished_2x/tiles/tiles_37.png` -> `02_sprite_sheet_polished_2x/tiles/hanging_sign_frame.png`
+- `02_sprite_sheet_polished_2x/tiles/tiles_38.png` -> `02_sprite_sheet_polished_2x/tiles/small_signpost.png`
+- `02_sprite_sheet_polished_2x/tiles/tiles_39.png` -> `02_sprite_sheet_polished_2x/tiles/square_signpost.png`
+- `02_sprite_sheet_polished_2x/tiles/tiles_40.png` -> `02_sprite_sheet_polished_2x/tiles/shield_signpost.png`
+- `02_sprite_sheet_polished_2x/tiles/tiles_41.png` -> `02_sprite_sheet_polished_2x/tiles/tiny_shield_marker.png`
+- `02_sprite_sheet_polished_2x/tiles/tiles_42.png` -> `02_sprite_sheet_polished_2x/tiles/purple_crystal_ore_tile.png`
+- `02_sprite_sheet_polished_2x/tiles/tiles_43.png` -> `02_sprite_sheet_polished_2x/tiles/blue_pond_tile.png`
+- `02_sprite_sheet_polished_2x/tiles/tiles_44.png` -> `02_sprite_sheet_polished_2x/tiles/gold_flecked_blue_tile.png`
+- `02_sprite_sheet_polished_2x/tiles/tiles_45.png` -> `02_sprite_sheet_polished_2x/tiles/blue_gold_trim_tile.png`
+- `02_sprite_sheet_polished_2x/tiles/tiles_46.png` -> `02_sprite_sheet_polished_2x/tiles/wooden_barrel.png`
+- `02_sprite_sheet_polished_2x/tiles/tiles_47.png` -> `02_sprite_sheet_polished_2x/tiles/dark_metal_barrel.png`
+- `02_sprite_sheet_polished_2x/tiles/tiles_48.png` -> `02_sprite_sheet_polished_2x/tiles/stone_barrel.png`
+- `02_sprite_sheet_polished_2x/tiles/tiles_49.png` -> `02_sprite_sheet_polished_2x/tiles/green_liquid_barrel.png`
+- `tiles/tiles_00.png` -> `tiles/grass_tile.png`
+- `tiles/tiles_01.png` -> `tiles/dirt_path_tile.png`
+- `tiles/tiles_02.png` -> `tiles/grass_with_stones_tile.png`
+- `tiles/tiles_03.png` -> `tiles/stone_path_tile.png`
+- `tiles/tiles_04.png` -> `tiles/cobblestone_tile.png`
+- `tiles/tiles_05.png` -> `tiles/wood_plank_tile.png`
+- `tiles/tiles_06.png` -> `tiles/dark_wood_plank_tile.png`
+- `tiles/tiles_07.png` -> `tiles/leafy_ground_tile.png`
+- `tiles/tiles_08.png` -> `tiles/clover_grass_tile.png`
+- `tiles/tiles_09.png` -> `tiles/purple_flower_grass_tile.png`
+- `tiles/tiles_10.png` -> `tiles/pink_flower_grass_tile.png`
+- `tiles/tiles_11.png` -> `tiles/purple_crystal_ground_tile.png`
+- `tiles/tiles_12.png` -> `tiles/blue_magic_water_tile.png`
+- `tiles/tiles_13.png` -> `tiles/white_flower_grass_tile.png`
+- `tiles/tiles_14.png` -> `tiles/small_broadleaf_tree.png`
+- `tiles/tiles_15.png` -> `tiles/small_pine_tree.png`
+- `tiles/tiles_16.png` -> `tiles/round_tree.png`
+- `tiles/tiles_17.png` -> `tiles/stone_well.png`
+- `tiles/tiles_18.png` -> `tiles/grass_cliff_waterfall_edge.png`
+- `tiles/tiles_19.png` -> `tiles/wide_waterfall_segment.png`
+- `tiles/tiles_20.png` -> `tiles/narrow_waterfall_segment.png`
+- `tiles/tiles_21.png` -> `tiles/small_sapling.png`
+- `tiles/tiles_22.png` -> `tiles/tiny_ground_sprout.png`
+- `tiles/tiles_23.png` -> `tiles/yellow_flower_shrub.png`
+- `tiles/tiles_24.png` -> `tiles/grass_mound.png`
+- `tiles/tiles_25.png` -> `tiles/flower_grass_mound.png`
+- `tiles/tiles_26.png` -> `tiles/blue_cauldron.png`
+- `tiles/tiles_27.png` -> `tiles/pink_flower_patch.png`
+- `tiles/tiles_28.png` -> `tiles/tall_grass_cliff_chunk.png`
+- `tiles/tiles_29.png` -> `tiles/purple_hanging_banner.png`
+- `tiles/tiles_30.png` -> `tiles/purple_vertical_banner.png`
+- `tiles/tiles_31.png` -> `tiles/gold_banner_post.png`
+- `tiles/tiles_32.png` -> `tiles/gold_flag_post.png`
+- `tiles/tiles_33.png` -> `tiles/flower_cliff_column.png`
+- `tiles/tiles_34.png` -> `tiles/leafy_cliff_column.png`
+- `tiles/tiles_35.png` -> `tiles/grass_cliff_column.png`
+- `tiles/tiles_36.png` -> `tiles/stone_lantern.png`
+- `tiles/tiles_37.png` -> `tiles/hanging_sign_frame.png`
+- `tiles/tiles_38.png` -> `tiles/small_signpost.png`
+- `tiles/tiles_39.png` -> `tiles/square_signpost.png`
+- `tiles/tiles_40.png` -> `tiles/shield_signpost.png`
+- `tiles/tiles_41.png` -> `tiles/tiny_shield_marker.png`
+- `tiles/tiles_42.png` -> `tiles/purple_crystal_ore_tile.png`
+- `tiles/tiles_43.png` -> `tiles/blue_pond_tile.png`
+- `tiles/tiles_44.png` -> `tiles/gold_flecked_blue_tile.png`
+- `tiles/tiles_45.png` -> `tiles/blue_gold_trim_tile.png`
+- `tiles/tiles_46.png` -> `tiles/wooden_barrel.png`
+- `tiles/tiles_47.png` -> `tiles/dark_metal_barrel.png`
+- `tiles/tiles_48.png` -> `tiles/stone_barrel.png`
+- `tiles/tiles_49.png` -> `tiles/green_liquid_barrel.png`
+
+### ui_elements
+- `02_sprite_sheet_polished_2x/ui_elements/ui-elements_00.png` -> `02_sprite_sheet_polished_2x/ui_elements/health_bar.png`
+- `02_sprite_sheet_polished_2x/ui_elements/ui-elements_01.png` -> `02_sprite_sheet_polished_2x/ui_elements/xp_bar.png`
+- `02_sprite_sheet_polished_2x/ui_elements/ui-elements_02.png` -> `02_sprite_sheet_polished_2x/ui_elements/coin_counter.png`
+- `02_sprite_sheet_polished_2x/ui_elements/ui-elements_03.png` -> `02_sprite_sheet_polished_2x/ui_elements/gem_counter.png`
+- `02_sprite_sheet_polished_2x/ui_elements/ui-elements_04.png` -> `02_sprite_sheet_polished_2x/ui_elements/plus_button.png`
+- `02_sprite_sheet_polished_2x/ui_elements/ui-elements_05.png` -> `02_sprite_sheet_polished_2x/ui_elements/energy_bar.png`
+- `02_sprite_sheet_polished_2x/ui_elements/ui-elements_06.png` -> `02_sprite_sheet_polished_2x/ui_elements/learn_button.png`
+- `02_sprite_sheet_polished_2x/ui_elements/ui-elements_07.png` -> `02_sprite_sheet_polished_2x/ui_elements/upgrade_button.png`
+- `02_sprite_sheet_polished_2x/ui_elements/ui-elements_08.png` -> `02_sprite_sheet_polished_2x/ui_elements/close_button.png`
+- `02_sprite_sheet_polished_2x/ui_elements/ui-elements_09.png` -> `02_sprite_sheet_polished_2x/ui_elements/trophy_tab_button.png`
+- `02_sprite_sheet_polished_2x/ui_elements/ui-elements_10.png` -> `02_sprite_sheet_polished_2x/ui_elements/map_tab_button.png`
+- `02_sprite_sheet_polished_2x/ui_elements/ui-elements_11.png` -> `02_sprite_sheet_polished_2x/ui_elements/inventory_tab_button.png`
+- `02_sprite_sheet_polished_2x/ui_elements/ui-elements_12.png` -> `02_sprite_sheet_polished_2x/ui_elements/social_tab_button.png`
+- `02_sprite_sheet_polished_2x/ui_elements/ui-elements_13.png` -> `02_sprite_sheet_polished_2x/ui_elements/settings_button.png`
+- `ui_elements/ui-elements_00.png` -> `ui_elements/health_bar.png`
+- `ui_elements/ui-elements_01.png` -> `ui_elements/xp_bar.png`
+- `ui_elements/ui-elements_02.png` -> `ui_elements/coin_counter.png`
+- `ui_elements/ui-elements_03.png` -> `ui_elements/gem_counter.png`
+- `ui_elements/ui-elements_04.png` -> `ui_elements/plus_button.png`
+- `ui_elements/ui-elements_05.png` -> `ui_elements/energy_bar.png`
+- `ui_elements/ui-elements_06.png` -> `ui_elements/learn_button.png`
+- `ui_elements/ui-elements_07.png` -> `ui_elements/upgrade_button.png`
+- `ui_elements/ui-elements_08.png` -> `ui_elements/close_button.png`
+- `ui_elements/ui-elements_09.png` -> `ui_elements/trophy_tab_button.png`
+- `ui_elements/ui-elements_10.png` -> `ui_elements/map_tab_button.png`
+- `ui_elements/ui-elements_11.png` -> `ui_elements/inventory_tab_button.png`
+- `ui_elements/ui-elements_12.png` -> `ui_elements/social_tab_button.png`
+- `ui_elements/ui-elements_13.png` -> `ui_elements/settings_button.png`
+
+### ui_panels
+- `02_sprite_sheet_polished_2x/ui_panels/ui-panels_00.png` -> `02_sprite_sheet_polished_2x/ui_panels/ui_panel_border_slice.png`
+- `02_sprite_sheet_polished_2x/ui_panels/ui-panels_01.png` -> `02_sprite_sheet_polished_2x/ui_panels/coding_tower_lesson_panel.png`
+- `02_sprite_sheet_polished_2x/ui_panels/ui-panels_02.png` -> `02_sprite_sheet_polished_2x/ui_panels/professor_dialogue_panel.png`
+- `02_sprite_sheet_polished_2x/ui_panels/ui-panels_03.png` -> `02_sprite_sheet_polished_2x/ui_panels/quest_completed_panel.png`
+- `ui_panels/ui-panels_00.png` -> `ui_panels/ui_panel_border_slice.png`
+- `ui_panels/ui-panels_01.png` -> `ui_panels/coding_tower_lesson_panel.png`
+- `ui_panels/ui-panels_02.png` -> `ui_panels/professor_dialogue_panel.png`
+- `ui_panels/ui-panels_03.png` -> `ui_panels/quest_completed_panel.png`

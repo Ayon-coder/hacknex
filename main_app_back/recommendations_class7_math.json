@@ -1,0 +1,59 @@
+{
+  "student_profile": {
+    "age": 12,
+    "grade_level": 7,
+    "subject": "Mathematics"
+  },
+  "recommendations": [
+    {
+      "topic": "Integers",
+      "difficulty": "Intermediate",
+      "description": "Understanding addition, subtraction, multiplication, and division of integers.",
+      "activities": [
+        "Interactive number line exercises",
+        "Integer word problems",
+        "Temperature drop/rise calculations"
+      ]
+    },
+    {
+      "topic": "Fractions and Decimals",
+      "difficulty": "Advanced",
+      "description": "Mastering multiplication and division of fractions and decimals.",
+      "activities": [
+        "Baking recipe conversions",
+        "Money math puzzles",
+        "Fraction multiplication visuals"
+      ]
+    },
+    {
+      "topic": "Simple Equations",
+      "difficulty": "Beginner",
+      "description": "Introduction to variables and balancing simple algebraic equations.",
+      "activities": [
+        "Balance scale interactive game",
+        "Solving for 'x' puzzles",
+        "Translating statements into equations"
+      ]
+    },
+    {
+      "topic": "Lines and Angles",
+      "difficulty": "Intermediate",
+      "description": "Identifying related angles, parallel lines, and transversal lines.",
+      "activities": [
+        "Angle measurement interactive",
+        "Identifying complementary and supplementary angles",
+        "City map angle analysis"
+      ]
+    },
+    {
+      "topic": "Data Handling",
+      "difficulty": "Beginner",
+      "description": "Learning about mean, median, mode, and creating bar graphs.",
+      "activities": [
+        "Class survey data collection and graphing",
+        "Finding the average of sports scores",
+        "Interpreting double bar graphs"
+      ]
+    }
+  ]
+}
